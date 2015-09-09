@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "ChordConstruction.hpp"
 
@@ -10,6 +11,11 @@ namespace ts
 	class Chord
 	{
 		std::wstring chordName;	// ÉRÅ[Éhñº
+
+		chord::TonePtr tone;
+		chord::FifthPtr fifth;
+		chord::DominantPtr dominant;
+		std::vector<chord::TensionPtr> tensions;
 
 	public:
 		Chord(const std::wstring& chordName)
