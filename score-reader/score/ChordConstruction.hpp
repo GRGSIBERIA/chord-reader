@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <memory>
+#include <regex>
 
 namespace score
 {
@@ -27,15 +28,24 @@ namespace score
 		*/
 		class ConstructionBase
 		{
-			std::wstring name;
+			const std::wstring name;
+			const std::wregex re;
 
 		public:
 			ConstructionBase() {}
 
-			ConstructionBase(const std::wstring& name) : name(name) {}
+			ConstructionBase(const std::wstring& name) : name(name), re(name) {}
 
-			const std::wstring Name() const { return name; }
+			const std::wstring& Name() const { return name; }
+			const std::wregex& Regex() const { return re; }
 		};
+
+#define MAKE_CONSTRUCTION(BASE_NAME, CLASS_NAME, WSTR)\
+	class CLASS_NAME : public BASE_NAME \
+		{\
+		public:\
+			CLASS_NAME() : BASE_NAME(WSTR) {} \
+		}
 
 		/**
 		* 第3音
@@ -46,17 +56,8 @@ namespace score
 			Tone(const std::wstring& name) : ConstructionBase(name) {}
 		};
 
-		class Major3rd : public Tone
-		{
-		public:
-			Major3rd() : Tone(L"") {}
-		};
-
-		class Minor3rd : public Tone
-		{
-		public:
-			Minor3rd() : Tone(L"m") {}
-		};
+		MAKE_CONSTRUCTION(Tone, Major3rd, L"");
+		MAKE_CONSTRUCTION(Tone, Minor3rd, L"");
 
 		/**
 		* 第7音
@@ -67,23 +68,9 @@ namespace score
 			Dominant(const std::wstring& name) : ConstructionBase(name) {}
 		};
 
-		class Major7th : public Dominant
-		{
-		public:
-			Major7th() : Dominant(L"M7") {}
-		};
-
-		class Minor7th : public Dominant
-		{
-		public:
-			Minor7th() : Dominant(L"7") {}
-		};
-
-		class Major6th : public Dominant
-		{
-		public:
-			Major6th() : Dominant(L"6") {}
-		};
+		MAKE_CONSTRUCTION(Dominant, Major7th, L"M7");
+		MAKE_CONSTRUCTION(Dominant, Minor7th, L"7");
+		MAKE_CONSTRUCTION(Dominant, Perfect6th, L"6");
 
 		/**
 		* 第5音
@@ -94,29 +81,10 @@ namespace score
 			Fifth(const std::wstring& name) : ConstructionBase(name) {}
 		};
 
-		class Perfect5th : public Fifth
-		{
-		public:
-			Perfect5th() : Fifth(L"") {}
-		};
-
-		class Diminished5th : public Fifth
-		{
-		public:
-			Diminished5th() : Fifth(L"-5") {}
-		};
-
-		class Augumented5th : public Fifth
-		{
-		public:
-			Augumented5th() : Fifth(L"+5") {}
-		};
-
-		class Sus4 : public Fifth
-		{
-		public:
-			Sus4() : Fifth(L"sus4") {}
-		};
+		MAKE_CONSTRUCTION(Fifth, Perfect5th, L"");
+		MAKE_CONSTRUCTION(Fifth, Diminished5th, L"-5");
+		MAKE_CONSTRUCTION(Fifth, Augumented5th, L"+5");
+		MAKE_CONSTRUCTION(Fifth, Sus4, L"sus4");
 
 		/**
 		* テンションノート
@@ -127,59 +95,15 @@ namespace score
 			Tension(const std::wstring& name) : ConstructionBase(name) {}
 		};
 
-		class Flat9th : public Tension
-		{
-		public:
-			Flat9th() : Tension(L"b9") {}
-		};
-
-		class Perfect9th : public Tension
-		{
-		public:
-			Perfect9th() : Tension(L"9") {}
-		};
-
-		class Sharp9th : public Tension
-		{
-		public:
-			Sharp9th() : Tension(L"#9") {}
-		};
-
-		class Flat11th : public Tension
-		{
-		public:
-			Flat11th() : Tension(L"b11") {}
-		};
-
-		class Perfect11th : public Tension
-		{
-		public:
-			Perfect11th() : Tension(L"11") {}
-		};
-
-		class Sharp11th : public Tension
-		{
-		public:
-			Sharp11th() : Tension(L"#11") {}
-		};
-
-		class Flat13th : public Tension
-		{
-		public:
-			Flat13th() : Tension(L"b13") {}
-		};
-
-		class Perfect13th : public Tension
-		{
-		public:
-			Perfect13th() : Tension(L"13") {}
-		};
-
-		class Sharp13th : public Tension
-		{
-		public:
-			Sharp13th() : Tension(L"#13") {}
-		};
+		MAKE_CONSTRUCTION(Tension, Flat9th, L"b9");
+		MAKE_CONSTRUCTION(Tension, Flat11th, L"b11");
+		MAKE_CONSTRUCTION(Tension, Flat13th, L"b13");
+		MAKE_CONSTRUCTION(Tension, Perfect9, L"9");
+		MAKE_CONSTRUCTION(Tension, Perfect11, L"11");
+		MAKE_CONSTRUCTION(Tension, Perfect13, L"13");
+		MAKE_CONSTRUCTION(Tension, Sharp9, L"#9");
+		MAKE_CONSTRUCTION(Tension, Sharp11, L"#11");
+		MAKE_CONSTRUCTION(Tension, Sharp13, L"#13");
 
 		typedef std::shared_ptr<Tone> TonePtr;
 		typedef std::shared_ptr<Fifth> FifthPtr;
