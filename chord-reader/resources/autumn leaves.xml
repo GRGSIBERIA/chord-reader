@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <chord-list>
+  <header>
+    <title>Autumn Leaves</title>
+    <key>Bb</key>
+  </header>
   <repeat time="2">
     <!-- A -->
     <key code="Bb">
