@@ -69,8 +69,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chord.hpp" />
-    <ClInclude Include="ChordReader.hpp" />
-    <ClInclude Include="Tone.hpp" />
+    <ClInclude Include="ChordConstruction.hpp" />
+    <ClInclude Include="ScoreReader.hpp" />
     <ClInclude Include="xml\tinyxml2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

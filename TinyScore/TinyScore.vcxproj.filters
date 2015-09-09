@@ -35,14 +35,14 @@
     <ClInclude Include="xml\tinyxml2.h">
       <Filter>ヘッダー ファイル\xml</Filter>
     </ClInclude>
-    <ClInclude Include="Tone.hpp">
-      <Filter>ヘッダー ファイル\chord</Filter>
-    </ClInclude>
-    <ClInclude Include="ChordReader.hpp">
-      <Filter>ヘッダー ファイル\chord</Filter>
-    </ClInclude>
     <ClInclude Include="Chord.hpp">
       <Filter>ヘッダー ファイル\chord</Filter>
+    </ClInclude>
+    <ClInclude Include="ChordConstruction.hpp">
+      <Filter>ヘッダー ファイル\chord</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreReader.hpp">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
