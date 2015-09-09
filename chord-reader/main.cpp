@@ -5,7 +5,7 @@ void main()
 {
 	tinyxml2::XMLDocument doc;
 
-	auto error = doc.LoadFile("./chord-reader/resources/autumun leaves.xml");
+	auto error = doc.LoadFile("../resources/autumun leaves.xml");
 	if (error == tinyxml2::XMLError::XML_SUCCESS)
 	{
 		printf("hoge\n");
