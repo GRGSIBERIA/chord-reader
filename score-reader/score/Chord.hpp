@@ -7,9 +7,13 @@
 
 namespace score
 {
+	class Recognizer;
+
 	// コードのベースクラス
 	class Chord
 	{
+		friend Recognizer;
+
 		std::wstring chordName;	// コード名
 
 		chord::TonePtr tone;
@@ -21,4 +25,6 @@ namespace score
 		Chord(const std::wstring& chordName)
 			: chordName(chordName) {}
 	};
+
+	typedef std::shared_ptr<Chord> ChordPtr;
 }

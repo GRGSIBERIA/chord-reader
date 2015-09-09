@@ -19,22 +19,34 @@
     <Filter Include="ヘッダー ファイル\xml">
       <UniqueIdentifier>{394ff586-47c7-4c03-a659-e4a817c3eced}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\chord">
+    <Filter Include="ソース ファイル\score">
+      <UniqueIdentifier>{264afb00-1ed1-47c5-a4c1-b245dbd8a811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\score\chord">
+      <UniqueIdentifier>{92e187f7-7b90-41a8-9117-0a7905399543}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\score">
+      <UniqueIdentifier>{d542fdfe-92dd-4ace-b33a-f16c500089a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\score\chord">
       <UniqueIdentifier>{05c9e3a5-9986-449e-87b4-470d7f8ddd02}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ScoreReader.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="xml\tinyxml2.h">
       <Filter>ヘッダー ファイル\xml</Filter>
     </ClInclude>
-    <ClInclude Include="Chord.hpp">
-      <Filter>ヘッダー ファイル\chord</Filter>
+    <ClInclude Include="score\ScoreReader.hpp">
+      <Filter>ヘッダー ファイル\score</Filter>
     </ClInclude>
-    <ClInclude Include="ChordConstruction.hpp">
-      <Filter>ヘッダー ファイル\chord</Filter>
+    <ClInclude Include="score\Chord.hpp">
+      <Filter>ヘッダー ファイル\score\chord</Filter>
+    </ClInclude>
+    <ClInclude Include="score\ChordConstruction.hpp">
+      <Filter>ヘッダー ファイル\score\chord</Filter>
+    </ClInclude>
+    <ClInclude Include="score\Recognizer.hpp">
+      <Filter>ヘッダー ファイル\score\chord</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="xml\tinyxml2.cpp">
       <Filter>ソース ファイル\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="score\Recognizer.cpp">
+      <Filter>ソース ファイル\score\chord</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
