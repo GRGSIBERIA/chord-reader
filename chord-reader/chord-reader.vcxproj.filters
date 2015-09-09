@@ -34,5 +34,13 @@
     <ClCompile Include="xml\tinyxml2.cpp">
       <Filter>ソース ファイル\xml</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\autumn leaves.crd">
+      <Filter>リソース ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>

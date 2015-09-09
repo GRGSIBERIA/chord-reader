@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chord-reader", "chord-reader.vcxproj", "{E7EDE3CC-7B9E-40A1-ADFB-0512A91ADACD}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "..\test\test.vcxproj", "{9757CB21-B840-49A6-B057-9F322E543DD6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E7EDE3CC-7B9E-40A1-ADFB-0512A91ADACD} = {E7EDE3CC-7B9E-40A1-ADFB-0512A91ADACD}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
