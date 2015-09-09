@@ -6,6 +6,22 @@ namespace score
 {
 	namespace chord
 	{
+		enum class Note
+		{
+			C = 0,
+			Db,
+			D,
+			Eb,
+			E,
+			F,
+			Gb,
+			G,
+			Ab,
+			A,
+			Bb,
+			B
+		};
+
 		/**
 		* 構成音の基本クラス
 		*/
