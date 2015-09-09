@@ -5,7 +5,7 @@
 
 #include "ChordConstruction.hpp"
 
-namespace ts
+namespace score
 {
 	// コードのベースクラス
 	class Chord

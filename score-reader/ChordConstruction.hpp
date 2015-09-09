@@ -2,7 +2,7 @@
 #include <string>
 #include <memory>
 
-namespace ts
+namespace score
 {
 	namespace chord
 	{
@@ -39,7 +39,7 @@ namespace ts
 		class Minor3rd : public Tone
 		{
 		public:
-			Minor3rd() : Tone(L"m")
+			Minor3rd() : Tone(L"m") {}
 		};
 
 		/**

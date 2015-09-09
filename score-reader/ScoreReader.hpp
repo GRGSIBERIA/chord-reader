@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ts
+namespace score
 {
 	class ScoreReader
 	{
