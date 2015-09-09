@@ -1,4 +1,4 @@
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 
 #pragma comment( lib, "gtest.lib" )
 #pragma comment( lib, "gtest_main.lib" )

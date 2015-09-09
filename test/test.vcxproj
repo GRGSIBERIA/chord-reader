@@ -39,10 +39,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\score-reader;..\gtest-1.7.0\include;..\score-reader\xml</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\score-reader</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(VC_SourcePath)</LibraryPath>
-    <SourcePath>$(VC_SourcePath);..\score-reader;..\score-reader\xml</SourcePath>
-    <ReferencePath>$(VC_ReferencesPath_x86);..\score-reader;..\score-reader\xml</ReferencePath>
+    <SourcePath>$(VC_SourcePath);..\score-reader</SourcePath>
+    <ReferencePath>$(VC_ReferencesPath_x86);..\score-reader</ReferencePath>
+    <OutDir>$(ProjectDir)Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\score-reader;..\gtest-1.7.0\include</IncludePath>
@@ -78,6 +79,10 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestTinyXML.cpp" />
+    <ClCompile Include="xml\tinyxml2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="xml\tinyxml2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
