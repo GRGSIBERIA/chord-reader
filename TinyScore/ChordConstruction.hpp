@@ -1,43 +1,55 @@
 #pragma once
+#include <string>
 
 namespace ts
 {
 	namespace chord
 	{
-		// 調性
-		enum class Tone
+		/**
+		* 構成音の基本クラス
+		*/
+		class ConstructionBase
 		{
-			Major,	// メジャー
-			Minor	// マイナー
+			std::wstring name;
+
+		public:
+			ConstructionBase() {}
+
+			ConstructionBase(const std::wstring& name) : name(name) {}
+
+			const std::wstring Name() const { return name; }
 		};
 
-		// 第七度
-		enum class Dominant
+		/**
+		* 第3音
+		*/
+		class Tone : public ConstructionBase
 		{
-			None,			// なし
-			Seven,			// 7th
-			MajorSeven,		// M7
-			DiminishedSeven	// dim7
+		public:
 		};
 
-		// 第五度
-		enum class Fifth
+		/**
+		* 第7音
+		*/
+		class Dominant : public ConstructionBase
 		{
-			Perfect,	// 完全5度
-			Diminished,	// -5th
-			Augumented	// +5th
+		public:
 		};
 
-		// テンションノート
-		enum class Tension
+		/**
+		* 第5音
+		*/
+		class Fifth : public ConstructionBase
 		{
-			FlatNine,		// -9
-			Nine,			//  9
-			SharpNine,		// +9
-			Eleven,			//  11
-			SharpEleven,	// +11
-			FlatThirteen,	// -13
-			Thirteen,		//  13
+		public:
+		};
+
+		/**
+		* テンションノート
+		*/
+		class Tension : public ConstructionBase
+		{
+		public:
 		};
 	}
 }
