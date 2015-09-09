@@ -3,15 +3,12 @@
 
 namespace cr
 {
-	namespace chord
+	class Chord
 	{
-		class Chord
-		{
-			std::wstring chordName;
+		std::wstring chordName;
 
-		public:
-			Chord(const std::wstring& chordName)
-				: chordName(chordName) {}
-		};
-	}
+	public:
+		Chord(const std::wstring& chordName)
+			: chordName(chordName) {}
+	};
 }
