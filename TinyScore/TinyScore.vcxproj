@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E7EDE3CC-7B9E-40A1-ADFB-0512A91ADACD}</ProjectGuid>
-    <RootNamespace>chordreader</RootNamespace>
+    <ProjectGuid>{167A498E-A0F9-4E36-A23F-8FC6814926FC}</ProjectGuid>
+    <RootNamespace>TinyScore</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -72,12 +72,6 @@
     <ClInclude Include="ChordReader.hpp" />
     <ClInclude Include="Tone.hpp" />
     <ClInclude Include="xml\tinyxml2.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="resources\autumn leaves.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\autumn leaves.crd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
