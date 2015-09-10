@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <string>
 #include <memory>
 #include <regex>
@@ -25,6 +26,7 @@ namespace score
 			ConstructionBase(SVFunc* re, const std::wstring& name, int interval) : refunc(re), name(name), interval(interval) {}
 
 			const std::wstring& Name() const { return name; }
+			int Interval() const { return interval; }
 		};
 
 #define MAKE_CONSTRUCTION(BASE_NAME, CLASS_NAME, WSTR, INTERVAL) \
@@ -125,5 +127,6 @@ namespace score
 		typedef std::shared_ptr<Fifth> FifthPtr;
 		typedef std::shared_ptr<Dominant> DominantPtr;
 		typedef std::shared_ptr<Tension> TensionPtr;
+		typedef std::shared_ptr<std::vector<chord::TensionPtr>> VectorTensionPtr;
 	}
 }

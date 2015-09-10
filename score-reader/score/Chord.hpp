@@ -7,7 +7,7 @@
 
 namespace score
 {
-	class Recognizer;
+	class ChordFactory;
 
 	// コードのベースクラス
 	class Chord
@@ -18,10 +18,10 @@ namespace score
 		chord::TonePtr tone;
 		chord::FifthPtr fifth;
 		chord::DominantPtr dominant;
-		std::vector<chord::TensionPtr> tensions;
+		chord::VectorTensionPtr tensions;
 
 	public:
-		friend Recognizer;
+		friend ChordFactory;
 
 		Chord(const std::wstring& chordName)
 			: chordName(chordName) {}
