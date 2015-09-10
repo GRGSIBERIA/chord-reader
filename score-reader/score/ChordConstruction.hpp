@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <array>
 #include <string>
 #include <memory>
 #include <regex>
@@ -129,5 +130,65 @@ namespace score
 		typedef std::shared_ptr<Dominant> DominantPtr;
 		typedef std::shared_ptr<Tension> TensionPtr;
 		typedef std::shared_ptr<std::vector<chord::TensionPtr>> VectorTensionPtr;
+
+		typedef std::array<std::wregex, 17> RootRegices; // vertex -> vertices -> regices
+		typedef std::array<std::wregex, 2> ToneRegices;
+		typedef std::array<std::wregex, 5> FifthRegices;
+		typedef std::array<std::wregex, 3> DominantRegices;
+		typedef std::array<std::wregex, 9> TensionRegices;
+
+		struct ChordRegex
+		{
+			const RootRegices roots = { {
+				chord::NoteDb::Regex(),
+				chord::NoteEb::Regex(),
+				chord::NoteGb::Regex(),
+				chord::NoteAb::Regex(),
+				chord::NoteBb::Regex(),
+				chord::NoteCSharp::Regex(),
+				chord::NoteDSharp::Regex(),
+				chord::NoteFSharp::Regex(),
+				chord::NoteGSharp::Regex(),
+				chord::NoteASharp::Regex(),
+				chord::NoteC::Regex(),
+				chord::NoteD::Regex(),
+				chord::NoteE::Regex(),
+				chord::NoteF::Regex(),
+				chord::NoteG::Regex(),
+				chord::NoteA::Regex(),
+				chord::NoteB::Regex()
+					} };
+
+			const ToneRegices tones = { {
+				chord::Major3rd::Regex(),
+				chord::Minor3rd::Regex()
+					} };
+
+			const FifthRegices fifthes = { {
+				chord::Perfect5th::Regex(),
+				chord::Diminished5th::Regex(),
+				chord::Augumented5th::Regex(),
+				chord::Sus4::Regex(),
+				chord::Sus6::Regex()
+					} };
+
+			const DominantRegices dominants = { {
+				chord::Major7th::Regex(),
+				chord::Minor7th::Regex(),
+				chord::Perfect6th::Regex()
+					} };
+
+			const TensionRegices tensions = { {
+				chord::Flat9th::Regex(),
+				chord::Flat11th::Regex(),
+				chord::Flat13th::Regex(),
+				chord::Sharp9::Regex(),
+				chord::Sharp11::Regex(),
+				chord::Sharp13::Regex(),
+				chord::Perfect9::Regex(),
+				chord::Perfect11::Regex(),
+				chord::Perfect13::Regex()
+					} };
+		};
 	}
 }
