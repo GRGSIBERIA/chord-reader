@@ -28,24 +28,29 @@ namespace score
 		*/
 		class ConstructionBase
 		{
-			const std::wstring name;
+		protected:
+			typedef const std::wregex SVFunc();
 			const std::wregex re;
 
-		public:
-			ConstructionBase() {}
+		private:
+			const std::wstring name;
+			SVFunc* const refunc;
 
-			ConstructionBase(const std::wstring& name) : name(name), re(name) {}
+		public:
+			ConstructionBase(SVFunc* re) : refunc(re) {}
+			ConstructionBase(SVFunc* re, const std::wstring& name) : refunc(re), name(name), re(name) {}
 
 			const std::wstring& Name() const { return name; }
-			const std::wregex& Regex() const { return re; }
 		};
 
-#define MAKE_CONSTRUCTION(BASE_NAME, CLASS_NAME, WSTR)\
-	class CLASS_NAME : public BASE_NAME \
+#define MAKE_CONSTRUCTION(BASE_NAME, CLASS_NAME, WSTR) \
+		class CLASS_NAME : public BASE_NAME \
 		{\
 		public:\
-			CLASS_NAME() : BASE_NAME(WSTR) {} \
-		}
+			static const std::wregex Regex() { return std::wregex(WSTR); } \
+			CLASS_NAME() : BASE_NAME(Regex, WSTR) {} \
+		}; \
+		//const std::wregex CLASS_NAME::CLASS_NAME##_re = std::wregex(WSTR);
 
 		/**
 		* ‘æ3‰¹
@@ -53,7 +58,7 @@ namespace score
 		class Tone : public ConstructionBase
 		{
 		public:
-			Tone(const std::wstring& name) : ConstructionBase(name) {}
+			Tone(SVFunc* re, const std::wstring& name) : ConstructionBase(re, name) {}
 		};
 
 		MAKE_CONSTRUCTION(Tone, Major3rd, L"");
@@ -65,7 +70,7 @@ namespace score
 		class Dominant : public ConstructionBase
 		{
 		public:
-			Dominant(const std::wstring& name) : ConstructionBase(name) {}
+			Dominant(SVFunc* re, const std::wstring& name) : ConstructionBase(re, name) {}
 		};
 
 		MAKE_CONSTRUCTION(Dominant, Major7th, L"M7");
@@ -78,7 +83,7 @@ namespace score
 		class Fifth : public ConstructionBase
 		{
 		public:
-			Fifth(const std::wstring& name) : ConstructionBase(name) {}
+			Fifth(SVFunc* re, const std::wstring& name) : ConstructionBase(re, name) {}
 		};
 
 		MAKE_CONSTRUCTION(Fifth, Perfect5th, L"");
@@ -92,7 +97,7 @@ namespace score
 		class Tension : public ConstructionBase
 		{
 		public:
-			Tension(const std::wstring& name) : ConstructionBase(name) {}
+			Tension(SVFunc* re, const std::wstring& name) : ConstructionBase(re, name) {}
 		};
 
 		MAKE_CONSTRUCTION(Tension, Flat9th, L"b9");
