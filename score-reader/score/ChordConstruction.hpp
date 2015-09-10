@@ -50,7 +50,6 @@ namespace score
 			static const std::wregex Regex() { return std::wregex(WSTR); } \
 			CLASS_NAME() : BASE_NAME(Regex, WSTR) {} \
 		}; \
-		//const std::wregex CLASS_NAME::CLASS_NAME##_re = std::wregex(WSTR);
 
 		/**
 		* ‘æ3‰¹
