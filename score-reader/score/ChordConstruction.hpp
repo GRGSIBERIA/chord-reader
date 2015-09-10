@@ -102,6 +102,7 @@ namespace score
 		MAKE_CONSTRUCTION(Fifth, Diminished5th, L"-5", 6);
 		MAKE_CONSTRUCTION(Fifth, Augumented5th, L"+5", 8);
 		MAKE_CONSTRUCTION(Fifth, Sus4, L"sus4", 5);
+		MAKE_CONSTRUCTION(Fifth, Sus6, L"sus6", 9);
 
 		/**
 		* テンションノート
