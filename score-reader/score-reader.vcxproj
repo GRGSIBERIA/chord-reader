@@ -66,13 +66,13 @@
   <ItemGroup>
     <ClInclude Include="score\Chord.hpp" />
     <ClInclude Include="score\ChordConstruction.hpp" />
-    <ClInclude Include="score\Recognizer.hpp" />
+    <ClInclude Include="score\ChordFactory.hpp" />
     <ClInclude Include="score\ScoreReader.hpp" />
     <ClInclude Include="xml\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="score\Recognizer.cpp" />
+    <ClCompile Include="score\ChordFactory.cpp" />
     <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
