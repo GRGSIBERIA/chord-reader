@@ -7,22 +7,6 @@ namespace score
 {
 	namespace chord
 	{
-		enum class Note
-		{
-			C = 0,
-			Db,
-			D,
-			Eb,
-			E,
-			F,
-			Gb,
-			G,
-			Ab,
-			A,
-			Bb,
-			B
-		};
-
 		/**
 		* 構成音の基本クラス
 		*/
@@ -50,6 +34,33 @@ namespace score
 			static const std::wregex Regex() { return std::wregex(WSTR); } \
 			CLASS_NAME() : BASE_NAME(Regex, WSTR) {} \
 		}; \
+
+		/**
+		* 根音
+		*/
+		class Root : public ConstructionBase
+		{
+		public:
+			Root(SVFunc* re, const std::wstring& name) : ConstructionBase(re, name) {}
+		};
+
+		MAKE_CONSTRUCTION(Root, NoteC, L"C");
+		MAKE_CONSTRUCTION(Root, NoteD, L"D");
+		MAKE_CONSTRUCTION(Root, NoteE, L"E");
+		MAKE_CONSTRUCTION(Root, NoteF, L"F");
+		MAKE_CONSTRUCTION(Root, NoteG, L"G");
+		MAKE_CONSTRUCTION(Root, NoteA, L"A");
+		MAKE_CONSTRUCTION(Root, NoteB, L"B");
+		MAKE_CONSTRUCTION(Root, NoteDb, L"Cb");
+		MAKE_CONSTRUCTION(Root, NoteEb, L"Eb");
+		MAKE_CONSTRUCTION(Root, NoteGb, L"Gb");
+		MAKE_CONSTRUCTION(Root, NoteAb, L"Ab");
+		MAKE_CONSTRUCTION(Root, NoteBb, L"Bb");
+		MAKE_CONSTRUCTION(Root, NoteCSharp, L"C#");
+		MAKE_CONSTRUCTION(Root, NoteDSharp, L"D#");
+		MAKE_CONSTRUCTION(Root, NoteFSharp, L"F#");
+		MAKE_CONSTRUCTION(Root, NoteGSharp, L"G#");
+		MAKE_CONSTRUCTION(Root, NoteASharp, L"A#");
 
 		/**
 		* 第3音
@@ -109,6 +120,7 @@ namespace score
 		MAKE_CONSTRUCTION(Tension, Sharp11, L"#11");
 		MAKE_CONSTRUCTION(Tension, Sharp13, L"#13");
 
+		typedef std::shared_ptr<Root> RootPtr;
 		typedef std::shared_ptr<Tone> TonePtr;
 		typedef std::shared_ptr<Fifth> FifthPtr;
 		typedef std::shared_ptr<Dominant> DominantPtr;

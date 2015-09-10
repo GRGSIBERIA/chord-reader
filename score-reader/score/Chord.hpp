@@ -12,16 +12,17 @@ namespace score
 	// コードのベースクラス
 	class Chord
 	{
-		friend Recognizer;
-
 		std::wstring chordName;	// コード名
 
+		chord::RootPtr root;
 		chord::TonePtr tone;
 		chord::FifthPtr fifth;
 		chord::DominantPtr dominant;
 		std::vector<chord::TensionPtr> tensions;
 
 	public:
+		friend Recognizer;
+
 		Chord(const std::wstring& chordName)
 			: chordName(chordName) {}
 	};
