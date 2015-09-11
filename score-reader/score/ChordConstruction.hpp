@@ -134,6 +134,33 @@ namespace score
 		MAKE_CONSTRUCTION(Tension, Sharp11, L"#11", 6);
 		MAKE_CONSTRUCTION(Tension, Sharp13, L"#13", 10);
 
+		/**
+		* オンコード
+		*/
+		class OnChord : public ConstructionBase
+		{
+		public:
+			OnChord(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
+		};
+
+		MAKE_CONSTRUCTION_REG(OnChord, OnC, L"C", 0, L"((/|on) *(\C))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnD, L"D", 2, L"((/|on) *(\D))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnE, L"E", 4, L"((/|on) *(\E))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnF, L"F", 5, L"((/|on) *(\F))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnG, L"G", 7, L"((/|on) *(\G))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnA, L"A", 9, L"((/|on) *(\A))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnB, L"B", 11, L"((/|on) *(\B))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnDb, L"Db", 1, L"((/|on) *(\Db))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnEb, L"Eb", 3, L"((/|on) *(\Eb))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnGb, L"Gb", 6, L"((/|on) *(\Gb))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnAb, L"Ab", 8, L"((/|on) *(\Ab))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnBb, L"Bb", 10, L"((/|on) *(\Bb))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnCSharp, L"C#", 1, L"((/|on) *(\C#))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnDSharp, L"D#", 3, L"((/|on) *(\D#))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnFSharp, L"F#", 6, L"((/|on) *(\F#))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnGSharp, L"G#", 8, L"((/|on) *(\G#))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnASharp, L"A#", 10, L"((/|on) *(\A#))");
+
 		typedef std::shared_ptr<Root> RootPtr;
 		typedef std::shared_ptr<Tone> TonePtr;
 		typedef std::shared_ptr<Fifth> FifthPtr;
@@ -145,6 +172,7 @@ namespace score
 		typedef std::array<ConstructionBase, 5> FifthRegices;
 		typedef std::array<ConstructionBase, 3> DominantRegices;
 		typedef std::array<ConstructionBase, 9> TensionRegices;
+		typedef std::array<ConstructionBase, 17> OnChordRegices;
 
 		struct ChordConstructions
 		{
@@ -155,6 +183,7 @@ namespace score
 			const ConstructionBase& MatchFifthes(const std::wstring& str);
 			const ConstructionBase& MatchDominants(const std::wstring& str);
 			const ConstructionBase& MatchTensions(const std::wstring& str);
+			const ConstructionBase& MatchOnChord(const std::wstring& str);
 
 			const RootRegices roots = RootRegices{ {
 				chord::NoteDb(),
@@ -205,6 +234,26 @@ namespace score
 				chord::Perfect9(),
 				chord::Perfect11(),
 				chord::Perfect13()
+					} };
+
+			const OnChordRegices onchords = OnChordRegices{ {
+				chord::OnDb(),
+				chord::OnEb(),
+				chord::OnGb(),
+				chord::OnAb(),
+				chord::OnBb(),
+				chord::OnCSharp(),
+				chord::OnDSharp(),
+				chord::OnFSharp(),
+				chord::OnGSharp(),
+				chord::OnASharp(),
+				chord::OnC(),
+				chord::OnD(),
+				chord::OnE(),
+				chord::OnF(),
+				chord::OnG(),
+				chord::OnA(),
+				chord::OnB()
 					} };
 		};
 	}
