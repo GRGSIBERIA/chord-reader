@@ -31,7 +31,11 @@ const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchTon
 
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchFifthes(const std::wstring& str) const
 {
-	return MatchArray(fifthes, str);
+	const auto& fifth = MatchArray(fifthes, str);
+	static const score::chord::Perfect5th fif;
+	if (fifth.Name() == L"Idefinite")
+		return fif;
+	return fifth;
 }
 
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchDominants(const std::wstring& str) const
