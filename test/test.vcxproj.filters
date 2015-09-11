@@ -27,7 +27,7 @@
     <ClCompile Include="TestTinyXML.cpp">
       <Filter>ソース ファイル\test</Filter>
     </ClCompile>
-    <ClCompile Include="TestChordRegex.cpp">
+    <ClCompile Include="TestChordConstructions.cpp">
       <Filter>ソース ファイル\test</Filter>
     </ClCompile>
   </ItemGroup>

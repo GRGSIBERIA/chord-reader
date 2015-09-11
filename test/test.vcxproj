@@ -78,7 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="TestChordRegex.cpp" />
+    <ClCompile Include="TestChordConstructions.cpp" />
     <ClCompile Include="TestTinyXML.cpp" />
     <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>
