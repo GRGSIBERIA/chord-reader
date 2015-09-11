@@ -15,7 +15,7 @@ namespace score
 		class ConstructionBase
 		{
 		protected:
-			typedef const std::wregex SVFunc();
+			typedef const std::wregex& SVFunc();
 
 		private:
 			const std::wstring name;
@@ -36,7 +36,7 @@ namespace score
 		class CLASS_NAME : public BASE_NAME \
 		{\
 		public:\
-			static const std::wregex _Regex() { return std::wregex(WSTR); } \
+			static const std::wregex& _Regex() { const static std::wregex r(WSTR); return r; } \
 			CLASS_NAME() : BASE_NAME(_Regex, WSTR, INTERVAL) {} \
 		}; \
 
@@ -44,7 +44,7 @@ namespace score
 		class CLASS_NAME : public BASE_NAME \
 		{\
 		public:\
-			static const std::wregex _Regex() { return std::wregex(REGSTR); } \
+			static const std::wregex& _Regex() { const static std::wregex r(REGSTR); return r; } \
 			CLASS_NAME() : BASE_NAME(_Regex, WSTR, INTERVAL) {} \
 		}; \
 
@@ -57,23 +57,23 @@ namespace score
 			Root(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
 		};
 
-		MAKE_CONSTRUCTION(Root, NoteC, L"C", 0);
-		MAKE_CONSTRUCTION(Root, NoteD, L"D", 2);
-		MAKE_CONSTRUCTION(Root, NoteE, L"E", 4);
-		MAKE_CONSTRUCTION(Root, NoteF, L"F", 5);
-		MAKE_CONSTRUCTION(Root, NoteG, L"G", 7);
-		MAKE_CONSTRUCTION(Root, NoteA, L"A", 9);
-		MAKE_CONSTRUCTION(Root, NoteB, L"B", 11);
-		MAKE_CONSTRUCTION(Root, NoteDb, L"Db", 1);
-		MAKE_CONSTRUCTION(Root, NoteEb, L"Eb", 3);
-		MAKE_CONSTRUCTION(Root, NoteGb, L"Gb", 6);
-		MAKE_CONSTRUCTION(Root, NoteAb, L"Ab", 8);
-		MAKE_CONSTRUCTION(Root, NoteBb, L"Bb", 10);
-		MAKE_CONSTRUCTION(Root, NoteCSharp, L"C#", 1);
-		MAKE_CONSTRUCTION(Root, NoteDSharp, L"D#", 3);
-		MAKE_CONSTRUCTION(Root, NoteFSharp, L"F#", 6);
-		MAKE_CONSTRUCTION(Root, NoteGSharp, L"G#", 8);
-		MAKE_CONSTRUCTION(Root, NoteASharp, L"A#", 10);
+		MAKE_CONSTRUCTION_REG(Root, NoteC, L"C", 0, L"^C.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteD, L"D", 2, L"^D.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteE, L"E", 4, L"^E.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteF, L"F", 5, L"^F.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteG, L"G", 7, L"^G.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteA, L"A", 9, L"^A.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteB, L"B", 11, L"^B.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteDb, L"Db", 1, L"^Db.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteEb, L"Eb", 3, L"^Eb.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteGb, L"Gb", 6, L"^Gb.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteAb, L"Ab", 8, L"^Ab.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteBb, L"Bb", 10, L"^Bb.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteCSharp, L"C#", 1, L"^C#.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteDSharp, L"D#", 3, L"^D#.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteFSharp, L"F#", 6, L"^F#.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteGSharp, L"G#", 8, L"^G#.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteASharp, L"A#", 10, L"^A#.*");
 
 		/**
 		* ‘æ3‰¹
@@ -84,8 +84,8 @@ namespace score
 			Tone(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
 		};
 
-		MAKE_CONSTRUCTION(Tone, Major3rd, L"", 4);
-		MAKE_CONSTRUCTION(Tone, Minor3rd, L"m", 3);
+		MAKE_CONSTRUCTION_REG(Tone, Major3rd, L"", 4, L"");
+		MAKE_CONSTRUCTION_REG(Tone, Minor3rd, L"m", 3, L"^.*m.*");
 
 		/**
 		* ‘æ7‰¹
@@ -98,7 +98,7 @@ namespace score
 
 		MAKE_CONSTRUCTION(Dominant, Major7th, L"M7", 11);
 		MAKE_CONSTRUCTION(Dominant, Minor7th, L"7", 10);
-		MAKE_CONSTRUCTION_REG(Dominant, Perfect6th, L"6", 9, L"[^sus6]6");
+		MAKE_CONSTRUCTION_REG(Dominant, Perfect6th, L"6", 9, L".+[^sus6]6.*");
 
 		/**
 		* ‘æ5‰¹
@@ -177,13 +177,13 @@ namespace score
 		struct ChordConstructions
 		{
 			template <typename T>
-			const int MatchArray(const T& constructions, const std::wstring& str);
-			const ConstructionBase& MatchRoots(const std::wstring& str);
-			const ConstructionBase& MatchTones(const std::wstring& str);
-			const ConstructionBase& MatchFifthes(const std::wstring& str);
-			const ConstructionBase& MatchDominants(const std::wstring& str);
-			const ConstructionBase& MatchTensions(const std::wstring& str);
-			const ConstructionBase& MatchOnChord(const std::wstring& str);
+			const int MatchArray(const T& constructions, const std::wstring& str) const;
+			const ConstructionBase& MatchRoots(const std::wstring& str) const;
+			const ConstructionBase& MatchTones(const std::wstring& str) const;
+			const ConstructionBase& MatchFifthes(const std::wstring& str) const;
+			const ConstructionBase& MatchDominants(const std::wstring& str) const;
+			const ConstructionBase& MatchTensions(const std::wstring& str) const;
+			const ConstructionBase& MatchOnChord(const std::wstring& str) const;
 
 			const RootRegices roots = RootRegices{ {
 				chord::NoteDb(),
