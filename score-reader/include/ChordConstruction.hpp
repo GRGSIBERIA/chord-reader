@@ -48,7 +48,7 @@ namespace score
 #define MAKE_CONSTRUCTION(BASE_NAME, CLASS_NAME, WSTR, INTERVAL) \
 		class CLASS_NAME : public BASE_NAME \
 		{\
-			static const std::wregex& _Regex() { const static std::wregex r(WSTR); return r; } \
+			static const std::wregex& _Regex() { const static std::wregex r(std::wstring(L"^.+") + WSTR + std::wstring(L".*")); return r; } \
 		public:\
 			CLASS_NAME() : BASE_NAME(_Regex, WSTR, INTERVAL) {} \
 		}; \
@@ -101,7 +101,7 @@ namespace score
 		};
 
 		MAKE_CONSTRUCTION(Tone, Major3rd, L"", 4);
-		MAKE_CONSTRUCTION_REG(Tone, Minor3rd, L"m", 3, L"^.+m.*");
+		MAKE_CONSTRUCTION(Tone, Minor3rd, L"m", 3);
 
 		/**
 		* ‘æ7‰¹
@@ -114,7 +114,7 @@ namespace score
 
 		MAKE_CONSTRUCTION(Dominant, Major7th, L"M7", 11);
 		MAKE_CONSTRUCTION(Dominant, Minor7th, L"7", 10);
-		MAKE_CONSTRUCTION_REG(Dominant, Perfect6th, L"6", 9, L".+[^sus6]6.*");
+		MAKE_CONSTRUCTION_REG(Dominant, Perfect6th, L"6", 9, L"^.+[^sus6]6.*");
 
 		/**
 		* ‘æ5‰¹
@@ -127,7 +127,7 @@ namespace score
 
 		MAKE_CONSTRUCTION(Fifth, Perfect5th, L"", 7);
 		MAKE_CONSTRUCTION(Fifth, Diminished5th, L"-5", 6);
-		MAKE_CONSTRUCTION_REG(Fifth, Augumented5th, L"+5", 8, L"\\+5");
+		MAKE_CONSTRUCTION(Fifth, Augumented5th, L"+5", 8);
 		MAKE_CONSTRUCTION(Fifth, Sus4, L"sus4", 5);
 		MAKE_CONSTRUCTION(Fifth, Sus6, L"sus6", 9);
 
@@ -185,7 +185,7 @@ namespace score
 
 		typedef std::array<ConstructionBase, 17> RootRegices; // vertex -> vertices -> regices
 		typedef std::array<ConstructionBase, 1> ToneRegices;
-		typedef std::array<ConstructionBase, 5> FifthRegices;
+		typedef std::array<ConstructionBase, 4> FifthRegices;
 		typedef std::array<ConstructionBase, 3> DominantRegices;
 		typedef std::array<ConstructionBase, 9> TensionRegices;
 		typedef std::array<ConstructionBase, 17> OnChordRegices;
@@ -234,7 +234,7 @@ namespace score
 			const FifthRegices fifthes = FifthRegices{ {
 				chord::Diminished5th(),
 				chord::Augumented5th(),
-				chord::Perfect5th(),
+				//chord::Perfect5th(),
 				chord::Sus4(),
 				chord::Sus6()
 					} };
