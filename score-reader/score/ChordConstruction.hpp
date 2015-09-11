@@ -42,11 +42,11 @@ namespace score
 
 #define MAKE_CONSTRUCTION_REG(BASE_NAME, CLASS_NAME, WSTR, INTERVAL, REGSTR) \
 		class CLASS_NAME : public BASE_NAME \
-				{\
+		{\
 		public:\
 			static const std::wregex _Regex() { return std::wregex(REGSTR); } \
 			CLASS_NAME() : BASE_NAME(_Regex, WSTR, INTERVAL) {} \
-				}; \
+		}; \
 
 		/**
 		* ç™âπ
@@ -143,23 +143,23 @@ namespace score
 			OnChord(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
 		};
 
-		MAKE_CONSTRUCTION_REG(OnChord, OnC, L"C", 0, L"((/|on) *(\C))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnD, L"D", 2, L"((/|on) *(\D))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnE, L"E", 4, L"((/|on) *(\E))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnF, L"F", 5, L"((/|on) *(\F))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnG, L"G", 7, L"((/|on) *(\G))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnA, L"A", 9, L"((/|on) *(\A))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnB, L"B", 11, L"((/|on) *(\B))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnDb, L"Db", 1, L"((/|on) *(\Db))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnEb, L"Eb", 3, L"((/|on) *(\Eb))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnGb, L"Gb", 6, L"((/|on) *(\Gb))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnAb, L"Ab", 8, L"((/|on) *(\Ab))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnBb, L"Bb", 10, L"((/|on) *(\Bb))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnCSharp, L"C#", 1, L"((/|on) *(\C#))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnDSharp, L"D#", 3, L"((/|on) *(\D#))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnFSharp, L"F#", 6, L"((/|on) *(\F#))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnGSharp, L"G#", 8, L"((/|on) *(\G#))");
-		MAKE_CONSTRUCTION_REG(OnChord, OnASharp, L"A#", 10, L"((/|on) *(\A#))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnC, L"C", 0, L"((/|on) *(C))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnD, L"D", 2, L"((/|on) *(D))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnE, L"E", 4, L"((/|on) *(E))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnF, L"F", 5, L"((/|on) *(F))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnG, L"G", 7, L"((/|on) *(G))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnA, L"A", 9, L"((/|on) *(A))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnB, L"B", 11, L"((/|on) *(B))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnDb, L"Db", 1, L"((/|on) *(Db))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnEb, L"Eb", 3, L"((/|on) *(Eb))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnGb, L"Gb", 6, L"((/|on) *(Gb))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnAb, L"Ab", 8, L"((/|on) *(Ab))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnBb, L"Bb", 10, L"((/|on) *(Bb))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnCSharp, L"C#", 1, L"((/|on) *(C#))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnDSharp, L"D#", 3, L"((/|on) *(D#))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnFSharp, L"F#", 6, L"((/|on) *(F#))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnGSharp, L"G#", 8, L"((/|on) *(G#))");
+		MAKE_CONSTRUCTION_REG(OnChord, OnASharp, L"A#", 10, L"((/|on) *(A#))");
 
 		typedef std::shared_ptr<Root> RootPtr;
 		typedef std::shared_ptr<Tone> TonePtr;
