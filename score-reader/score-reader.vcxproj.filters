@@ -22,9 +22,6 @@
     <Filter Include="ソース ファイル\score">
       <UniqueIdentifier>{264afb00-1ed1-47c5-a4c1-b245dbd8a811}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\score\chord">
-      <UniqueIdentifier>{92e187f7-7b90-41a8-9117-0a7905399543}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\score">
       <UniqueIdentifier>{d542fdfe-92dd-4ace-b33a-f16c500089a8}</UniqueIdentifier>
     </Filter>
@@ -39,14 +36,14 @@
     <ClInclude Include="score\ScoreReader.hpp">
       <Filter>ヘッダー ファイル\score</Filter>
     </ClInclude>
-    <ClInclude Include="score\Chord.hpp">
-      <Filter>ヘッダー ファイル\score\chord</Filter>
-    </ClInclude>
     <ClInclude Include="score\ChordConstruction.hpp">
       <Filter>ヘッダー ファイル\score\chord</Filter>
     </ClInclude>
+    <ClInclude Include="score\Chord.hpp">
+      <Filter>ヘッダー ファイル\score</Filter>
+    </ClInclude>
     <ClInclude Include="score\ChordFactory.hpp">
-      <Filter>ヘッダー ファイル\score\chord</Filter>
+      <Filter>ヘッダー ファイル\score</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -57,7 +54,7 @@
       <Filter>ソース ファイル\xml</Filter>
     </ClCompile>
     <ClCompile Include="score\ChordFactory.cpp">
-      <Filter>ソース ファイル\score\chord</Filter>
+      <Filter>ソース ファイル\score</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
