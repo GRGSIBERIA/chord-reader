@@ -53,11 +53,11 @@ TEST(TestChordConstructions, root_match)
 	for (const auto& ext : extensions)
 		MatchRoot(regs, roots, ext);
 	
-	//for (const auto& ext : extensions)
-	//{
-	//	for (const auto& root : roots)
-	//		MatchRoot(regs, roots, ext + L"on " + root);
-	//}
+	for (const auto& ext : extensions)
+	{
+		for (const auto& root : roots)
+			MatchRoot(regs, roots, ext + L"on " + root);
+	}
 
 	EXPECT_EQ(regs.MatchRoots(L"XXX").Name(), L"Idefinite");
 	EXPECT_EQ(regs.MatchRoots(L"Asshole").Name(), L"A");
