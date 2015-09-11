@@ -1,5 +1,5 @@
 #include "gtest\gtest.h"
-#include <score\ChordConstruction.hpp>
+#include <ChordConstruction.hpp>
 
 TEST(TestChordConstructions, root_regex)
 {

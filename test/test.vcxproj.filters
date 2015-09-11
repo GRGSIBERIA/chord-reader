@@ -16,6 +16,9 @@
     <Filter Include="ソース ファイル\test">
       <UniqueIdentifier>{3c9ee32e-07f6-40cc-a144-a0f131b95bbe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\src">
+      <UniqueIdentifier>{ef8a327b-5f88-45cb-a17f-bd69f7054138}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,6 +32,12 @@
     </ClCompile>
     <ClCompile Include="TestChordConstructions.cpp">
       <Filter>ソース ファイル\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\score-reader\src\ChordConstructions.cpp">
+      <Filter>ソース ファイル\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\score-reader\src\ChordFactory.cpp">
+      <Filter>ソース ファイル\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

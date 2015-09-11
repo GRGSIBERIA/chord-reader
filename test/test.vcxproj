@@ -39,15 +39,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\score-reader</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\..\score-reader\include;</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(VC_SourcePath)</LibraryPath>
-    <SourcePath>$(VC_SourcePath);..\score-reader</SourcePath>
+    <SourcePath>$(ProjectDir)\..\score-reader\src;$(SourcePath)</SourcePath>
     <ReferencePath>$(VC_ReferencesPath_x86);..\score-reader</ReferencePath>
     <OutDir>$(ProjectDir)Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\score-reader;..\gtest-1.7.0\include</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\..\score-reader\include;..\gtest-1.7.0\include</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(VC_SourcePath)</LibraryPath>
+    <SourcePath>$(ProjectDir)\..\score-reader\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -77,6 +78,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\score-reader\src\ChordConstructions.cpp" />
+    <ClCompile Include="..\score-reader\src\ChordFactory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestChordConstructions.cpp" />
     <ClCompile Include="TestTinyXML.cpp" />

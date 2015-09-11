@@ -38,7 +38,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)\include;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)\src;$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir)\include;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)\src;$(SourcePath)</SourcePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -64,16 +71,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="score\Chord.hpp" />
-    <ClInclude Include="score\ChordConstruction.hpp" />
-    <ClInclude Include="score\ChordFactory.hpp" />
-    <ClInclude Include="score\ScoreReader.hpp" />
+    <ClInclude Include="include\Chord.hpp" />
+    <ClInclude Include="include\ChordConstruction.hpp" />
+    <ClInclude Include="include\ChordFactory.hpp" />
+    <ClInclude Include="include\ScoreReader.hpp" />
     <ClInclude Include="xml\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="score\ChordFactory.cpp" />
-    <ClCompile Include="score\ChordConstructions.cpp" />
+    <ClCompile Include="src\ChordConstructions.cpp" />
+    <ClCompile Include="src\ChordFactory.cpp" />
     <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -33,17 +33,17 @@
     <ClInclude Include="xml\tinyxml2.h">
       <Filter>ヘッダー ファイル\xml</Filter>
     </ClInclude>
-    <ClInclude Include="score\ScoreReader.hpp">
+    <ClInclude Include="include\Chord.hpp">
       <Filter>ヘッダー ファイル\score</Filter>
     </ClInclude>
-    <ClInclude Include="score\ChordConstruction.hpp">
+    <ClInclude Include="include\ChordFactory.hpp">
+      <Filter>ヘッダー ファイル\score</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScoreReader.hpp">
+      <Filter>ヘッダー ファイル\score</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ChordConstruction.hpp">
       <Filter>ヘッダー ファイル\score\chord</Filter>
-    </ClInclude>
-    <ClInclude Include="score\Chord.hpp">
-      <Filter>ヘッダー ファイル\score</Filter>
-    </ClInclude>
-    <ClInclude Include="score\ChordFactory.hpp">
-      <Filter>ヘッダー ファイル\score</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -53,10 +53,10 @@
     <ClCompile Include="xml\tinyxml2.cpp">
       <Filter>ソース ファイル\xml</Filter>
     </ClCompile>
-    <ClCompile Include="score\ChordFactory.cpp">
+    <ClCompile Include="src\ChordFactory.cpp">
       <Filter>ソース ファイル\score</Filter>
     </ClCompile>
-    <ClCompile Include="score\ChordConstructions.cpp">
+    <ClCompile Include="src\ChordConstructions.cpp">
       <Filter>ソース ファイル\score</Filter>
     </ClCompile>
   </ItemGroup>
