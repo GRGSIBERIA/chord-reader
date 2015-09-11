@@ -20,30 +20,32 @@ namespace score
 		private:
 			const std::wstring name;
 			const int interval;
+			const std::wregex reg;
 			SVFunc* const refunc;
 
 		public:
 			ConstructionBase(SVFunc* re) : refunc(re), name(L""), interval(0) {}
-			ConstructionBase(SVFunc* re, const std::wstring& name, int interval) : refunc(re), name(name), interval(interval) {}
+			ConstructionBase(SVFunc* re, const std::wstring& name, int interval) : refunc(re), name(name), interval(interval), reg(re()) {}
 
 			const std::wstring& Name() const { return name; }
 			int Interval() const { return interval; }
+			const std::wregex& Regex() const { return reg; }
 		};
 
 #define MAKE_CONSTRUCTION(BASE_NAME, CLASS_NAME, WSTR, INTERVAL) \
 		class CLASS_NAME : public BASE_NAME \
 		{\
 		public:\
-			static const std::wregex Regex() { return std::wregex(WSTR); } \
-			CLASS_NAME() : BASE_NAME(Regex, WSTR, INTERVAL) {} \
+			static const std::wregex _Regex() { return std::wregex(WSTR); } \
+			CLASS_NAME() : BASE_NAME(_Regex, WSTR, INTERVAL) {} \
 		}; \
 
 #define MAKE_CONSTRUCTION_REG(BASE_NAME, CLASS_NAME, WSTR, INTERVAL, REGSTR) \
 		class CLASS_NAME : public BASE_NAME \
 				{\
 		public:\
-			static const std::wregex Regex() { return std::wregex(REGSTR); } \
-			CLASS_NAME() : BASE_NAME(Regex, WSTR, INTERVAL) {} \
+			static const std::wregex _Regex() { return std::wregex(REGSTR); } \
+			CLASS_NAME() : BASE_NAME(_Regex, WSTR, INTERVAL) {} \
 				}; \
 
 		/**
@@ -138,16 +140,16 @@ namespace score
 		typedef std::shared_ptr<Dominant> DominantPtr;
 		typedef std::shared_ptr<Tension> TensionPtr;
 
-		typedef std::array<std::wregex, 17> RootRegices; // vertex -> vertices -> regices
-		typedef std::array<std::wregex, 2> ToneRegices;
-		typedef std::array<std::wregex, 5> FifthRegices;
-		typedef std::array<std::wregex, 3> DominantRegices;
-		typedef std::array<std::wregex, 9> TensionRegices;
+		typedef std::array<ConstructionBase, 17> RootRegices; // vertex -> vertices -> regices
+		typedef std::array<ConstructionBase, 2> ToneRegices;
+		typedef std::array<ConstructionBase, 5> FifthRegices;
+		typedef std::array<ConstructionBase, 3> DominantRegices;
+		typedef std::array<ConstructionBase, 9> TensionRegices;
 
-		struct ChordRegex
+		struct ChordConstructions
 		{
 			template <typename T>
-			const int MatchArray(const T& regices, const std::wstring& str);
+			const int MatchArray(const T& constructions, const std::wstring& str);
 			const int MatchRoots(const std::wstring& str);
 			const int MatchTones(const std::wstring& str);
 			const int MatchFifthes(const std::wstring& str);
@@ -155,54 +157,54 @@ namespace score
 			const int MatchTensions(const std::wstring& str);
 
 			const RootRegices roots = RootRegices{ {
-				chord::NoteDb::Regex(),
-				chord::NoteEb::Regex(),
-				chord::NoteGb::Regex(),
-				chord::NoteAb::Regex(),
-				chord::NoteBb::Regex(),
-				chord::NoteCSharp::Regex(),
-				chord::NoteDSharp::Regex(),
-				chord::NoteFSharp::Regex(),
-				chord::NoteGSharp::Regex(),
-				chord::NoteASharp::Regex(),
-				chord::NoteC::Regex(),
-				chord::NoteD::Regex(),
-				chord::NoteE::Regex(),
-				chord::NoteF::Regex(),
-				chord::NoteG::Regex(),
-				chord::NoteA::Regex(),
-				chord::NoteB::Regex()
+				chord::NoteDb(),
+				chord::NoteEb(),
+				chord::NoteGb(),
+				chord::NoteAb(),
+				chord::NoteBb(),
+				chord::NoteCSharp(),
+				chord::NoteDSharp(),
+				chord::NoteFSharp(),
+				chord::NoteGSharp(),
+				chord::NoteASharp(),
+				chord::NoteC(),
+				chord::NoteD(),
+				chord::NoteE(),
+				chord::NoteF(),
+				chord::NoteG(),
+				chord::NoteA(),
+				chord::NoteB()
 					} };
 
 			const ToneRegices tones = ToneRegices{ {
-				chord::Major3rd::Regex(),
-				chord::Minor3rd::Regex()
+				chord::Major3rd(),
+				chord::Minor3rd()
 					} };
 
 			const FifthRegices fifthes = FifthRegices{ {
-				chord::Perfect5th::Regex(),
-				chord::Diminished5th::Regex(),
-				chord::Augumented5th::Regex(),
-				chord::Sus4::Regex(),
-				chord::Sus6::Regex()
+				chord::Perfect5th(),
+				chord::Diminished5th(),
+				chord::Augumented5th(),
+				chord::Sus4(),
+				chord::Sus6()
 					} };
 
 			const DominantRegices dominants = DominantRegices{ {
-				chord::Major7th::Regex(),
-				chord::Minor7th::Regex(),
-				chord::Perfect6th::Regex()
+				chord::Major7th(),
+				chord::Minor7th(),
+				chord::Perfect6th()
 					} };
 
 			const TensionRegices tensions = TensionRegices{ {
-				chord::Flat9th::Regex(),
-				chord::Flat11th::Regex(),
-				chord::Flat13th::Regex(),
-				chord::Sharp9::Regex(),
-				chord::Sharp11::Regex(),
-				chord::Sharp13::Regex(),
-				chord::Perfect9::Regex(),
-				chord::Perfect11::Regex(),
-				chord::Perfect13::Regex()
+				chord::Flat9th(),
+				chord::Flat11th(),
+				chord::Flat13th(),
+				chord::Sharp9(),
+				chord::Sharp11(),
+				chord::Sharp13(),
+				chord::Perfect9(),
+				chord::Perfect11(),
+				chord::Perfect13()
 					} };
 		};
 	}
