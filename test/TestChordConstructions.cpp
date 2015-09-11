@@ -1,5 +1,6 @@
 #include "gtest\gtest.h"
 #include <ChordConstruction.hpp>
+using namespace std;
 
 TEST(TestChordConstructions, root_regex)
 {
@@ -11,16 +12,84 @@ TEST(TestChordConstructions, root_regex)
 	EXPECT_EQ(std::regex_match(L"DbM7 on C", re), true);
 }
 
+const std::array<std::wstring, 17> GetRoots()
+{
+	return{ {
+		L"C#", L"D#", L"F#", L"G#", L"A#", L"Bb", L"Ab", L"Gb", L"Eb", L"Db", L"C", L"D", L"E", L"F", L"G", L"A", L"B"
+			} };
+}
+
+const std::vector<std::wstring> GetExtensions()
+{
+	return{ {
+		L"", L"m", L"7", L"M7", L"m7", L"mM7", L"m7-5", L"sus4", L"sus6", L"6", L"7sus4",
+		L"(9)", L"(11)", L"(13)", L"(b9)", L"(b11)", L"(b13)", L"(#9)", L"(#11)", L"(#13)",
+		L"m(9)", L"m(11)", L"m(13)", L"m(b9)", L"m(b11)", L"m(b13)", L"m(#9)", L"m#(11)", L"m(#13)"
+			} };
+}
+
+void MatchRoot(const score::chord::ChordConstructions& regs, const std::array<std::wstring, 17> roots, const std::wstring ext)
+{
+	for (const auto& root : roots)
+	{
+		EXPECT_EQ(regs.MatchRoots(root + ext).Name(), root);
+		if (regs.MatchRoots(root + ext).Name() != root)
+		{
+			std::wcout << root + ext << L",";
+			std::wcout << regs.MatchRoots(root + ext).Name() << L",";
+			std::wcout << root << std::endl;
+		}
+	}
+}
+
 TEST(TestChordConstructions, root_match)
 {
 	const score::chord::ChordConstructions regs;
-	EXPECT_EQ(regs.MatchRoots(L"Db").Name(), L"Db");
-	EXPECT_EQ(regs.MatchRoots(L"D#").Name(), L"D#");
-	EXPECT_EQ(regs.MatchRoots(L"A#m7").Name(), L"A#");
+	const auto roots = GetRoots();
+	const auto extensions = GetExtensions();
+	
+	MatchRoot(regs, roots, L"");
+
+	for (const auto& ext : extensions)
+		MatchRoot(regs, roots, ext);
+	
+	//for (const auto& ext : extensions)
+	//{
+	//	for (const auto& root : roots)
+	//		MatchRoot(regs, roots, ext + L"on " + root);
+	//}
+
+	EXPECT_EQ(regs.MatchRoots(L"XXX").Name(), L"Idefinite");
+	EXPECT_EQ(regs.MatchRoots(L"Asshole").Name(), L"A");
+}
+
+const std::vector<std::wstring> GetAfterTone()
+{
+	return{ {
+		L"7", L"M7", L"7-5", L"sus4", L"7sus4", L"sus6", L"6"
+			} };
 }
 
 TEST(TestChordConstructions, tone_match)
 {
 	const score::chord::ChordConstructions regs;
-	EXPECT_EQ(regs.MatchTones(L"Dbm7").Name(), L"m");
+	const auto roots = GetRoots();
+	const auto afters = GetAfterTone();
+
+	//EXPECT_EQ(regs.MatchTones(L"Cm6").Name(), L"m");
+
+	for (const auto& root : roots)
+	{
+		for (const auto& after : afters)
+		{
+			EXPECT_EQ(regs.MatchTones(root + after).Name(), L"");
+			EXPECT_EQ(regs.MatchTones(root + L"m" + after).Name(), L"m");
+
+			if (regs.MatchTones(root + L"m" + after).Name() != L"m")
+			{
+				std::wcout << root + L"m" + after << L",";
+				std::wcout << regs.MatchTones(root + L"m" + after).Name() << std::endl;
+			}
+		}
+	}
 }
