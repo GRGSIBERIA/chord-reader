@@ -127,7 +127,7 @@ namespace score
 
 		MAKE_CONSTRUCTION(Fifth, Perfect5th, L"", 7);
 		MAKE_CONSTRUCTION(Fifth, Diminished5th, L"-5", 6);
-		MAKE_CONSTRUCTION(Fifth, Augumented5th, L"+5", 8);
+		MAKE_CONSTRUCTION_REG(Fifth, Augumented5th, L"+5", 8, L"^.+\\+5.*");
 		MAKE_CONSTRUCTION(Fifth, Sus4, L"sus4", 5);
 		MAKE_CONSTRUCTION(Fifth, Sus6, L"sus6", 9);
 
