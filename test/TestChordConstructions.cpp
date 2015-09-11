@@ -14,6 +14,13 @@ TEST(TestChordConstructions, root_regex)
 TEST(TestChordConstructions, root_match)
 {
 	const score::chord::ChordConstructions regs;
-	const auto& Db = regs.MatchRoots(L"Db");
-	EXPECT_EQ(Db.Name(), L"Db");
+	EXPECT_EQ(regs.MatchRoots(L"Db").Name(), L"Db");
+	EXPECT_EQ(regs.MatchRoots(L"D#").Name(), L"D#");
+	EXPECT_EQ(regs.MatchRoots(L"A#m7").Name(), L"A#");
+}
+
+TEST(TestChordConstructions, tone_match)
+{
+	const score::chord::ChordConstructions regs;
+	EXPECT_EQ(regs.MatchTones(L"Dbm7").Name(), L"m");
 }
