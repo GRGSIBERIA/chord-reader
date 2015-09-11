@@ -33,12 +33,6 @@ void MatchRoot(const score::chord::ChordConstructions& regs, const std::array<st
 	for (const auto& root : roots)
 	{
 		EXPECT_EQ(regs.MatchRoots(root + ext).Name(), root);
-		if (regs.MatchRoots(root + ext).Name() != root)
-		{
-			std::wcout << root + ext << L",";
-			std::wcout << regs.MatchRoots(root + ext).Name() << L",";
-			std::wcout << root << std::endl;
-		}
 	}
 }
 
@@ -76,19 +70,30 @@ TEST(TestChordConstructions, tone_match)
 	const auto roots = GetRoots();
 	const auto afters = GetAfterTone();
 
-	//EXPECT_EQ(regs.MatchTones(L"Cm6").Name(), L"m");
-
 	for (const auto& root : roots)
 	{
 		for (const auto& after : afters)
 		{
 			EXPECT_EQ(regs.MatchTones(root + after).Name(), L"");
 			EXPECT_EQ(regs.MatchTones(root + L"m" + after).Name(), L"m");
+		}
+	}
+}
 
-			if (regs.MatchTones(root + L"m" + after).Name() != L"m")
+TEST(TestChordConstructions, fifth_match)
+{
+	const score::chord::ChordConstructions regs;
+
+	for (const auto& f : regs.fifthes)
+	{
+		for (const auto& root : regs.roots)
+		{
+			for (const auto& dominant : regs.dominants)
 			{
-				std::wcout << root + L"m" + after << L",";
-				std::wcout << regs.MatchTones(root + L"m" + after).Name() << std::endl;
+				for (const auto& tone : regs.tones)
+				{
+					EXPECT_EQ(regs.MatchFifthes(root.Name() + tone.Name() + f.Name() + dominant.Name()).Name(), f.Name());
+				}
 			}
 		}
 	}
