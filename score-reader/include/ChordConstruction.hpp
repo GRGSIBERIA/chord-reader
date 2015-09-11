@@ -84,8 +84,8 @@ namespace score
 			Tone(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
 		};
 
-		MAKE_CONSTRUCTION_REG(Tone, Major3rd, L"", 4, L"");
-		MAKE_CONSTRUCTION_REG(Tone, Minor3rd, L"m", 3, L"^.*m.*");
+		MAKE_CONSTRUCTION_REG(Tone, Major3rd, L"", 4, L"^.[b#][^m]");
+		MAKE_CONSTRUCTION_REG(Tone, Minor3rd, L"m", 3, L"^.+m.*");
 
 		/**
 		* ‘æ7‰¹
