@@ -56,5 +56,8 @@
     <ClCompile Include="score\ChordFactory.cpp">
       <Filter>ソース ファイル\score</Filter>
     </ClCompile>
+    <ClCompile Include="score\ChordRegex.cpp">
+      <Filter>ソース ファイル\score</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
