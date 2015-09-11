@@ -7,9 +7,8 @@ const int score::chord::ChordConstructions::MatchArray(const T& constructions, c
 	for (const auto& cons : constructions)
 	{
 		if (std::regex_match(str, cons.Regex()))
-		{
-			++i; break;
-		}
+			break;
+		++i;
 	}
 	return i;
 }
