@@ -137,7 +137,6 @@ namespace score
 		typedef std::shared_ptr<Fifth> FifthPtr;
 		typedef std::shared_ptr<Dominant> DominantPtr;
 		typedef std::shared_ptr<Tension> TensionPtr;
-		typedef std::shared_ptr<std::vector<chord::TensionPtr>> VectorTensionPtr;
 
 		typedef std::array<std::wregex, 17> RootRegices; // vertex -> vertices -> regices
 		typedef std::array<std::wregex, 2> ToneRegices;
@@ -147,6 +146,14 @@ namespace score
 
 		struct ChordRegex
 		{
+			template <typename T>
+			const int MatchArray(const T& regices, const std::wstring& str);
+			const int MatchRoots(const std::wstring& str);
+			const int MatchTones(const std::wstring& str);
+			const int MatchFifthes(const std::wstring& str);
+			const int MatchDominants(const std::wstring& str);
+			const int MatchTensions(const std::wstring& str);
+
 			const RootRegices roots = RootRegices{ {
 				chord::NoteDb::Regex(),
 				chord::NoteEb::Regex(),
