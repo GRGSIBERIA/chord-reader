@@ -4,13 +4,11 @@
 
 void main()
 {
-	tinyxml2::XMLDocument doc;
-	score::Chord chord(L"");
-
-	auto error = doc.LoadFile("autumn leaves.xml");
-	if (error == tinyxml2::XMLError::XML_SUCCESS)
+	std::wstring str(L"C");
+	const score::chord::ChordRegex re;
+	if (std::regex_match(str, re.roots[0]))
 	{
-		printf("hogaoeue\n");
+		printf("test\n");
 	}
 	system("pause");
 }

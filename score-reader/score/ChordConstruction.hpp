@@ -38,6 +38,14 @@ namespace score
 			CLASS_NAME() : BASE_NAME(Regex, WSTR, INTERVAL) {} \
 		}; \
 
+#define MAKE_CONSTRUCTION_REG(BASE_NAME, CLASS_NAME, WSTR, INTERVAL, REGSTR) \
+		class CLASS_NAME : public BASE_NAME \
+				{\
+		public:\
+			static const std::wregex Regex() { return std::wregex(REGSTR); } \
+			CLASS_NAME() : BASE_NAME(Regex, WSTR, INTERVAL) {} \
+				}; \
+
 		/**
 		* ç™âπ
 		*/
@@ -101,7 +109,7 @@ namespace score
 
 		MAKE_CONSTRUCTION(Fifth, Perfect5th, L"", 7);
 		MAKE_CONSTRUCTION(Fifth, Diminished5th, L"-5", 6);
-		MAKE_CONSTRUCTION(Fifth, Augumented5th, L"+5", 8);
+		MAKE_CONSTRUCTION_REG(Fifth, Augumented5th, L"+5", 8, L"\\+5");
 		MAKE_CONSTRUCTION(Fifth, Sus4, L"sus4", 5);
 		MAKE_CONSTRUCTION(Fifth, Sus6, L"sus6", 9);
 
@@ -139,7 +147,7 @@ namespace score
 
 		struct ChordRegex
 		{
-			const RootRegices roots = { {
+			const RootRegices roots = RootRegices{ {
 				chord::NoteDb::Regex(),
 				chord::NoteEb::Regex(),
 				chord::NoteGb::Regex(),
@@ -159,12 +167,12 @@ namespace score
 				chord::NoteB::Regex()
 					} };
 
-			const ToneRegices tones = { {
+			const ToneRegices tones = ToneRegices{ {
 				chord::Major3rd::Regex(),
 				chord::Minor3rd::Regex()
 					} };
 
-			const FifthRegices fifthes = { {
+			const FifthRegices fifthes = FifthRegices{ {
 				chord::Perfect5th::Regex(),
 				chord::Diminished5th::Regex(),
 				chord::Augumented5th::Regex(),
@@ -172,13 +180,13 @@ namespace score
 				chord::Sus6::Regex()
 					} };
 
-			const DominantRegices dominants = { {
+			const DominantRegices dominants = DominantRegices{ {
 				chord::Major7th::Regex(),
 				chord::Minor7th::Regex(),
 				chord::Perfect6th::Regex()
 					} };
 
-			const TensionRegices tensions = { {
+			const TensionRegices tensions = TensionRegices{ {
 				chord::Flat9th::Regex(),
 				chord::Flat11th::Regex(),
 				chord::Flat13th::Regex(),
