@@ -1,4 +1,4 @@
-#include "score\ChordFactory.hpp"
+#include "ChordFactory.hpp"
 
 score::ChordPtr score::ChordFactory::CreateChord(const std::wstring& str)
 {
