@@ -18,7 +18,7 @@ namespace score
 		chord::TonePtr tone;
 		chord::FifthPtr fifth;
 		chord::DominantPtr dominant;
-		chord::VectorTensionPtr tensions;
+		chord::TensionPtr tensions;
 
 	public:
 		friend ChordFactory;
