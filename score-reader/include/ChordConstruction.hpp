@@ -32,19 +32,26 @@ namespace score
 			const std::wregex& Regex() const { return reg; }
 		};
 
+		class Idefinite : ConstructionBase
+		{
+			static const std::wregex& _Regex() { const static std::wregex r(L""); return r; }
+		public:
+			Idefinite() : ConstructionBase(_Regex, L"Idefinite", 0) {}
+		};
+
 #define MAKE_CONSTRUCTION(BASE_NAME, CLASS_NAME, WSTR, INTERVAL) \
 		class CLASS_NAME : public BASE_NAME \
 		{\
-		public:\
 			static const std::wregex& _Regex() { const static std::wregex r(WSTR); return r; } \
+		public:\
 			CLASS_NAME() : BASE_NAME(_Regex, WSTR, INTERVAL) {} \
 		}; \
 
 #define MAKE_CONSTRUCTION_REG(BASE_NAME, CLASS_NAME, WSTR, INTERVAL, REGSTR) \
 		class CLASS_NAME : public BASE_NAME \
 		{\
-		public:\
 			static const std::wregex& _Regex() { const static std::wregex r(REGSTR); return r; } \
+		public:\
 			CLASS_NAME() : BASE_NAME(_Regex, WSTR, INTERVAL) {} \
 		}; \
 
