@@ -98,7 +98,7 @@ namespace score
 
 		MAKE_CONSTRUCTION(Dominant, Major7th, L"M7", 11);
 		MAKE_CONSTRUCTION(Dominant, Minor7th, L"7", 10);
-		MAKE_CONSTRUCTION(Dominant, Perfect6th, L"6", 9);
+		MAKE_CONSTRUCTION_REG(Dominant, Perfect6th, L"6", 9, L"[^sus6]6");
 
 		/**
 		* ‘æ5‰¹
@@ -206,14 +206,14 @@ namespace score
 					} };
 
 			const ToneRegices tones = ToneRegices{ {
-				chord::Major3rd(),
-				chord::Minor3rd()
+				chord::Minor3rd(),
+				chord::Major3rd()
 					} };
 
 			const FifthRegices fifthes = FifthRegices{ {
-				chord::Perfect5th(),
 				chord::Diminished5th(),
 				chord::Augumented5th(),
+				chord::Perfect5th(),
 				chord::Sus4(),
 				chord::Sus6()
 					} };
