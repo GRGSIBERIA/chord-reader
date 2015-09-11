@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "xml\tinyxml2.h"
-#include "score\Chord.hpp"
+#include "Chord.hpp"
 
 void main()
 {
