@@ -100,7 +100,7 @@ namespace score
 			Tone(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
 		};
 
-		MAKE_CONSTRUCTION_REG(Tone, Major3rd, L"", 4, L"^.[b#][^m]");
+		//MAKE_CONSTRUCTION_REG(Tone, Major3rd, L"", 4, L"^.[b#][^m].*$");
 		MAKE_CONSTRUCTION_REG(Tone, Minor3rd, L"m", 3, L"^.+m.*");
 
 		/**
@@ -184,7 +184,7 @@ namespace score
 		typedef std::shared_ptr<Tension> TensionPtr;
 
 		typedef std::array<ConstructionBase, 17> RootRegices; // vertex -> vertices -> regices
-		typedef std::array<ConstructionBase, 2> ToneRegices;
+		typedef std::array<ConstructionBase, 1> ToneRegices;
 		typedef std::array<ConstructionBase, 5> FifthRegices;
 		typedef std::array<ConstructionBase, 3> DominantRegices;
 		typedef std::array<ConstructionBase, 9> TensionRegices;
@@ -227,8 +227,8 @@ namespace score
 					} };
 
 			const ToneRegices tones = ToneRegices{ {
-				chord::Minor3rd(),
-				chord::Major3rd()
+				chord::Minor3rd() //,
+				//chord::Major3rd()
 					} };
 
 			const FifthRegices fifthes = FifthRegices{ {
