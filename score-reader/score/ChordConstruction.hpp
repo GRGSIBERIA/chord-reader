@@ -150,11 +150,11 @@ namespace score
 		{
 			template <typename T>
 			const int MatchArray(const T& constructions, const std::wstring& str);
-			const int MatchRoots(const std::wstring& str);
-			const int MatchTones(const std::wstring& str);
-			const int MatchFifthes(const std::wstring& str);
-			const int MatchDominants(const std::wstring& str);
-			const int MatchTensions(const std::wstring& str);
+			const ConstructionBase& MatchRoots(const std::wstring& str);
+			const ConstructionBase& MatchTones(const std::wstring& str);
+			const ConstructionBase& MatchFifthes(const std::wstring& str);
+			const ConstructionBase& MatchDominants(const std::wstring& str);
+			const ConstructionBase& MatchTensions(const std::wstring& str);
 
 			const RootRegices roots = RootRegices{ {
 				chord::NoteDb(),
