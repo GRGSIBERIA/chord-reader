@@ -1,7 +1,7 @@
 #include "ChordConstruction.hpp"
 
 template <typename T>
-const int score::chord::ChordConstructions::MatchArray(const T& constructions, const std::wstring& str) const
+const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchArray(const T& constructions, const std::wstring& str) const
 {
 	int i = 0;
 	for (const auto& cons : constructions)
@@ -10,35 +10,37 @@ const int score::chord::ChordConstructions::MatchArray(const T& constructions, c
 			break;
 		++i;
 	}
-	return i;
+	if (constructions.size() <= i)
+		return idef;
+	return constructions[i];
 }
 
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchRoots(const std::wstring& str) const
 {
-	return roots[MatchArray(roots, str)];
+	return MatchArray(roots, str);
 }
 
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchTones(const std::wstring& str) const
 {
-	return tones[MatchArray(tones, str)];
+	return MatchArray(tones, str);
 }
 
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchFifthes(const std::wstring& str) const
 {
-	return fifthes[MatchArray(fifthes, str)];
+	return MatchArray(fifthes, str);
 }
 
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchDominants(const std::wstring& str) const
 {
-	return dominants[MatchArray(dominants, str)];
+	return MatchArray(dominants, str);
 }
 
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchTensions(const std::wstring& str) const
 {
-	return tensions[MatchArray(tensions, str)];
+	return MatchArray(tensions, str);
 }
 
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchOnChord(const std::wstring& str) const
 {
-	return onchords[MatchArray(onchords, str)];
+	return MatchArray(onchords, str);
 }

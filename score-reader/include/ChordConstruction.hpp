@@ -32,13 +32,19 @@ namespace score
 			const std::wregex& Regex() const { return reg; }
 		};
 
-		class Idefinite : ConstructionBase
+		/**
+		* 定義されていない文字列が渡された
+		*/
+		class Idefinite : public ConstructionBase
 		{
-			static const std::wregex& _Regex() { const static std::wregex r(L""); return r; }
+			static const std::wregex& _Regex() { const static std::wregex r(L"^\\w*"); return r; }
 		public:
 			Idefinite() : ConstructionBase(_Regex, L"Idefinite", 0) {}
 		};
 
+		/**
+		* クラスの自動生成用マクロ
+		*/
 #define MAKE_CONSTRUCTION(BASE_NAME, CLASS_NAME, WSTR, INTERVAL) \
 		class CLASS_NAME : public BASE_NAME \
 		{\
@@ -47,6 +53,9 @@ namespace score
 			CLASS_NAME() : BASE_NAME(_Regex, WSTR, INTERVAL) {} \
 		}; \
 
+		/**
+		* 正規表現をカスタマイズできる方
+		*/
 #define MAKE_CONSTRUCTION_REG(BASE_NAME, CLASS_NAME, WSTR, INTERVAL, REGSTR) \
 		class CLASS_NAME : public BASE_NAME \
 		{\
@@ -183,8 +192,13 @@ namespace score
 
 		struct ChordConstructions
 		{
+		private:
 			template <typename T>
-			const int MatchArray(const T& constructions, const std::wstring& str) const;
+			const ConstructionBase& MatchArray(const T& constructions, const std::wstring& str) const;
+
+			const ConstructionBase idef = Idefinite();
+
+		public:
 			const ConstructionBase& MatchRoots(const std::wstring& str) const;
 			const ConstructionBase& MatchTones(const std::wstring& str) const;
 			const ConstructionBase& MatchFifthes(const std::wstring& str) const;
