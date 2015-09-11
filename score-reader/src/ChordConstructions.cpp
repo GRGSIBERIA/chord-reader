@@ -3,7 +3,7 @@
 template <typename T>
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchArray(const T& constructions, const std::wstring& str) const
 {
-	int i = 0;
+	size_t i = 0;
 	for (const auto& cons : constructions)
 	{
 		if (std::regex_match(str, cons.Regex()))
@@ -22,7 +22,11 @@ const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchRoo
 
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchTones(const std::wstring& str) const
 {
-	return MatchArray(tones, str);
+	const auto& tone = MatchArray(tones, str);
+	static const score::chord::Major3rd maj;
+	if (tone.Name() == L"Idefinite")
+		return maj;
+	return tone;
 }
 
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchFifthes(const std::wstring& str) const
