@@ -115,6 +115,7 @@ namespace score
 		MAKE_CONSTRUCTION(Dominant, Major7th, L"M7", 11);
 		MAKE_CONSTRUCTION(Dominant, Minor7th, L"7", 10);
 		MAKE_CONSTRUCTION_REG(Dominant, Perfect6th, L"6", 9, L"^.+[^sus6]6.*");
+		MAKE_CONSTRUCTION_REG(Dominant, NoneDominant, L"", 0, L"^.+([^7]|[^M7]|[^6]).*");
 
 		/**
 		* ‘æ5‰¹
@@ -186,7 +187,7 @@ namespace score
 		typedef std::array<ConstructionBase, 17> RootRegices; // vertex -> vertices -> regices
 		typedef std::array<ConstructionBase, 2> ToneRegices;
 		typedef std::array<ConstructionBase, 5> FifthRegices;
-		typedef std::array<ConstructionBase, 3> DominantRegices;
+		typedef std::array<ConstructionBase, 4> DominantRegices;
 		typedef std::array<ConstructionBase, 9> TensionRegices;
 		typedef std::array<ConstructionBase, 17> OnChordRegices;
 
@@ -242,7 +243,8 @@ namespace score
 			const DominantRegices dominants = DominantRegices{ {
 				chord::Major7th(),
 				chord::Minor7th(),
-				chord::Perfect6th()
+				chord::Perfect6th(),
+				chord::NoneDominant()
 					} };
 
 			const TensionRegices tensions = TensionRegices{ {
