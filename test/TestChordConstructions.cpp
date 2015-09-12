@@ -1,6 +1,9 @@
 #include "gtest\gtest.h"
 #include <ChordConstruction.hpp>
 using namespace std;
+using namespace score::chord;
+
+const score::chord::ChordConstructions regs;
 
 TEST(TestChordConstructions, root_regex)
 {
@@ -12,89 +15,117 @@ TEST(TestChordConstructions, root_regex)
 	EXPECT_EQ(std::regex_match(L"DbM7 on C", re), true);
 }
 
-const std::array<std::wstring, 17> GetRoots()
+template <typename T>
+void TestAll(const score::chord::ConstructionBase& (ChordConstructions::*func)(const std::wstring&) const, const T& targets)
 {
-	return{ {
-		L"C#", L"D#", L"F#", L"G#", L"A#", L"Bb", L"Ab", L"Gb", L"Eb", L"Db", L"C", L"D", L"E", L"F", L"G", L"A", L"B"
-			} };
-}
-
-const std::vector<std::wstring> GetExtensions()
-{
-	return{ {
-		L"", L"m", L"7", L"M7", L"m7", L"mM7", L"m7-5", L"sus4", L"sus6", L"6", L"7sus4",
-		L"(9)", L"(11)", L"(13)", L"(b9)", L"(b11)", L"(b13)", L"(#9)", L"(#11)", L"(#13)",
-		L"m(9)", L"m(11)", L"m(13)", L"m(b9)", L"m(b11)", L"m(b13)", L"m(#9)", L"m#(11)", L"m(#13)"
-			} };
-}
-
-void MatchRoot(const score::chord::ChordConstructions& regs, const std::array<std::wstring, 17> roots, const std::wstring ext)
-{
-	for (const auto& root : roots)
+	for (const auto& target : targets)
 	{
-		EXPECT_EQ(regs.MatchRoots(root + ext).Name(), root);
+		
 	}
 }
 
 TEST(TestChordConstructions, root_match)
 {
-	const score::chord::ChordConstructions regs;
-	const auto roots = GetRoots();
-	const auto extensions = GetExtensions();
-	
-	MatchRoot(regs, roots, L"");
-
-	for (const auto& ext : extensions)
-		MatchRoot(regs, roots, ext);
-	
-	for (const auto& ext : extensions)
+	for (const auto& root : regs.roots)
 	{
-		for (const auto& root : roots)
-			MatchRoot(regs, roots, ext + L"on " + root);
+		EXPECT_EQ(regs.MatchRoots(root.Name()).Name(), root.Name());
+		for (const auto& tone : regs.tones)
+		{
+			EXPECT_EQ(regs.MatchRoots(root.Name() + tone.Name()).Name(), root.Name());
+			for (const auto& dominant : regs.dominants)
+			{
+				EXPECT_EQ(regs.MatchRoots(root.Name() + tone.Name() + dominant.Name()).Name(), root.Name());
+				for (const auto& tension : regs.tensions)
+				{
+					EXPECT_EQ(regs.MatchRoots(root.Name() + tone.Name() + dominant.Name() + L"(" + tension.Name() + L")").Name(), root.Name());
+					for (const auto& fifth : regs.fifthes)
+					{
+						EXPECT_EQ(regs.MatchRoots(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")").Name(), root.Name());
+						for (const auto& onchord : regs.onchords)
+						{
+							EXPECT_EQ(regs.MatchRoots(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L" on" + onchord.Name()).Name(), root.Name());
+							EXPECT_EQ(regs.MatchRoots(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L"/" + onchord.Name()).Name(), root.Name());
+							EXPECT_EQ(regs.MatchRoots(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L"(on" + onchord.Name() + L")").Name(), root.Name());
+						}
+					}
+				}
+			}
+		}
 	}
 
 	EXPECT_EQ(regs.MatchRoots(L"XXX").Name(), L"Idefinite");
 	EXPECT_EQ(regs.MatchRoots(L"Asshole").Name(), L"A");
 }
 
-const std::vector<std::wstring> GetAfterTone()
-{
-	return{ {
-		L"7", L"M7", L"7-5", L"sus4", L"7sus4", L"sus6", L"6"
-			} };
-}
-
 TEST(TestChordConstructions, tone_match)
 {
-	const score::chord::ChordConstructions regs;
-	const auto roots = GetRoots();
-	const auto afters = GetAfterTone();
-
-	for (const auto& root : roots)
+	for (const auto& tone : regs.tones)
 	{
-		for (const auto& after : afters)
+		for (const auto& root : regs.roots)
 		{
-			EXPECT_EQ(regs.MatchTones(root + after).Name(), L"");
-			EXPECT_EQ(regs.MatchTones(root + L"m" + after).Name(), L"m");
+			EXPECT_EQ(regs.MatchTones(root.Name() + tone.Name()).Name(), tone.Name());
+			for (const auto& dominant : regs.dominants)
+			{
+				EXPECT_EQ(regs.MatchTones(root.Name() + tone.Name() + dominant.Name()).Name(), tone.Name());
+				for (const auto& tension : regs.tensions)
+				{
+					EXPECT_EQ(regs.MatchTones(root.Name() + tone.Name() + dominant.Name() + L"(" + tension.Name() + L")").Name(), tone.Name());
+					for (const auto& fifth : regs.fifthes)
+					{
+						EXPECT_EQ(regs.MatchTones(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")").Name(), tone.Name());
+						for (const auto& onchord : regs.onchords)
+						{
+							EXPECT_EQ(regs.MatchTones(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L" on" + onchord.Name()).Name(), tone.Name());
+							EXPECT_EQ(regs.MatchTones(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L"/" + onchord.Name()).Name(), tone.Name());
+							EXPECT_EQ(regs.MatchTones(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L"(on" + onchord.Name() + L")").Name(), tone.Name());
+						}
+					}
+				}
+			}
 		}
 	}
 }
 
 TEST(TestChordConstructions, fifth_match)
 {
-	const score::chord::ChordConstructions regs;
-
-	for (const auto& f : regs.fifthes)
+	for (const auto& fifth : regs.fifthes)
 	{
 		for (const auto& root : regs.roots)
 		{
-			for (const auto& dominant : regs.dominants)
+			EXPECT_EQ(regs.MatchFifthes(root.Name() + fifth.Name()).Name(), fifth.Name());
+			for (const auto& tone : regs.tones)
 			{
-				for (const auto& tone : regs.tones)
+				EXPECT_EQ(regs.MatchFifthes(root.Name() + tone.Name() + fifth.Name()).Name(), fifth.Name());
+				for (const auto& dominant : regs.dominants)
 				{
-					EXPECT_EQ(regs.MatchFifthes(root.Name() + tone.Name() + f.Name() + dominant.Name()).Name(), f.Name());
+					EXPECT_EQ(regs.MatchFifthes(root.Name() + tone.Name() + dominant.Name() + fifth.Name()).Name(), fifth.Name());
+					for (const auto& tension : regs.tensions)
+					{
+						EXPECT_EQ(regs.MatchFifthes(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")").Name(), fifth.Name());
+						for (const auto& onchord : regs.onchords)
+						{
+							EXPECT_EQ(regs.MatchFifthes(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L" on" + onchord.Name()).Name(), fifth.Name());
+							EXPECT_EQ(regs.MatchFifthes(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L"/" + onchord.Name()).Name(), fifth.Name());
+							EXPECT_EQ(regs.MatchFifthes(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L"(on" + onchord.Name() + L")").Name(), fifth.Name());
+						}
+					}
 				}
 			}
 		}
 	}
 }
+
+//TEST(TestChordConstructions, dominant_match)
+//{
+//	TestAll(&ChordConstructions::MatchDominants, regs.dominants);
+//}
+//
+//TEST(TestChordConstructions, tension_match)
+//{
+//	TestAll(&ChordConstructions::MatchTensions, regs.tensions);
+//}
+//
+//TEST(TestChordConstructions, onchord_match)
+//{
+//	TestAll(&ChordConstructions::MatchOnChord, regs.onchords);
+//}
