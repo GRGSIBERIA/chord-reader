@@ -73,23 +73,23 @@ namespace score
 			Root(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
 		};
 
-		MAKE_CONSTRUCTION_REG(Root, NoteC, L"C", 0, L"^C.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteD, L"D", 2, L"^D.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteE, L"E", 4, L"^E.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteF, L"F", 5, L"^F.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteG, L"G", 7, L"^G.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteA, L"A", 9, L"^A.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteB, L"B", 11, L"^B.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteDb, L"Db", 1, L"^Db.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteEb, L"Eb", 3, L"^Eb.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteGb, L"Gb", 6, L"^Gb.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteAb, L"Ab", 8, L"^Ab.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteBb, L"Bb", 10, L"^Bb.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteCSharp, L"C#", 1, L"^C#.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteDSharp, L"D#", 3, L"^D#.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteFSharp, L"F#", 6, L"^F#.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteGSharp, L"G#", 8, L"^G#.*");
-		MAKE_CONSTRUCTION_REG(Root, NoteASharp, L"A#", 10, L"^A#.*");
+		MAKE_CONSTRUCTION_REG(Root, NoteC, L"C", 0, L"^C.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteD, L"D", 2, L"^D.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteE, L"E", 4, L"^E.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteF, L"F", 5, L"^F.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteG, L"G", 7, L"^G.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteA, L"A", 9, L"^A.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteB, L"B", 11, L"^B.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteDb, L"Db", 1, L"^Db.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteEb, L"Eb", 3, L"^Eb.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteGb, L"Gb", 6, L"^Gb.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteAb, L"Ab", 8, L"^Ab.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteBb, L"Bb", 10, L"^Bb.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteCSharp, L"C#", 1, L"^C#.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteDSharp, L"D#", 3, L"^D#.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteFSharp, L"F#", 6, L"^F#.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteGSharp, L"G#", 8, L"^G#.*$");
+		MAKE_CONSTRUCTION_REG(Root, NoteASharp, L"A#", 10, L"^A#.*$");
 
 		/**
 		* ‘æ3‰¹
