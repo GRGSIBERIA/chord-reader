@@ -42,6 +42,13 @@ namespace score
 			Idefinite() : ConstructionBase(_Regex, L"Idefinite", 0) {}
 		};
 
+		class None : public ConstructionBase
+		{
+			static const std::wregex& _Regex() { const static std::wregex r(L"^\\w*"); return r; }
+		public:
+			None() : ConstructionBase(_Regex, L"", 0) {}
+		};
+
 		/**
 		* クラスの自動生成用マクロ
 		*/
@@ -114,8 +121,8 @@ namespace score
 
 		MAKE_CONSTRUCTION(Dominant, Major7th, L"M7", 11);
 		MAKE_CONSTRUCTION(Dominant, Minor7th, L"7", 10);
-		MAKE_CONSTRUCTION_REG(Dominant, Perfect6th, L"6", 9, L"^.+[^sus6]6.*");
-		MAKE_CONSTRUCTION_REG(Dominant, NoneDominant, L"", 0, L"^.+([^7]|[^M7]|[^6]).*");
+		//MAKE_CONSTRUCTION_REG(Dominant, Perfect6th, L"6", 9, L"^.+6[^sus6].*");
+		MAKE_CONSTRUCTION(Dominant, Perfect6th, L"6", 9);
 
 		/**
 		* 第5音
@@ -130,7 +137,6 @@ namespace score
 		MAKE_CONSTRUCTION(Fifth, Diminished5th, L"-5", 6);
 		MAKE_CONSTRUCTION_REG(Fifth, Augumented5th, L"+5", 8, L"^.+\\+5.*");
 		MAKE_CONSTRUCTION(Fifth, Sus4, L"sus4", 5);
-		MAKE_CONSTRUCTION(Fifth, Sus6, L"sus6", 9);
 
 		/**
 		* テンションノート
@@ -186,8 +192,8 @@ namespace score
 
 		typedef std::array<ConstructionBase, 17> RootRegices; // vertex -> vertices -> regices
 		typedef std::array<ConstructionBase, 2> ToneRegices;
-		typedef std::array<ConstructionBase, 5> FifthRegices;
-		typedef std::array<ConstructionBase, 4> DominantRegices;
+		typedef std::array<ConstructionBase, 4> FifthRegices;
+		typedef std::array<ConstructionBase, 3> DominantRegices;
 		typedef std::array<ConstructionBase, 9> TensionRegices;
 		typedef std::array<ConstructionBase, 17> OnChordRegices;
 
@@ -197,7 +203,7 @@ namespace score
 			template <typename T>
 			const ConstructionBase& MatchArray(const T& constructions, const std::wstring& str) const;
 
-			const ConstructionBase idef = Idefinite();
+			const ConstructionBase none = None();
 
 		public:
 			const ConstructionBase& MatchRoots(const std::wstring& str) const;
@@ -236,15 +242,13 @@ namespace score
 				chord::Diminished5th(),
 				chord::Augumented5th(),
 				chord::Sus4(),
-				chord::Sus6(),
 				chord::Perfect5th()
 					} };
 
 			const DominantRegices dominants = DominantRegices{ {
 				chord::Major7th(),
 				chord::Minor7th(),
-				chord::Perfect6th(),
-				chord::NoneDominant()
+				chord::Perfect6th()
 					} };
 
 			const TensionRegices tensions = TensionRegices{ {

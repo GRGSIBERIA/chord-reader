@@ -1,5 +1,6 @@
 #include "gtest\gtest.h"
 #include <ChordConstruction.hpp>
+#include <map>
 using namespace std;
 using namespace score::chord;
 
@@ -53,7 +54,7 @@ TEST(TestChordConstructions, root_match)
 		}
 	}
 
-	EXPECT_EQ(regs.MatchRoots(L"XXX").Name(), L"Idefinite");
+	EXPECT_EQ(regs.MatchRoots(L"XXX").Name(), L"");
 	EXPECT_EQ(regs.MatchRoots(L"Asshole").Name(), L"A");
 }
 
@@ -115,11 +116,36 @@ TEST(TestChordConstructions, fifth_match)
 	}
 }
 
-//TEST(TestChordConstructions, dominant_match)
-//{
-//	TestAll(&ChordConstructions::MatchDominants, regs.dominants);
-//}
-//
+TEST(TestChordConstructions, dominant_match)
+{
+	for (const auto& dominant : regs.dominants)
+	{
+		if (dominant.Name() == L"") continue;
+		for (const auto& root : regs.roots)
+		{
+			EXPECT_EQ(regs.MatchDominants(root.Name() + dominant.Name()).Name(), dominant.Name());
+			for (const auto& fifth : regs.fifthes)
+			{
+				EXPECT_EQ(regs.MatchDominants(root.Name() + dominant.Name() + fifth.Name()).Name(), dominant.Name());
+				for (const auto& tone : regs.tones)
+				{
+					EXPECT_EQ(regs.MatchDominants(root.Name() + tone.Name() + dominant.Name() + fifth.Name()).Name(), dominant.Name());
+					for (const auto& tension : regs.tensions)
+					{
+						EXPECT_EQ(regs.MatchDominants(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")").Name(), dominant.Name());
+						for (const auto& onchord : regs.onchords)
+						{
+							EXPECT_EQ(regs.MatchDominants(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L" on" + onchord.Name()).Name(), dominant.Name());
+							EXPECT_EQ(regs.MatchDominants(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L"/" + onchord.Name()).Name(), dominant.Name());
+							EXPECT_EQ(regs.MatchDominants(root.Name() + tone.Name() + dominant.Name() + fifth.Name() + L"(" + tension.Name() + L")" + L"(on" + onchord.Name() + L")").Name(), dominant.Name());
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 //TEST(TestChordConstructions, tension_match)
 //{
 //	TestAll(&ChordConstructions::MatchTensions, regs.tensions);

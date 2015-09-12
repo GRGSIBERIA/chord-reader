@@ -11,7 +11,7 @@ const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchArr
 		++i;
 	}
 	if (constructions.size() <= i)
-		return idef;
+		return none;
 	return constructions[i];
 }
 
@@ -24,7 +24,7 @@ const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchTon
 {
 	const auto& tone = MatchArray(tones, str);
 	static const score::chord::Major3rd maj;
-	if (tone.Name() == L"Idefinite")
+	if (tone.Name() == L"")
 		return maj;
 	return tone;
 }
@@ -33,7 +33,7 @@ const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchFif
 {
 	const auto& fifth = MatchArray(fifthes, str);
 	static const score::chord::Perfect5th fif;
-	if (fifth.Name() == L"Idefinite")
+	if (fifth.Name() == L"")
 		return fif;
 	return fifth;
 }
