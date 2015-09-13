@@ -16,17 +16,20 @@ namespace score
 		{
 			std::wstring chordName;	// ÉRÅ[Éhñº
 
-			chord::RootPtr root;
-			chord::TonePtr tone;
-			chord::FifthPtr fifth;
-			chord::DominantPtr dominant;
-			chord::TensionPtr tensions;
-
 		public:
 			friend ChordFactory;
 
-			Chord(const std::wstring& chordName)
-				: chordName(chordName) {}
+			const Root& root;
+			const Tone& tone;
+			const Fifth& fifth;
+			const Dominant& dominant;
+			const Tension& tension;
+			const OnChord& onchord;
+
+			Chord(const std::wstring& chordName, const Root& root, const Tone& tone, const Fifth& fifth, const Dominant& dominant, const Tension& tension, const OnChord& onchord)
+				: chordName(chordName), root(root), tone(tone), fifth(fifth), dominant(dominant), tension(tension), onchord(onchord) {}
+
+			const std::wstring& Name() const { return chordName; }
 		};
 
 		typedef std::shared_ptr<Chord> ChordPtr;
