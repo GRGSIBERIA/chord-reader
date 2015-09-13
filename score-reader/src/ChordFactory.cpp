@@ -2,7 +2,7 @@
 
 score::chord::ChordPtr score::chord::ChordFactory::CreateChord(const std::wstring& str)
 {
-	const static score::chord::ChordConstructions consts;
+	const auto& consts = score::chord::ChordConstructions::GetInstance();
 
 	auto ch = score::chord::ChordPtr(
 		new score::chord::Chord(str, 
