@@ -33,16 +33,16 @@
     <ClInclude Include="xml\tinyxml2.h">
       <Filter>ヘッダー ファイル\xml</Filter>
     </ClInclude>
-    <ClInclude Include="include\Chord.hpp">
-      <Filter>ヘッダー ファイル\score</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ChordFactory.hpp">
-      <Filter>ヘッダー ファイル\score</Filter>
-    </ClInclude>
     <ClInclude Include="include\ScoreReader.hpp">
       <Filter>ヘッダー ファイル\score</Filter>
     </ClInclude>
     <ClInclude Include="include\ChordConstruction.hpp">
+      <Filter>ヘッダー ファイル\score\chord</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Chord.hpp">
+      <Filter>ヘッダー ファイル\score\chord</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ChordFactory.hpp">
       <Filter>ヘッダー ファイル\score\chord</Filter>
     </ClInclude>
   </ItemGroup>

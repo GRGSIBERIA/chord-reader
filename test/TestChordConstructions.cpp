@@ -6,8 +6,6 @@ using namespace score::chord;
 
 const score::chord::ChordConstructions& regs = score::chord::ChordConstructions::GetInstance();
 
-//#define TEST_CHORD
-
 TEST(TestChordConstructions, root_match)
 {
 #ifdef TEST_CHORD

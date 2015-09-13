@@ -202,6 +202,11 @@ namespace score
 
 			const ConstructionBase none = None();
 
+//#define TEST_CHORD
+
+#ifdef TEST_CHORD
+		public:
+#endif
 			const RootRegices roots = RootRegices{ {
 				chord::NoteDb(),
 				chord::NoteEb(),
