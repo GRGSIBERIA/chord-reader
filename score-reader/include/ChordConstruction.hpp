@@ -190,21 +190,17 @@ namespace score
 		typedef std::array<ConstructionBase, 9> TensionRegices;
 		typedef std::array<ConstructionBase, 17> OnChordRegices;
 
-		struct ChordConstructions
+		/**
+		* コードの解析を行うクラス
+		* シングルトンクラスなのでGet()でインスタンスを取得
+		*/
+		class ChordConstructions
 		{
 		private:
 			template <typename T>
 			const ConstructionBase& MatchArray(const T& constructions, const std::wstring& str) const;
 
 			const ConstructionBase none = None();
-
-		public:
-			const ConstructionBase& MatchRoots(const std::wstring& str) const;
-			const ConstructionBase& MatchTones(const std::wstring& str) const;
-			const ConstructionBase& MatchFifthes(const std::wstring& str) const;
-			const ConstructionBase& MatchDominants(const std::wstring& str) const;
-			const ConstructionBase& MatchTensions(const std::wstring& str) const;
-			const ConstructionBase& MatchOnChords(const std::wstring& str) const;
 
 			const RootRegices roots = RootRegices{ {
 				chord::NoteDb(),
@@ -275,6 +271,21 @@ namespace score
 				chord::OnA(),
 				chord::OnB()
 					} };
+
+		public:
+			const ConstructionBase& MatchRoots(const std::wstring& str) const;
+			const ConstructionBase& MatchTones(const std::wstring& str) const;
+			const ConstructionBase& MatchFifthes(const std::wstring& str) const;
+			const ConstructionBase& MatchDominants(const std::wstring& str) const;
+			const ConstructionBase& MatchTensions(const std::wstring& str) const;
+			const ConstructionBase& MatchOnChords(const std::wstring& str) const;
+
+		private:
+			ChordConstructions() {}
+			static std::shared_ptr<ChordConstructions> _inst;
+
+		public:
+			static const ChordConstructions& GetInstance();
 		};
 	}
 }

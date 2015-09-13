@@ -1,5 +1,14 @@
 #include "ChordConstruction.hpp"
 
+std::shared_ptr<score::chord::ChordConstructions> score::chord::ChordConstructions::_inst = nullptr;
+
+const score::chord::ChordConstructions& score::chord::ChordConstructions::GetInstance()
+{
+	if (_inst == nullptr)
+		_inst = std::shared_ptr<score::chord::ChordConstructions>(new score::chord::ChordConstructions());
+	return *_inst;
+}
+
 template <typename T>
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchArray(const T& constructions, const std::wstring& str) const
 {
