@@ -33,15 +33,8 @@ namespace score
 		};
 
 		/**
-		* 定義されていない文字列が渡された
+		* 使われていないコードだった
 		*/
-		class Idefinite : public ConstructionBase
-		{
-			static const std::wregex& _Regex() { const static std::wregex r(L"^\\w*"); return r; }
-		public:
-			Idefinite() : ConstructionBase(_Regex, L"Idefinite", 0) {}
-		};
-
 		class None : public ConstructionBase
 		{
 			static const std::wregex& _Regex() { const static std::wregex r(L"^\\w*"); return r; }
