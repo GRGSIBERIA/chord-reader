@@ -48,7 +48,7 @@ const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchTen
 	return MatchArray(tensions, str);
 }
 
-const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchOnChord(const std::wstring& str) const
+const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchOnChords(const std::wstring& str) const
 {
 	return MatchArray(onchords, str);
 }
