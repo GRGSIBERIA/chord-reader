@@ -74,6 +74,7 @@
     <ClInclude Include="include\Chord.hpp" />
     <ClInclude Include="include\ChordConstruction.hpp" />
     <ClInclude Include="include\ChordFactory.hpp" />
+    <ClInclude Include="include\Scale.hpp" />
     <ClInclude Include="include\ScoreReader.hpp" />
     <ClInclude Include="xml\tinyxml2.h" />
   </ItemGroup>

@@ -28,6 +28,9 @@
     <Filter Include="ヘッダー ファイル\score\chord">
       <UniqueIdentifier>{05c9e3a5-9986-449e-87b4-470d7f8ddd02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\score\scale">
+      <UniqueIdentifier>{35fee140-7fb4-4a0d-8552-c3b92b53de79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="xml\tinyxml2.h">
@@ -44,6 +47,9 @@
     </ClInclude>
     <ClInclude Include="include\ChordFactory.hpp">
       <Filter>ヘッダー ファイル\score\chord</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Scale.hpp">
+      <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
