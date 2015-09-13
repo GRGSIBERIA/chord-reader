@@ -3,9 +3,12 @@
 
 namespace score
 {
-	class ChordFactory
+	namespace chord
 	{
-	public:
-		static ChordPtr CreateChord(const std::wstring& str);
-	};
+		class ChordFactory
+		{
+		public:
+			static ChordPtr CreateChord(const std::wstring& str);
+		};
+	}
 }

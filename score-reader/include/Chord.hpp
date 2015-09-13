@@ -7,25 +7,28 @@
 
 namespace score
 {
-	class ChordFactory;
-
-	// コードのベースクラス
-	class Chord
+	namespace chord
 	{
-		std::wstring chordName;	// コード名
+		class ChordFactory;
 
-		chord::RootPtr root;
-		chord::TonePtr tone;
-		chord::FifthPtr fifth;
-		chord::DominantPtr dominant;
-		chord::TensionPtr tensions;
+		// コードのベースクラス
+		class Chord
+		{
+			std::wstring chordName;	// コード名
 
-	public:
-		friend ChordFactory;
+			chord::RootPtr root;
+			chord::TonePtr tone;
+			chord::FifthPtr fifth;
+			chord::DominantPtr dominant;
+			chord::TensionPtr tensions;
 
-		Chord(const std::wstring& chordName)
-			: chordName(chordName) {}
-	};
+		public:
+			friend ChordFactory;
 
-	typedef std::shared_ptr<Chord> ChordPtr;
+			Chord(const std::wstring& chordName)
+				: chordName(chordName) {}
+		};
+
+		typedef std::shared_ptr<Chord> ChordPtr;
+	}
 }
