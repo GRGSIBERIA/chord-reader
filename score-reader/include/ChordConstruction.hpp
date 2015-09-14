@@ -27,6 +27,8 @@ namespace score
 			ConstructionBase(SVFunc* re) : refunc(re), name(L""), interval(0) {}
 			ConstructionBase(SVFunc* re, const std::wstring& name, int interval) : refunc(re), name(name), interval(interval), reg(re()) {}
 
+			ConstructionBase(const std::wstring& name, int interval, const std::wstring& re) : name(name), reg(re), interval(interval), refunc(nullptr) {}
+
 			const std::wstring& Name() const { return name; }
 			int Interval() const { return interval; }
 			const std::wregex& Regex() const { return reg; }
@@ -71,25 +73,9 @@ namespace score
 		{
 		public:
 			Root(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
-		};
 
-		MAKE_CONSTRUCTION_REG(Root, NoteC, L"C", 0, L"^C.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteD, L"D", 2, L"^D.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteE, L"E", 4, L"^E.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteF, L"F", 5, L"^F.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteG, L"G", 7, L"^G.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteA, L"A", 9, L"^A.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteB, L"B", 11, L"^B.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteDb, L"Db", 1, L"^Db.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteEb, L"Eb", 3, L"^Eb.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteGb, L"Gb", 6, L"^Gb.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteAb, L"Ab", 8, L"^Ab.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteBb, L"Bb", 10, L"^Bb.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteCSharp, L"C#", 1, L"^C#.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteDSharp, L"D#", 3, L"^D#.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteFSharp, L"F#", 6, L"^F#.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteGSharp, L"G#", 8, L"^G#.*$");
-		MAKE_CONSTRUCTION_REG(Root, NoteASharp, L"A#", 10, L"^A#.*$");
+			Root(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}
+		};
 
 		/**
 		* 第3音
@@ -98,24 +84,12 @@ namespace score
 		{
 		public:
 			Tone(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
+
+			Tone(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}
 		};
 
 		MAKE_CONSTRUCTION_REG(Tone, Major3rd, L"", 4, L"");
 		MAKE_CONSTRUCTION(Tone, Minor3rd, L"m", 3);
-
-		/**
-		* 第7音
-		*/
-		class Dominant : public ConstructionBase
-		{
-		public:
-			Dominant(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
-		};
-
-		MAKE_CONSTRUCTION(Dominant, Major7th, L"M7", 11);
-		MAKE_CONSTRUCTION(Dominant, Minor7th, L"7", 10);
-		//MAKE_CONSTRUCTION_REG(Dominant, Perfect6th, L"6", 9, L"^.+6[^sus6].*");
-		MAKE_CONSTRUCTION(Dominant, Perfect6th, L"6", 9);
 
 		/**
 		* 第5音
@@ -124,6 +98,8 @@ namespace score
 		{
 		public:
 			Fifth(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
+
+			Fifth(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}
 		};
 
 		MAKE_CONSTRUCTION_REG(Fifth, Perfect5th, L"", 7, L"");
@@ -132,12 +108,30 @@ namespace score
 		MAKE_CONSTRUCTION(Fifth, Sus4, L"sus4", 5);
 
 		/**
+		* 第7音
+		*/
+		class Dominant : public ConstructionBase
+		{
+		public:
+			Dominant(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
+
+			Dominant(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}
+		};
+
+		MAKE_CONSTRUCTION(Dominant, Major7th, L"M7", 11);
+		MAKE_CONSTRUCTION(Dominant, Minor7th, L"7", 10);
+		//MAKE_CONSTRUCTION_REG(Dominant, Perfect6th, L"6", 9, L"^.+6[^sus6].*");
+		MAKE_CONSTRUCTION(Dominant, Perfect6th, L"6", 9);
+
+		/**
 		* テンションノート
 		*/
 		class Tension : public ConstructionBase
 		{
 		public:
 			Tension(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
+
+			Tension(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}
 		};
 
 		MAKE_CONSTRUCTION(Tension, Flat9th, L"b9", 1);
@@ -157,6 +151,8 @@ namespace score
 		{
 		public:
 			OnChord(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
+
+			OnChord(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}
 		};
 
 		MAKE_CONSTRUCTION_REG(OnChord, OnC, L"C", 0, L".+(/|on|\\(on) *C.*");
@@ -202,29 +198,29 @@ namespace score
 
 			const ConstructionBase none = None();
 
-//#define TEST_CHORD
+#define TEST_CHORD
 
 #ifdef TEST_CHORD
 		public:
 #endif
 			const RootRegices roots = RootRegices{ {
-				chord::NoteDb(),
-				chord::NoteEb(),
-				chord::NoteGb(),
-				chord::NoteAb(),
-				chord::NoteBb(),
-				chord::NoteCSharp(),
-				chord::NoteDSharp(),
-				chord::NoteFSharp(),
-				chord::NoteGSharp(),
-				chord::NoteASharp(),
-				chord::NoteC(),
-				chord::NoteD(),
-				chord::NoteE(),
-				chord::NoteF(),
-				chord::NoteG(),
-				chord::NoteA(),
-				chord::NoteB()
+				Root(L"Db", 1, L"^Db.*$"),
+				Root(L"Eb", 3, L"^Eb.*$"),
+				Root(L"Gb", 6, L"^Gb.*$"),
+				Root(L"Ab", 8, L"^Ab.*$"),
+				Root(L"Bb", 10,L"^Bb.*$"),
+				Root(L"C#", 1, L"^C#.*$"),
+				Root(L"D#", 3, L"^D#.*$"),
+				Root(L"F#", 6, L"^F#.*$"),
+				Root(L"G#", 8, L"^G#.*$"),
+				Root(L"A#", 10,L"^A#.*$"),
+				Root(L"C", 0, L"^C.*$"),
+				Root(L"D", 2, L"^D.*$"),
+				Root(L"E", 4, L"^E.*$"),
+				Root(L"F", 5, L"^F.*$"),
+				Root(L"G", 7, L"^G.*$"),
+				Root(L"A", 9, L"^A.*$"),
+				Root(L"B", 11, L"^B.*$")
 					} };
 
 			const ToneRegices tones = ToneRegices{ {
