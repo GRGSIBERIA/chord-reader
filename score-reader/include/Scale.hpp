@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <array>
+
+#include "Chord.hpp"
 
 namespace score
 {
@@ -50,16 +53,42 @@ namespace score
 		DEFINE_MODE(Aeolian, 5, 0, 2, 3, 5, 7, 8, 10);
 		DEFINE_MODE(Locrian, 6, 0, 1, 3, 5, 6, 8, 10);
 
-#define DEFINE_SCALE(CLASS_NAME, C, D, E, F, G, A, B) \
+#define DEFINE_SCALE7(CLASS_NAME, C, D, E, F, G, A, B) \
 		class CLASS_NAME : public ScaleBase\
 		{\
 		public:\
 			CLASS_NAME() : ScaleBase({C, D, E, F, G, A, B}, L"CLASS_NAME") {}\
 		}
 
-		DEFINE_SCALE(Major, 0, 2, 4, 5, 7, 9, 11);
-		DEFINE_SCALE(HarmonicMinor, 0, 2, 3, 5, 7, 8, 11);
-		DEFINE_SCALE(MelodicMinor, 0, 2, 3, 5, 7, 9, 11);
-		DEFINE_SCALE(NaturalMinor, 0, 2, 3, 5, 7, 8, 10);
+#define DEFINE_SCALE5(CLASS_NAME, X1, X2, X3, X4, X5) \
+		class CLASS_NAME : public ScaleBase\
+		{\
+		public:\
+			CLASS_NAME() : ScaleBase({C, D, E, F, G, A, B}, L"CLASS_NAME") {}\
+		}
+
+		DEFINE_SCALE7(Major, 0, 2, 4, 5, 7, 9, 11);
+		DEFINE_SCALE7(HarmonicMinor, 0, 2, 3, 5, 7, 8, 11);
+		DEFINE_SCALE7(MelodicMinor, 0, 2, 3, 5, 7, 9, 11);
+		DEFINE_SCALE7(NaturalMinor, 0, 2, 3, 5, 7, 8, 10);
+
+		
+		class ModeDatabase
+		{
+			typedef std::vector<Mode> Modes;
+
+			const Modes modes = Modes{ {
+				Ionian(),
+				Dorian(),
+				Phrygian(),
+				Lydian(),
+				Mixolydian(),
+				Aeolian(),
+				Locrian()
+					} };
+
+		public:
+			static const Mode& Find(const std::vector<chord::Chord>& chords);
+		};
 	}
 }
