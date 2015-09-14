@@ -14,21 +14,14 @@ namespace score
 		*/
 		class ConstructionBase
 		{
-		protected:
-			typedef const std::wregex& SVFunc();
-
 		private:
 			const std::wstring name;
 			const int interval;
 			const std::wregex reg;
-			SVFunc* const refunc;
 
 		public:
-			ConstructionBase(SVFunc* re) : refunc(re), name(L""), interval(0) {}
-			ConstructionBase(SVFunc* re, const std::wstring& name, int interval) : refunc(re), name(name), interval(interval), reg(re()) {}
-
-			ConstructionBase(const std::wstring& name, int interval, const std::wstring& re) : name(name), reg(re), interval(interval), refunc(nullptr) {}
-			ConstructionBase(const std::wstring& name, int interval) : name(name), reg(std::wstring(L"^.+") + name + L".*"), interval(interval), refunc(nullptr) {}
+			ConstructionBase(const std::wstring& name, int interval, const std::wstring& re) : name(name), reg(re), interval(interval) {}
+			ConstructionBase(const std::wstring& name, int interval) : name(name), reg(std::wstring(L"^.+") + name + L".*"), interval(interval) {}
 
 			const std::wstring& Name() const { return name; }
 			int Interval() const { return interval; }
@@ -40,91 +33,31 @@ namespace score
 		*/
 		class None : public ConstructionBase
 		{
-			static const std::wregex& _Regex() { const static std::wregex r(L"^\\w*"); return r; }
 		public:
-			None() : ConstructionBase(_Regex, L"", 0) {}
+			None() : ConstructionBase(L"", 0) {}
 		};
 
-		/**
-		* 根音
-		*/
-		class Root : public ConstructionBase
-		{
-		public:
-			Root(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
+#define DEFINE_CONSTRUCTION(CLASS_NAME, COMMENT)\
+		/* COMMENT */ \
+		class CLASS_NAME : public ConstructionBase { \
+			public:\
+			CLASS_NAME(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}\
+			CLASS_NAME(const std::wstring& name, int interval) : ConstructionBase(name, interval) {}\
+		}
 
-			Root(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}
-		};
+		DEFINE_CONSTRUCTION(Root, 根音);
+		DEFINE_CONSTRUCTION(Tone, 第3音);
+		DEFINE_CONSTRUCTION(Fifth, 第5音);
+		DEFINE_CONSTRUCTION(Dominant, 第7音);
+		DEFINE_CONSTRUCTION(Tension, 修飾音);
+		DEFINE_CONSTRUCTION(OnChord, オンコード);
 
-		/**
-		* 第3音
-		*/
-		class Tone : public ConstructionBase
-		{
-		public:
-			Tone(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
-
-			Tone(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}
-			Tone(const std::wstring& name, int interval) : ConstructionBase(name, interval) {}
-		};
-
-		/**
-		* 第5音
-		*/
-		class Fifth : public ConstructionBase
-		{
-		public:
-			Fifth(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
-
-			Fifth(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}
-			Fifth(const std::wstring& name, int interval) : ConstructionBase(name, interval) {}
-		};
-
-		/**
-		* 第7音
-		*/
-		class Dominant : public ConstructionBase
-		{
-		public:
-			Dominant(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
-
-			Dominant(const std::wstring& name, int interval) : ConstructionBase(name, interval) {}
-		};
-
-		/**
-		* テンションノート
-		*/
-		class Tension : public ConstructionBase
-		{
-		public:
-			Tension(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
-
-			Tension(const std::wstring& name, int interval) : ConstructionBase(name, interval) {}
-		};
-
-		/**
-		* オンコード
-		*/
-		class OnChord : public ConstructionBase
-		{
-		public:
-			OnChord(SVFunc* re, const std::wstring& name, int interval) : ConstructionBase(re, name, interval) {}
-
-			OnChord(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}
-		};
-
-		typedef std::shared_ptr<Root> RootPtr;
-		typedef std::shared_ptr<Tone> TonePtr;
-		typedef std::shared_ptr<Fifth> FifthPtr;
-		typedef std::shared_ptr<Dominant> DominantPtr;
-		typedef std::shared_ptr<Tension> TensionPtr;
-
-		typedef std::array<ConstructionBase, 17> RootRegices; // vertex -> vertices -> regices
-		typedef std::array<ConstructionBase, 2> ToneRegices;
-		typedef std::array<ConstructionBase, 4> FifthRegices;
-		typedef std::array<ConstructionBase, 3> DominantRegices;
-		typedef std::array<ConstructionBase, 9> TensionRegices;
-		typedef std::array<ConstructionBase, 17> OnChordRegices;
+		typedef std::array<ConstructionBase, 17> Roots; // vertex -> vertices -> s
+		typedef std::array<ConstructionBase, 2>	 Tones;
+		typedef std::array<ConstructionBase, 4>  Fifths;
+		typedef std::array<ConstructionBase, 3>  Dominants;
+		typedef std::array<ConstructionBase, 9>  Tensions;
+		typedef std::array<ConstructionBase, 17> OnChords;
 
 		/**
 		* コードの解析を行うクラス
@@ -143,7 +76,7 @@ namespace score
 #ifdef TEST_CHORD
 		public:
 #endif
-			const RootRegices roots = RootRegices{ {
+			const Roots roots = Roots{ {
 				Root(L"Db", 1, L"^Db.*$"),
 				Root(L"Eb", 3, L"^Eb.*$"),
 				Root(L"Gb", 6, L"^Gb.*$"),
@@ -163,25 +96,25 @@ namespace score
 				Root(L"B",	11,L"^B.*$")
 					} };
 
-			const ToneRegices tones = ToneRegices{ {
+			const Tones tones = Tones{ {
 				Tone(L"m", 3),
 				Tone(L"", 4, L"")
 					} };
 
-			const FifthRegices fifthes = FifthRegices{ {
+			const Fifths fifthes = Fifths{ {
 				Fifth(L"-5",	6),
 				Fifth(L"+5",	8, L"^.+\\+5.*"),
 				Fifth(L"sus4",	5),
 				Fifth(L"",		7, L""),
 					} };
 
-			const DominantRegices dominants = DominantRegices{ {
+			const Dominants dominants = Dominants{ {
 				Dominant(L"M7", 11),
 				Dominant(L"7", 10),
 				Dominant(L"6", 9 )
 					} };
 
-			const TensionRegices tensions = TensionRegices{ {
+			const Tensions tensions = Tensions{ {
 				Tension(L"b9",	1),
 				Tension(L"b11", 4),
 				Tension(L"b13", 8),
@@ -193,7 +126,7 @@ namespace score
 				Tension(L"13",	9)
 					} };
 
-			const OnChordRegices onchords = OnChordRegices{ {
+			const OnChords onchords = OnChords{ {
 				OnChord(L"Db", 1, L".+(/|on|\\(on) *Db.*"),
 				OnChord(L"Eb", 3, L".+(/|on|\\(on) *Eb.*"),
 				OnChord(L"Gb", 6, L".+(/|on|\\(on) *Gb.*"),
