@@ -15,17 +15,20 @@ namespace score
 		class ConstructionBase
 		{
 		private:
+			const std::wstring full_name;
 			const std::wstring name;
 			const int interval;
 			const std::wregex reg;
 
 		public:
-			ConstructionBase(const std::wstring& name, int interval, const std::wstring& re) : name(name), reg(re), interval(interval) {}
-			ConstructionBase(const std::wstring& name, int interval) : name(name), reg(std::wstring(L"^.+") + name + L".*"), interval(interval) {}
+			ConstructionBase(const std::wstring& name, int interval, const std::wstring& re, const std::wstring& fullName) : full_name(fullName), name(name), reg(re), interval(interval) {}
+			ConstructionBase(const std::wstring& name, int interval, const std::wstring& re) : full_name(name), name(name), reg(re), interval(interval) {}
+			ConstructionBase(const std::wstring& name, int interval) : full_name(name), name(name), reg(std::wstring(L"^.+") + name + L".*"), interval(interval) {}
 
 			const std::wstring& Name() const { return name; }
 			int Interval() const { return interval; }
 			const std::wregex& Regex() const { return reg; }
+			const std::wstring& FullName() const { return full_name; }
 		};
 
 		/**
@@ -41,6 +44,7 @@ namespace score
 		/* COMMENT */ \
 		class CLASS_NAME : public ConstructionBase { \
 			public:\
+			CLASS_NAME(const std::wstring& name, int interval, const std::wstring& re, const std::wstring& fullName) : ConstructionBase(name, interval, re, fullName) {}\
 			CLASS_NAME(const std::wstring& name, int interval, const std::wstring& re) : ConstructionBase(name, interval, re) {}\
 			CLASS_NAME(const std::wstring& name, int interval) : ConstructionBase(name, interval) {}\
 		}
@@ -97,15 +101,15 @@ namespace score
 					} };
 
 			const Tones tones = Tones{ {
-				Tone(L"m", 3),
-				Tone(L"", 4, L"")
+				Tone(L"m", 3, L"m", L"minor"),
+				Tone(L"", 4, L"", L"major")
 					} };
 
 			const Fifths fifthes = Fifths{ {
 				Fifth(L"-5",	6),
 				Fifth(L"+5",	8, L"^.+\\+5.*"),
 				Fifth(L"sus4",	5),
-				Fifth(L"",		7, L""),
+				Fifth(L"",		7, L"", L"P5"),
 					} };
 
 			const Dominants dominants = Dominants{ {
@@ -127,23 +131,23 @@ namespace score
 					} };
 
 			const OnChords onchords = OnChords{ {
-				OnChord(L"Db", 1, L".+(/|on|\\(on) *Db.*"),
-				OnChord(L"Eb", 3, L".+(/|on|\\(on) *Eb.*"),
-				OnChord(L"Gb", 6, L".+(/|on|\\(on) *Gb.*"),
-				OnChord(L"Ab", 8, L".+(/|on|\\(on) *Ab.*"),
-				OnChord(L"Bb", 10, L".+(/|on|\\(on) *Bb.*"),
-				OnChord(L"C#", 1, L".+(/|on|\\(on) *C#.*"),
-				OnChord(L"D#", 3, L".+(/|on|\\(on) *D#.*"),
-				OnChord(L"F#", 6, L".+(/|on|\\(on) *F#.*"),
-				OnChord(L"G#", 8, L".+(/|on|\\(on) *G#.*"),
-				OnChord(L"A#", 10, L".+(/|on|\\(on) *A#.*"),
-				OnChord(L"C", 0, L".+(/|on|\\(on) *C.*"),
-				OnChord(L"D", 2, L".+(/|on|\\(on) *D.*"),
-				OnChord(L"E", 4, L".+(/|on|\\(on) *E.*"),
-				OnChord(L"F", 5, L".+(/|on|\\(on) *F.*"),
-				OnChord(L"G", 7, L".+(/|on|\\(on) *G.*"),
-				OnChord(L"A", 9, L".+(/|on|\\(on) *A.*"),
-				OnChord(L"B", 11, L".+(/|on|\\(on) *B.*")
+				OnChord(L"onDb", 1, L".+(/|on|\\(on) *Db.*"),
+				OnChord(L"onEb", 3, L".+(/|on|\\(on) *Eb.*"),
+				OnChord(L"onGb", 6, L".+(/|on|\\(on) *Gb.*"),
+				OnChord(L"onAb", 8, L".+(/|on|\\(on) *Ab.*"),
+				OnChord(L"onBb", 10, L".+(/|on|\\(on) *Bb.*"),
+				OnChord(L"onC#", 1, L".+(/|on|\\(on) *C#.*"),
+				OnChord(L"onD#", 3, L".+(/|on|\\(on) *D#.*"),
+				OnChord(L"onF#", 6, L".+(/|on|\\(on) *F#.*"),
+				OnChord(L"onG#", 8, L".+(/|on|\\(on) *G#.*"),
+				OnChord(L"onA#", 10, L".+(/|on|\\(on) *A#.*"),
+				OnChord(L"onC", 0, L".+(/|on|\\(on) *C.*"),
+				OnChord(L"onD", 2, L".+(/|on|\\(on) *D.*"),
+				OnChord(L"onE", 4, L".+(/|on|\\(on) *E.*"),
+				OnChord(L"onF", 5, L".+(/|on|\\(on) *F.*"),
+				OnChord(L"onG", 7, L".+(/|on|\\(on) *G.*"),
+				OnChord(L"onA", 9, L".+(/|on|\\(on) *A.*"),
+				OnChord(L"onB", 11, L".+(/|on|\\(on) *B.*")
 					} };
 
 		public:
