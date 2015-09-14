@@ -32,7 +32,7 @@ const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchRoo
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchTones(const std::wstring& str) const
 {
 	const auto& tone = MatchArray(tones, str);
-	static const score::chord::Major3rd maj;
+	static const score::chord::Tone maj(L"", 4, L"");
 	if (tone.Name() == L"")
 		return maj;
 	return tone;
@@ -41,7 +41,7 @@ const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchTon
 const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchFifthes(const std::wstring& str) const
 {
 	const auto& fifth = MatchArray(fifthes, str);
-	static const score::chord::Perfect5th fif;
+	static const score::chord::Fifth fif(L"", 7, L"");
 	if (fifth.Name() == L"")
 		return fif;
 	return fifth;

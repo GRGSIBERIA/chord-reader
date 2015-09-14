@@ -3,5 +3,5 @@
 
 TEST(TestScale, call_scale)
 {
-	score::scale::Ionian i;
+	
 }
