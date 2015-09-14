@@ -31,7 +31,7 @@ namespace score
 		public:
 			Mode(const std::vector<int>& scale, const std::wstring& name, const int num) : ScaleBase(scale, name), scaleNumber(num) {}
 
-			// 0から始まるインターバルの番号を返す
+			// 0から始まるモードスケールのインターバルの番号を返す
 			const int ScaleNumber() const { return scaleNumber; }
 		};
 
@@ -51,12 +51,15 @@ namespace score
 		DEFINE_MODE(Locrian, 6, 0, 1, 3, 5, 6, 8, 10);
 
 #define DEFINE_SCALE(CLASS_NAME, C, D, E, F, G, A, B) \
-		class CLASS_NAME : public Mode\
-				{\
-			const std::wstring name;\
+		class CLASS_NAME : public ScaleBase\
+		{\
 		public:\
-			CLASS_NAME() : Mode({C, D, E, F, G, A, B}), name(L"CLASS_NAME") {}\
-			const std::wstring& Name() const { return name; }\
-				}
+			CLASS_NAME() : ScaleBase({C, D, E, F, G, A, B}, L"CLASS_NAME") {}\
+		}
+
+		DEFINE_SCALE(Major, 0, 2, 4, 5, 7, 9, 11);
+		DEFINE_SCALE(HarmonicMinor, 0, 2, 3, 5, 7, 8, 11);
+		DEFINE_SCALE(MelodicMinor, 0, 2, 3, 5, 7, 9, 11);
+		DEFINE_SCALE(NaturalMinor, 0, 2, 3, 5, 7, 8, 10);
 	}
 }
