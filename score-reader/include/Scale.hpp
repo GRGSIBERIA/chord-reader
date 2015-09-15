@@ -29,15 +29,15 @@ namespace score
 		*/
 		class Mode : public ScaleBase
 		{
-			const int scaleNumber;
+			const int modeNumber;
 			const std::vector<int> avoids;	// アボイドノート
 
 		public:
 			Mode(const std::wstring& name, const int num, const std::vector<int>& scale, const std::vector<int>& avoids) 
-				: ScaleBase(name, scale), avoids(avoids), scaleNumber(num) {}
+				: ScaleBase(name, scale), avoids(avoids), modeNumber(num) {}
 
 			// 0から始まるモードスケールのインターバルの番号を返す
-			const int ScaleNumber() const { return scaleNumber; }
+			const int ModeNumber() const { return modeNumber; }
 		};
 
 		
