@@ -1,4 +1,5 @@
 #include "Scale.hpp"
+#include <memory>
 
 namespace score
 {
@@ -18,8 +19,14 @@ namespace score
 				Mode(L"Locrian", 6, { 0, 1, 3, 5, 6, 8, 10 }, { 1, 8 })
 					} };
 
+			static std::shared_ptr<ModeDatabase> _ptr;
+			ModeDatabase() {}
+
 		public:
-			static const Mode& Find(const int key, const bool isMajor, const std::vector<chord::Chord>& chords);
+			const Mode& Find(const std::wstring& name);
+			const Mode& Find(const size_t index);
+
+			static const ModeDatabase& GetInstance();
 		};
 	}
 }
