@@ -39,8 +39,8 @@ namespace score
 			ModeDatabase() {}
 
 		public:
-			const Mode& Modes(const std::wstring& name) const;
-			const Mode& Modes(const size_t index) const;
+			const Mode& GetMode(const std::wstring& name) const;
+			const Mode& GetMode(const size_t index) const;
 
 			const Mode& FindAlter(const Mode& mode) const;				// 代替スケールの検索
 			const Mode& FindAlter(const std::wstring& name) const;		// 代替スケールの検索
