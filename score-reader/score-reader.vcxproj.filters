@@ -31,6 +31,12 @@
     <Filter Include="ヘッダー ファイル\score\scale">
       <UniqueIdentifier>{35fee140-7fb4-4a0d-8552-c3b92b53de79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\score\scale">
+      <UniqueIdentifier>{835f4f3a-f664-4cf4-be2c-4f33397a696f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\score\chord">
+      <UniqueIdentifier>{b301b8a7-a908-4a11-9eec-04e189b3329f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="xml\tinyxml2.h">
@@ -51,6 +57,12 @@
     <ClInclude Include="include\Scale.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
+    <ClInclude Include="include\ModeDatabase.hpp">
+      <Filter>ヘッダー ファイル\score\scale</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DiatonicDatabase.hpp">
+      <Filter>ヘッダー ファイル\score\chord</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -59,11 +71,17 @@
     <ClCompile Include="xml\tinyxml2.cpp">
       <Filter>ソース ファイル\xml</Filter>
     </ClCompile>
-    <ClCompile Include="src\ChordFactory.cpp">
-      <Filter>ソース ファイル\score</Filter>
-    </ClCompile>
     <ClCompile Include="src\ChordConstructions.cpp">
-      <Filter>ソース ファイル\score</Filter>
+      <Filter>ソース ファイル\score\chord</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChordFactory.cpp">
+      <Filter>ソース ファイル\score\chord</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ModeDatabase.cpp">
+      <Filter>ソース ファイル\score\scale</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DiatonicDatabase.cpp">
+      <Filter>ソース ファイル\score\chord</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

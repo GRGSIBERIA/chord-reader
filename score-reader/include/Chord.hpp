@@ -29,6 +29,9 @@ namespace score
 			Chord(const std::wstring& chordName, const Root& root, const Tone& tone, const Fifth& fifth, const Dominant& dominant, const Tension& tension, const OnChord& onchord)
 				: chordName(chordName), root(root), tone(tone), fifth(fifth), dominant(dominant), tension(tension), onchord(onchord) {}
 
+			Chord(const Chord& c) 
+				: chordName(c.chordName), root(c.root), tone(c.tone), fifth(c.fifth), dominant(c.dominant), tension(c.tension), onchord(c.onchord) {}
+
 			const std::wstring& Name() const { return chordName; }
 		};
 

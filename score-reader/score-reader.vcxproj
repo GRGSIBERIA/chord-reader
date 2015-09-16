@@ -74,6 +74,8 @@
     <ClInclude Include="include\Chord.hpp" />
     <ClInclude Include="include\ChordConstruction.hpp" />
     <ClInclude Include="include\ChordFactory.hpp" />
+    <ClInclude Include="include\DiatonicDatabase.hpp" />
+    <ClInclude Include="include\ModeDatabase.hpp" />
     <ClInclude Include="include\Scale.hpp" />
     <ClInclude Include="include\ScoreReader.hpp" />
     <ClInclude Include="xml\tinyxml2.h" />
@@ -82,6 +84,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\ChordConstructions.cpp" />
     <ClCompile Include="src\ChordFactory.cpp" />
+    <ClCompile Include="src\DiatonicDatabase.cpp" />
+    <ClCompile Include="src\ModeDatabase.cpp" />
     <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

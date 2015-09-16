@@ -56,12 +56,12 @@ namespace score
 		DEFINE_CONSTRUCTION(Tension, 修飾音);
 		DEFINE_CONSTRUCTION(OnChord, オンコード);
 
-		typedef std::array<ConstructionBase, 17> Roots; // vertex -> vertices -> s
-		typedef std::array<ConstructionBase, 2>	 Tones;
-		typedef std::array<ConstructionBase, 4>  Fifths;
-		typedef std::array<ConstructionBase, 3>  Dominants;
-		typedef std::array<ConstructionBase, 9>  Tensions;
-		typedef std::array<ConstructionBase, 17> OnChords;
+		typedef std::array<Root, 17> Roots; // vertex -> vertices -> s
+		typedef std::array<Tone, 2>	 Tones;
+		typedef std::array<Fifth, 4>  Fifths;
+		typedef std::array<Dominant, 3>  Dominants;
+		typedef std::array<Tension, 9>  Tensions;
+		typedef std::array<OnChord, 17> OnChords;
 
 		/**
 		* コードの解析を行うクラス
@@ -73,13 +73,11 @@ namespace score
 			template <typename T>
 			const ConstructionBase& MatchArray(const T& constructions, const std::wstring& str) const;
 
-			const ConstructionBase none = None();
-
 #define TEST_CHORD
 
-#ifdef TEST_CHORD
 		public:
-#endif
+			const ConstructionBase none = None();
+
 			const Roots roots = Roots{ {
 				Root(L"Db", 1, L"^Db.*$"),
 				Root(L"Eb", 3, L"^Eb.*$"),
@@ -101,15 +99,15 @@ namespace score
 					} };
 
 			const Tones tones = Tones{ {
-				Tone(L"m", 3, L"m", L"minor"),
-				Tone(L"", 4, L"", L"major")
+				Tone(L"m", 3, L"^.+m.*",L"minor"),
+				Tone(L"",  4, L"^.*",	L"major")
 					} };
 
 			const Fifths fifthes = Fifths{ {
 				Fifth(L"-5",	6),
 				Fifth(L"+5",	8, L"^.+\\+5.*"),
 				Fifth(L"sus4",	5),
-				Fifth(L"",		7, L"", L"P5"),
+				Fifth(L"",		7, L"^.*", L"P5"),
 					} };
 
 			const Dominants dominants = Dominants{ {
@@ -164,6 +162,7 @@ namespace score
 
 		public:
 			static const ChordConstructions& GetInstance();
+			static const std::shared_ptr<ChordConstructions> GetPtr();
 		};
 	}
 }

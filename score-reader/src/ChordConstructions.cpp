@@ -1,16 +1,22 @@
 #include "ChordConstruction.hpp"
+using namespace score::chord;
 
-std::shared_ptr<score::chord::ChordConstructions> score::chord::ChordConstructions::_inst = nullptr;
+std::shared_ptr<ChordConstructions> ChordConstructions::_inst = ChordConstructions::GetPtr();
 
-const score::chord::ChordConstructions& score::chord::ChordConstructions::GetInstance()
+const ChordConstructions& ChordConstructions::GetInstance()
+{
+	return *GetPtr();
+}
+
+const std::shared_ptr<ChordConstructions> ChordConstructions::GetPtr()
 {
 	if (_inst == nullptr)
-		_inst = std::shared_ptr<score::chord::ChordConstructions>(new score::chord::ChordConstructions());
-	return *_inst;
+		_inst = std::shared_ptr<ChordConstructions>(new ChordConstructions());
+	return _inst;
 }
 
 template <typename T>
-const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchArray(const T& constructions, const std::wstring& str) const
+const ConstructionBase& ChordConstructions::MatchArray(const T& constructions, const std::wstring& str) const
 {
 	size_t i = 0;
 	for (const auto& cons : constructions)
@@ -24,40 +30,40 @@ const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchArr
 	return constructions[i];
 }
 
-const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchRoots(const std::wstring& str) const
+const ConstructionBase& ChordConstructions::MatchRoots(const std::wstring& str) const
 {
 	return MatchArray(roots, str);
 }
 
-const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchTones(const std::wstring& str) const
+const ConstructionBase& ChordConstructions::MatchTones(const std::wstring& str) const
 {
 	const auto& tone = MatchArray(tones, str);
-	static const score::chord::Tone maj(L"", 4, L"");
+	static const Tone maj(L"", 4, L"");
 	if (tone.Name() == L"")
 		return maj;
 	return tone;
 }
 
-const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchFifthes(const std::wstring& str) const
+const ConstructionBase& ChordConstructions::MatchFifthes(const std::wstring& str) const
 {
 	const auto& fifth = MatchArray(fifthes, str);
-	static const score::chord::Fifth fif(L"", 7, L"");
+	static const Fifth fif(L"", 7, L"");
 	if (fifth.Name() == L"")
 		return fif;
 	return fifth;
 }
 
-const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchDominants(const std::wstring& str) const
+const ConstructionBase& ChordConstructions::MatchDominants(const std::wstring& str) const
 {
 	return MatchArray(dominants, str);
 }
 
-const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchTensions(const std::wstring& str) const
+const ConstructionBase& ChordConstructions::MatchTensions(const std::wstring& str) const
 {
 	return MatchArray(tensions, str);
 }
 
-const score::chord::ConstructionBase& score::chord::ChordConstructions::MatchOnChords(const std::wstring& str) const
+const ConstructionBase& ChordConstructions::MatchOnChords(const std::wstring& str) const
 {
 	return MatchArray(onchords, str);
 }
