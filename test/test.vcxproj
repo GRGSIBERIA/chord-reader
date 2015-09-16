@@ -91,6 +91,7 @@
     <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TestDiatonicDatabase.hpp" />
     <ClInclude Include="TestScale.cpp" />
     <ClInclude Include="xml\tinyxml2.h" />
   </ItemGroup>
