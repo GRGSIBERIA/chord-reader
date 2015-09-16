@@ -14,3 +14,14 @@ const Chord& DiatonicDatabase::GetChord(const size_t index) const
 {
 	return major_diatonic[index];
 }
+
+const Chord& DiatonicDatabase::GetChord(const size_t index, const bool isMajor) const
+{
+	auto buf = index;
+	if (!isMajor)
+	{
+		buf += 5;
+		if (buf >= 7) buf -= 7;
+	}
+	return GetChord(buf);
+}

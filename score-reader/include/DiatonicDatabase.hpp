@@ -29,6 +29,7 @@ namespace score
 
 			// 1度は0, 7度は6として，インデックスを指定
 			const Chord& GetChord(const size_t index) const;
+			const Chord& GetChord(const size_t index, const bool isMajor) const;
 		};
 	}
 }
