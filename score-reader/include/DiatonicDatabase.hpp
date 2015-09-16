@@ -11,21 +11,23 @@ namespace score
 		*/
 		class DiatonicDatabase
 		{
-			typedef std::array<ChordPtr, 7> Diatonics;
+			typedef std::array<const Chord&, 7> Diatonics;
 			const Diatonics major_diatonic = Diatonics{ {
-				ChordFactory::CreateChord(L"CM7"),
-				ChordFactory::CreateChord(L"Dm7"),
-				ChordFactory::CreateChord(L"Em7"),
-				ChordFactory::CreateChord(L"FM7"),
-				ChordFactory::CreateChord(L"G7"),
-				ChordFactory::CreateChord(L"Am7"),
-				ChordFactory::CreateChord(L"Bm7-5")
+				ChordFactory::CreateChord(0, 4, 7, 11),		// IM7
+				ChordFactory::CreateChord(0, 3, 7, 10),		// IIm7
+				ChordFactory::CreateChord(0, 3, 7, 10),		// IIIm7
+				ChordFactory::CreateChord(0, 4, 7, 11),		// IVM7
+				ChordFactory::CreateChord(0, 4, 7),			// V7
+				ChordFactory::CreateChord(0, 3, 7, 10),		// VIm7
+				ChordFactory::CreateChord(0, 3, 6, 10),		// VIIm7-5
 					} };
 
 			static std::shared_ptr<DiatonicDatabase> _ptr;
 			DiatonicDatabase() {}
 		public:
 			static const DiatonicDatabase& GetInstance();
+
+			const Chord& GetChord(const int interval);
 		};
 	}
 }
