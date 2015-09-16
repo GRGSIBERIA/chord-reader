@@ -39,6 +39,15 @@
     <ClCompile Include="..\score-reader\src\ChordFactory.cpp">
       <Filter>ソース ファイル\src</Filter>
     </ClCompile>
+    <ClCompile Include="TestDiatonicDatabase.cpp">
+      <Filter>ソース ファイル\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\score-reader\src\ModeDatabase.cpp">
+      <Filter>ソース ファイル\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\score-reader\src\DiatonicDatabase.cpp">
+      <Filter>ソース ファイル\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="xml\tinyxml2.h">
@@ -46,9 +55,6 @@
     </ClInclude>
     <ClInclude Include="TestScale.cpp">
       <Filter>ソース ファイル\test</Filter>
-    </ClInclude>
-    <ClInclude Include="TestDiatonicDatabase.hpp">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

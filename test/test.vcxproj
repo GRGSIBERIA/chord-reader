@@ -85,13 +85,15 @@
   <ItemGroup>
     <ClCompile Include="..\score-reader\src\ChordConstructions.cpp" />
     <ClCompile Include="..\score-reader\src\ChordFactory.cpp" />
+    <ClCompile Include="..\score-reader\src\DiatonicDatabase.cpp" />
+    <ClCompile Include="..\score-reader\src\ModeDatabase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestChordConstructions.cpp" />
+    <ClCompile Include="TestDiatonicDatabase.cpp" />
     <ClCompile Include="TestTinyXML.cpp" />
     <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestDiatonicDatabase.hpp" />
     <ClInclude Include="TestScale.cpp" />
     <ClInclude Include="xml\tinyxml2.h" />
   </ItemGroup>
