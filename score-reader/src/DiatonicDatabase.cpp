@@ -9,3 +9,8 @@ const DiatonicDatabase& DiatonicDatabase::GetInstance()
 		_ptr = std::shared_ptr<DiatonicDatabase>(new DiatonicDatabase());
 	return *_ptr;
 }
+
+const Chord& DiatonicDatabase::GetChord(const size_t index) const
+{
+	return major_diatonic[index];
+}

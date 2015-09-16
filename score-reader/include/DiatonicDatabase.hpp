@@ -27,7 +27,8 @@ namespace score
 		public:
 			static const DiatonicDatabase& GetInstance();
 
-			const Chord& GetChord(const int interval);
+			// 1度は0, 7度は6として，インデックスを指定
+			const Chord& GetChord(const size_t index) const;
 		};
 	}
 }
