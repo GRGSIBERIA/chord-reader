@@ -35,8 +35,8 @@ namespace score
 			const std::vector<int> tensions;	// テンションノート
 
 		public:
-			Mode(const std::wstring& name, const int num, const std::vector<int>& scale, const std::vector<int>& avoids, const std::vector<int>& cares, const std::vector<int>& tensions) 
-				: ScaleBase(name, scale), avoids(avoids), modeNumber(num), cares(cares), tensions(tensions) {}
+			Mode(const std::wstring& name, const int modenum, const std::vector<int>& scale, const std::vector<int>& avoids, const std::vector<int>& cares, const std::vector<int>& tensions) 
+				: ScaleBase(name, scale), avoids(avoids), modeNumber(modenum), cares(cares), tensions(tensions) {}
 
 			// 0から始まるモードスケールのインターバルの番号を返す
 			const int ModeNumber() const { return modeNumber; }
