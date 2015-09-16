@@ -24,6 +24,12 @@ namespace score
 			const std::wstring& Name() const { return name; }
 		};
 
+		class Scale : public ScaleBase
+		{
+		public:
+			Scale(const std::wstring& name, const std::vector<int>& scale) : ScaleBase(name, scale)  {}
+		};
+
 		/**
 		* モードスケールの基底クラス
 		*/
