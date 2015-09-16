@@ -73,7 +73,7 @@ namespace score
 			template <typename T>
 			const ConstructionBase& MatchArray(const T& constructions, const std::wstring& str) const;
 
-#define TEST_CHORD
+//#define TEST_CHORD
 
 		public:
 			const ConstructionBase none = None();

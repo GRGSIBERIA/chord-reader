@@ -12,10 +12,10 @@ namespace score
 		*/
 		class ModeDatabase
 		{
-			typedef std::array<Mode, 7> Modes;
+			typedef std::array<Mode, 7> ModeArray;
 			typedef std::array<std::wstring, 7> Alternatives;
 
-			const Modes modes = Modes{ {
+			const ModeArray modes = ModeArray{ {
 				Mode(L"Ionian",		0, { 0, 2, 4, 5, 7, 9, 11 }, { 5 },		{ 1 },		{ 2, 9 }),
 				Mode(L"Dorian",		1, { 0, 2, 3, 5, 7, 9, 10 }, { 10 },	{ -1 },		{ 2, 5 }),
 				Mode(L"Phrygian",	2, { 0, 1, 3, 5, 7, 8, 10 }, { 0, 5 },	{ 1, 1 },	{ 2, 5 }),

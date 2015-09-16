@@ -11,13 +11,13 @@ namespace score
 		*/
 		class DiatonicDatabase
 		{
-			typedef std::array<const Chord&, 7> Diatonics;
+			typedef std::array<Chord, 7> Diatonics;
 			const Diatonics major_diatonic = Diatonics{ {
 				ChordFactory::CreateChord(0, 4, 7, 11),		// IM7
 				ChordFactory::CreateChord(0, 3, 7, 10),		// IIm7
 				ChordFactory::CreateChord(0, 3, 7, 10),		// IIIm7
 				ChordFactory::CreateChord(0, 4, 7, 11),		// IVM7
-				ChordFactory::CreateChord(0, 4, 7),			// V7
+				ChordFactory::CreateChord(0, 4, 7, 10),		// V7
 				ChordFactory::CreateChord(0, 3, 7, 10),		// VIm7
 				ChordFactory::CreateChord(0, 3, 6, 10),		// VIIm7-5
 					} };
