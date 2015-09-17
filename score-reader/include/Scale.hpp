@@ -20,8 +20,9 @@ namespace score
 		public:
 			ScaleBase(const std::wstring& name, const std::vector<int>& scale) : scale(scale), name(name) {}
 
-			const int Scale(const size_t& i) const { return scale[i]; }
+			const int GetInterval(const size_t& i) const { return scale[i]; }
 			const std::wstring& Name() const { return name; }
+			const size_t Size() const { return scale.size(); }
 		};
 
 		class Scale : public ScaleBase
