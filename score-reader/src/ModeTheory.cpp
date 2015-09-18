@@ -1,61 +1,108 @@
 #include "ModeTheory.hpp"
+#include <iostream>
 using namespace score::scale;
+using namespace std;
 
-void UnfoldIntervals(const size_t size, int& pos, std::vector<int>& buffer, const Scale& scale)
+void PrintArray(const std::vector<int>& a)
 {
-	for (int cnt = 0; cnt < size; ++cnt, ++pos)
+	std::string str = "";
+	for (const auto& i : a)
+		str += std::to_string(i) + ",";
+	cout << str << endl;
+}
+
+void ModifyMinusIntervals(const size_t size, ScaleIntervals& buffer)
+{
+	int sub = buffer[0];
+	for (size_t i = 0; i < size; ++i)
+	{
+		buffer[i] -= sub;
+		if (buffer[i] < 0) buffer[i] += 12;
+	}
+}
+
+void UnfoldIntervals(const size_t size, size_t& pos, ScaleIntervals& buffer, const Scale& scale)
+{
+	int sub = buffer[0];
+	for (size_t cnt = 0; cnt < size; ++cnt, ++pos)
 	{
 		if (pos >= size) pos = 0;
-		buffer[cnt] = scale.GetInterval(pos);
+		buffer[cnt] = scale.GetInterval(pos) - sub;
+	}
+
+	ModifyMinusIntervals(size, buffer);
+}
+
+void FindAvoidNotes(const ScaleIntervals& buffer, const ScaleIndices& chordTones, ScaleIndices& avoids)
+{
+	for (const auto& tone : chordTones)
+	{
+		int target = tone + 1;
+		if (target >= (int)buffer.size()) target = 0;
+
+		// アボイドノートは，コードトーンに対して短2度を形成する
+		if (buffer[tone] + 1 == buffer[target])
+			avoids.push_back(target);
 	}
 }
 
-void CalculateInterval(std::vector<int>& buffer, int& total, const int& cnt)
+// ケアノートからコードトーンを除外する
+const bool ExcludeChordTone(const ScaleIndices& chordTones, const size_t i)
 {
-	int sub;
-	if (buffer[cnt - 1] > buffer[cnt])
-		sub = buffer[cnt - 1] - (buffer[cnt] + 12);
-	else
-		sub = buffer[cnt - 1] - buffer[cnt];
-
-	// <- ここへずらす
-	buffer[cnt] = sub + total;
-	total += sub;					// ここで計算が間違っていたら，2行上にずらしたほうがいい
+	bool flag = false;
+	for (const auto& t : chordTones)
+	{
+		if (t == i) flag = true;
+	}
+	return flag;
 }
 
-void ModeTheory::MakeModeScale(const int i, const size_t size, std::vector<int>& buffer, const Scale& scale)
+void FindCareNotes(const ScaleIntervals& buffer, const ScaleIndices& chordTones, ScaleIndices& tritones)
 {
-	int pos = i;
+	for (const auto& tone : chordTones)
+	{
+		int target = buffer[tone] + 6;
+		if (target >= 12) target -= 12;
+
+		for (size_t i = 0; i < buffer.size(); ++i)
+		{
+			if (buffer[i] == target && !ExcludeChordTone(chordTones, i))
+			{
+				tritones.push_back(i);
+				break;
+			}
+		}
+	}
+}
+
+void ModeTheory::MakeModeScale(const int i, const Scale& scale)
+{
+	size_t pos = i;
+	ScaleIntervals buffer(scale.Size(), 0);
+	ScaleIndices avoids;
+	ScaleIndices tritones;
 
 	// ここでbufferにインターバルを展開する
-	UnfoldIntervals(size, pos, buffer, scale);
+	UnfoldIntervals(scale.Size(), pos, buffer, scale);
 
-	// 展開したインターバル同士の差を求める
-	buffer[0] = 0;
-	int total = 0;
-	for (int cnt = 1; cnt < size; ++cnt)
-	{
-		CalculateInterval(buffer, total, cnt);
-	}
+	FindAvoidNotes(buffer, chordTones, avoids);
+	FindCareNotes(buffer, chordTones, tritones);
 
-	modeScales.emplace_back(L"", buffer);
+	PrintArray(buffer);
+	PrintArray(avoids);
+	PrintArray(tritones);
+
+	modeScales.emplace_back(L"", buffer, chordTones, avoids, tritones);
 }
 
-void ModeTheory::CreateModeScales(const Scale& scale)
+ModeTheory::ModeTheory(const Scale& scale, const ScaleIndices& chordTones) : chordTones(chordTones)
 {
-	modeScales.emplace_back(scale.Name(), scale.Intervals());
+	//modeScales.emplace_back(scale.Name(), scale.Intervals(), chordTones);
 
 	size_t size = scale.Size();
 
-	std::vector<int> buffer(size);
-
-	for (size_t i = 1; i < size; ++i)
+	for (size_t i = 0; i < size; ++i)
 	{
-		MakeModeScale(i, size, buffer, scale);
+		MakeModeScale(i, scale);
 	}
-}
-
-ModeTheory::ModeTheory(const Scale& scale)
-{
-	CreateModeScales(scale);
 }

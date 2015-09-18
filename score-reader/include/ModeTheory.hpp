@@ -5,8 +5,7 @@ namespace score
 {
 	namespace scale
 	{
-		typedef std::vector<Scale> ScalesOnModeTheory;
-		typedef std::vector<std::vector<int>> AvoidNotes;
+		typedef std::vector<ModeScale> ScalesOnModeTheory;
 
 		/**
 		* スケールからモードを自動生成するためのクラス
@@ -14,13 +13,12 @@ namespace score
 		class ModeTheory
 		{
 			ScalesOnModeTheory modeScales;
-			AvoidNotes avoids;
+			ScaleIndices chordTones;
 
-			void CreateModeScales(const Scale& scale);
-			void MakeModeScale(const int i, const size_t size, std::vector<int>& buffer, const Scale& scale);
+			void MakeModeScale(const int i, const Scale& scale);
 
 		public:
-			ModeTheory(const Scale& scale);
+			ModeTheory(const Scale& scale, const ScaleIndices& chordTones);
 
 			const Scale& GetMode(const size_t index) const { return modeScales[index]; }
 
