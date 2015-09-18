@@ -43,7 +43,7 @@ void ModeTheory::MakeModeScale(const int i, const size_t size, std::vector<int>&
 
 void ModeTheory::CreateModeScales(const Scale& scale)
 {
-	modeScales[0] = scale;
+	modeScales.emplace_back(scale.Name(), scale.Intervals());
 
 	size_t size = scale.Size();
 

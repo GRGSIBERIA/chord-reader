@@ -21,6 +21,7 @@ namespace score
 			ScaleBase(const std::wstring& name, const std::vector<int>& scale) : scale(scale), name(name) {}
 
 			const int GetInterval(const size_t& i) const { return scale[i]; }
+			const std::vector<int>& Intervals() const { return scale; }
 			const std::wstring& Name() const { return name; }
 			const size_t Size() const { return scale.size(); }
 		};
