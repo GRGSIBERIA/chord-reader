@@ -63,6 +63,12 @@
     <ClInclude Include="include\DiatonicDatabase.hpp">
       <Filter>ヘッダー ファイル\score\chord</Filter>
     </ClInclude>
+    <ClInclude Include="include\ModeTheory.hpp">
+      <Filter>ヘッダー ファイル\score\scale</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ModeTheory.cpp">
+      <Filter>ソース ファイル\score\scale</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
