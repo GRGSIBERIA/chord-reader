@@ -17,9 +17,12 @@ namespace score
 			AvoidNotes avoids;
 
 			void CreateModeScales(const Scale& scale);
+			void MakeModeScale(const int i, const size_t size, std::vector<int>& buffer, const Scale& scale);
 
 		public:
 			ModeTheory(const Scale& scale);
+
+			const Scale& GetMode(const size_t index) const { return modeScales[index]; }
 
 			//const Scale& GetScale(const int key, const int root, const int mode);
 		};
