@@ -50,6 +50,9 @@ namespace score
 		public:
 			ModeScale(const std::wstring& name, const ScaleIntervals& scale, const ScaleIndices& chordTones, const ScaleIndices& avoidNotes, const ScaleIndices& tritones)
 				: Scale(name, scale), chordTones(chordTones), avoidNotes(avoidNotes), tritones(tritones) {}
+
+			const ScaleIndices& GetAvoids() const { return avoidNotes; }
+			const ScaleIndices& GetTritones() const { return tritones; }
 		};
 
 		/**

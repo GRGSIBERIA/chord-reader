@@ -69,7 +69,6 @@ void FindCareNotes(const ScaleIntervals& buffer, const ScaleIndices& chordTones,
 			if (buffer[i] == target && !ExcludeChordTone(chordTones, i))
 			{
 				tritones.push_back(i);
-				break;
 			}
 		}
 	}
@@ -88,8 +87,8 @@ void ModeTheory::MakeModeScale(const int i, const Scale& scale)
 	FindAvoidNotes(buffer, chordTones, avoids);
 	FindCareNotes(buffer, chordTones, tritones);
 
-	PrintArray(buffer);
-	PrintArray(avoids);
+	//PrintArray(buffer);
+	//PrintArray(avoids);
 	PrintArray(tritones);
 
 	modeScales.emplace_back(L"", buffer, chordTones, avoids, tritones);

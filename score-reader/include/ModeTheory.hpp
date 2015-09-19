@@ -20,7 +20,7 @@ namespace score
 		public:
 			ModeTheory(const Scale& scale, const ScaleIndices& chordTones);
 
-			const Scale& GetMode(const size_t index) const { return modeScales[index]; }
+			const ModeScale& GetMode(const size_t index) const { return modeScales[index]; }
 
 			//const Scale& GetScale(const int key, const int root, const int mode);
 		};
