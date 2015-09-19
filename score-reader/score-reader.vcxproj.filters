@@ -57,12 +57,6 @@
     <ClInclude Include="include\Scale.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
-    <ClInclude Include="include\ModeDatabase.hpp">
-      <Filter>ヘッダー ファイル\score\scale</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DiatonicDatabase.hpp">
-      <Filter>ヘッダー ファイル\score\chord</Filter>
-    </ClInclude>
     <ClInclude Include="include\ModeTheory.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
@@ -81,12 +75,6 @@
       <Filter>ソース ファイル\score\chord</Filter>
     </ClCompile>
     <ClCompile Include="src\ChordFactory.cpp">
-      <Filter>ソース ファイル\score\chord</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ModeDatabase.cpp">
-      <Filter>ソース ファイル\score\scale</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DiatonicDatabase.cpp">
       <Filter>ソース ファイル\score\chord</Filter>
     </ClCompile>
   </ItemGroup>

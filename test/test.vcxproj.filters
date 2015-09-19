@@ -39,15 +39,6 @@
     <ClCompile Include="..\score-reader\src\ChordFactory.cpp">
       <Filter>ソース ファイル\src</Filter>
     </ClCompile>
-    <ClCompile Include="TestDiatonicDatabase.cpp">
-      <Filter>ソース ファイル\test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\score-reader\src\ModeDatabase.cpp">
-      <Filter>ソース ファイル\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\score-reader\src\DiatonicDatabase.cpp">
-      <Filter>ソース ファイル\src</Filter>
-    </ClCompile>
     <ClCompile Include="TestModeTheory.cpp">
       <Filter>ソース ファイル\test</Filter>
     </ClCompile>
