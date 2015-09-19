@@ -10,10 +10,12 @@ namespace score
 		typedef std::vector<ScaleIntervals> ScaleIntervalArray;
 		typedef std::shared_ptr<ScaleIntervalArray> ScaleIntervalArrayPtr;
 
-		class ScaleGenerator
+		class ScaleTheory
 		{
+			ScaleIntervalArray intervalArray;
+
 		public:
-			static const ScaleIntervalArrayPtr Generate(const ScaleIntervals& interval);
+			ScaleTheory(const ScaleIntervals& intervals);
 		};
 	}
 }
