@@ -94,14 +94,24 @@ void ModeTheory::MakeModeScale(const int i, const Scale& scale)
 	modeScales.emplace_back(L"", buffer, chordTones, avoids, tritones);
 }
 
-ModeTheory::ModeTheory(const Scale& scale, const ScaleIndices& chordTones) : chordTones(chordTones)
+void ModeTheory::BuildingModeScales(const Scale& scale)
 {
-	//modeScales.emplace_back(scale.Name(), scale.Intervals(), chordTones);
-
-	size_t size = scale.Size();
-
-	for (size_t i = 0; i < size; ++i)
+	for (size_t i = 0; i < scale.Size(); ++i)
 	{
 		MakeModeScale(i, scale);
 	}
+}
+
+void ModeTheory::BuildingDiatonicChords()
+{
+	for (size_t i = 0; i < Size(); ++i)
+	{
+
+	}
+}
+
+ModeTheory::ModeTheory(const Scale& scale, const ScaleIndices& chordTones) : chordTones(chordTones)
+{
+	BuildingModeScales(scale);
+	BuildingDiatonicChords();
 }
