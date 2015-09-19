@@ -89,7 +89,7 @@ void ModeTheory::MakeModeScale(const int i, const Scale& scale)
 
 	//PrintArray(buffer);
 	//PrintArray(avoids);
-	PrintArray(tritones);
+	//PrintArray(tritones);
 
 	modeScales.emplace_back(L"", buffer, chordTones, avoids, tritones);
 }
