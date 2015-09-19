@@ -46,3 +46,14 @@ TEST(TestModeTheory, test_avoid)
 	TestTritone(theory.GetMode(5), {});
 	TestTritone(theory.GetMode(6), {});
 }
+
+TEST(TestModeTheory, test_diatonic)
+{
+	EXPECT_EQ(theory.GetDiatonic(0).ChordTone(), L"M7");
+	EXPECT_EQ(theory.GetDiatonic(1).ChordTone(), L"m7");
+	EXPECT_EQ(theory.GetDiatonic(2).ChordTone(), L"m7");
+	EXPECT_EQ(theory.GetDiatonic(3).ChordTone(), L"M7");
+	EXPECT_EQ(theory.GetDiatonic(4).ChordTone(), L"7");
+	EXPECT_EQ(theory.GetDiatonic(5).ChordTone(), L"m7");
+	EXPECT_EQ(theory.GetDiatonic(6).ChordTone(), L"m7-5");
+}

@@ -1,4 +1,5 @@
 #include "ModeTheory.hpp"
+#include "ChordFactory.hpp"
 #include <iostream>
 using namespace score::scale;
 using namespace std;
@@ -106,7 +107,11 @@ void ModeTheory::BuildingDiatonicChords()
 {
 	for (size_t i = 0; i < Size(); ++i)
 	{
-
+		diatonics.emplace_back(score::chord::ChordFactory::CreateChord(
+			modeScales[i].GetInterval(chordTones[0]),
+			modeScales[i].GetInterval(chordTones[1]),
+			modeScales[i].GetInterval(chordTones[2]),
+			modeScales[i].GetInterval(chordTones[3])));
 	}
 }
 

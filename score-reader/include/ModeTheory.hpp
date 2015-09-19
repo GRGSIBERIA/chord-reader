@@ -26,6 +26,7 @@ namespace score
 			ModeTheory(const Scale& scale, const ScaleIndices& chordTones);
 
 			const size_t Size() const { return modeScales.size(); }
+
 			const ModeScale& GetMode(const size_t index) const { return modeScales[index]; }
 			const score::chord::Chord& GetDiatonic(const size_t index) const { return diatonics[index]; }
 
