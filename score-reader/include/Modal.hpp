@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+#include <array>
 
 namespace score
 {
@@ -24,6 +26,19 @@ namespace score
 			ASharp = 10,
 			BFlat = 10,
 			B = 11
+		};
+
+		// ’è”‚Æ”’l‚Ì‘ŠŒİ•ÏŠ·
+		class Modalize
+		{
+			static const std::array<std::wstring, 12> sharp;
+			static const std::array<std::wstring, 12> flat;
+
+		public:
+			static Modal ToModal(const int& modal);
+			static int ToInt(const Modal& modal);
+			static const std::wstring& ToString(const Modal& modal, const bool isSharp=true);
+			static const std::wstring& ToString(const int& modal, const bool isSharp=true);
 		};
 	}
 }
