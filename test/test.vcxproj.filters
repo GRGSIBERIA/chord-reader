@@ -62,8 +62,5 @@
     <ClInclude Include="xml\tinyxml2.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TestScale.cpp">
-      <Filter>ソース ファイル\test</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
