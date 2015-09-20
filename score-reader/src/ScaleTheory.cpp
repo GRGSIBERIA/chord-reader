@@ -17,6 +17,7 @@ void ScaleTheory::BuildScale(const size_t i)
 
 ScaleTheory::ScaleTheory(const ScaleIntervals& intervals) : intervalArray(numberOfModal, ScaleIntervals(intervals.size())), modalsInScale(intervals.size())
 {
+	intervalArray.resize(numberOfModal, ScaleIntervals(intervals.size()));
 	intervalArray[0] = intervals;
 
 	for (size_t i = 1; i < numberOfModal; ++i)

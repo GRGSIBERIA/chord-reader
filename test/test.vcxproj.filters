@@ -45,6 +45,12 @@
     <ClCompile Include="..\score-reader\src\ModeTheory.cpp">
       <Filter>ソース ファイル\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\score-reader\src\ScaleTheory.cpp">
+      <Filter>ソース ファイル\src</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScaleTheory.cpp">
+      <Filter>ソース ファイル\test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="xml\tinyxml2.h">

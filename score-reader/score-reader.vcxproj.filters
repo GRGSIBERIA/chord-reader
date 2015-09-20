@@ -63,6 +63,9 @@
     <ClInclude Include="src\ModeTheory.cpp">
       <Filter>ソース ファイル\score\scale</Filter>
     </ClInclude>
+    <ClInclude Include="include\ScaleTheory.hpp">
+      <Filter>ヘッダー ファイル\score\scale</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -76,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="src\ChordFactory.cpp">
       <Filter>ソース ファイル\score\chord</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScaleTheory.cpp">
+      <Filter>ソース ファイル\score\scale</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

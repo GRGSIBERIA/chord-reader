@@ -76,6 +76,7 @@
     <ClInclude Include="include\ChordFactory.hpp" />
     <ClInclude Include="include\ModeTheory.hpp" />
     <ClInclude Include="include\Scale.hpp" />
+    <ClInclude Include="include\ScaleTheory.hpp" />
     <ClInclude Include="include\ScoreReader.hpp" />
     <ClInclude Include="src\ModeTheory.cpp" />
     <ClInclude Include="xml\tinyxml2.h" />
@@ -84,6 +85,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\ChordConstructions.cpp" />
     <ClCompile Include="src\ChordFactory.cpp" />
+    <ClCompile Include="src\ScaleTheory.cpp" />
     <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
