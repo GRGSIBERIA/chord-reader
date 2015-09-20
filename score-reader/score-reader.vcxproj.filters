@@ -66,6 +66,9 @@
     <ClInclude Include="include\ScaleTheory.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
+    <ClInclude Include="include\Modal.hpp">
+      <Filter>ヘッダー ファイル\score\scale</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
