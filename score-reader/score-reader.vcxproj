@@ -79,13 +79,14 @@
     <ClInclude Include="include\Scale.hpp" />
     <ClInclude Include="include\ScaleTheory.hpp" />
     <ClInclude Include="include\ScoreReader.hpp" />
-    <ClInclude Include="src\ModeTheory.cpp" />
     <ClInclude Include="xml\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\ChordConstructions.cpp" />
     <ClCompile Include="src\ChordFactory.cpp" />
+    <ClCompile Include="src\Modal.cpp" />
+    <ClCompile Include="src\ModeTheory.cpp" />
     <ClCompile Include="src\ScaleTheory.cpp" />
     <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>

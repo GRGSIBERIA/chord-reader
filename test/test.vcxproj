@@ -85,10 +85,12 @@
   <ItemGroup>
     <ClCompile Include="..\score-reader\src\ChordConstructions.cpp" />
     <ClCompile Include="..\score-reader\src\ChordFactory.cpp" />
+    <ClCompile Include="..\score-reader\src\Modal.cpp" />
     <ClCompile Include="..\score-reader\src\ModeTheory.cpp" />
     <ClCompile Include="..\score-reader\src\ScaleTheory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestChordConstructions.cpp" />
+    <ClCompile Include="TestModal.cpp" />
     <ClCompile Include="TestModeTheory.cpp" />
     <ClCompile Include="TestScaleTheory.cpp" />
     <ClCompile Include="TestTinyXML.cpp" />

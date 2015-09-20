@@ -13,11 +13,11 @@ int Modalize::ToInt(const Modal& modal)
 { 
 	return (int)modal; 
 }
-const std::wstring& Modalize::ToString(const Modal& modal, const bool isSharp = true)
+const std::wstring& Modalize::ToString(const Modal& modal, const bool isSharp)
 {
 	return ToString((int)modal, isSharp);
 }
-const std::wstring& Modalize::ToString(const int& modal, const bool isSharp = true)
+const std::wstring& Modalize::ToString(const int& modal, const bool isSharp)
 {
 	if (isSharp)
 		return sharp[modal];
@@ -25,14 +25,14 @@ const std::wstring& Modalize::ToString(const int& modal, const bool isSharp = tr
 }
 int RootToInt(const std::wstring& str)
 {
-#define IFSTR(X, N) if (str[0] == L'X') { return N; }
-	IFSTR(C, 0);
-	IFSTR(D, 2);
-	IFSTR(E, 4);
-	IFSTR(F, 5);
-	IFSTR(G, 7);
-	IFSTR(A, 9);
-	IFSTR(B, 11);
+#define IFSTR(X, N) if (str[0] == X) { return N; }
+	IFSTR(L'C', 0);
+	IFSTR(L'D', 2);
+	IFSTR(L'E', 4);
+	IFSTR(L'F', 5);
+	IFSTR(L'G', 7);
+	IFSTR(L'A', 9);
+	IFSTR(L'B', 11);
 #undef IFSTR
 	throw std::invalid_argument("Unrecognized root name");
 }
