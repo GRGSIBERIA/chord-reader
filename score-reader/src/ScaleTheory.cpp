@@ -12,7 +12,8 @@ void ScaleTheory::BuildScale(const size_t i)
 		if (scale[j] >= numberOfModal) scale[j] -= numberOfModal;
 	}
 
-	std::sort(scale.begin(), scale.end());	// 適当に数字を大きくしてからソートする
+	// 必要ないかもしれない
+	//std::sort(scale.begin(), scale.end());	// 適当に数字を大きくしてからソートする
 }
 
 ScaleTheory::ScaleTheory(const ScaleIntervals& intervals) : intervalArray(numberOfModal, ScaleIntervals(intervals.size())), modalsInScale(intervals.size())
