@@ -15,12 +15,12 @@ const ScaleIntervals& KeyInterval(const Modal& key, const bool isMajor)
 }
 
 KeyChordModalizer::KeyChordModalizer(const Modal& key, const bool isMajor)
-	: mode(Scale(KeyString(key, isMajor), KeyInterval(key, isMajor)), { 0, 2, 4, 6 })
+	: mode(Scale(KeyString(key, isMajor), KeyInterval(key, isMajor)), { 0, 2, 4, 6 }), key(key)
 {
-	for (size_t si = 0; si < 7; ++si)
+	for (size_t si = 0; si < scales.size(); ++si)
 	{
 		const auto& modescale = mode.GetMode(si);
-		for (size_t mi = 0; mi < 7; ++mi)
+		for (size_t mi = 0; mi < scales[si].size(); ++mi)
 		{
 			const auto interval = modescale.GetInterval(mi);
 			scales[si][mi] = interval + (int)key;

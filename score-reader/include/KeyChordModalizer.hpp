@@ -13,15 +13,16 @@ namespace score
 		{
 			const ModeTheory mode;
 
-			typedef std::array<int, 7> _Scale;
-			typedef std::array<_Scale, 7> ScaleArray;
+			typedef std::array<int, 7> Intervals;
+			typedef std::array<Intervals, 7> ScaleArray;
 
 			ScaleArray scales;
+			Modal key;
 
 		public:
 			KeyChordModalizer(const Modal& key, const bool isMajor = true);
 
-			
+			const Intervals& GetPrimaryMode(const Modal& root) { return scales[(int)root - (int)key]; }
 		};
 	}
 }

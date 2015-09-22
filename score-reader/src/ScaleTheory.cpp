@@ -9,10 +9,10 @@ void ScaleTheory::BuildScale(const size_t i)
 	for (size_t j = 0; j < modalsInScale; ++j)
 	{
 		scale[j] = intervalArray[0][j] + (int)i;
-		if (scale[j] >= numberOfModal) scale[j] -= numberOfModal;
+		if (scale[j] >= (int)numberOfModal) scale[j] -= numberOfModal;
 	}
 
-	std::sort(scale.begin(), scale.end());	// 適当に数字を大きくしてからソートする
+	//std::sort(scale.begin(), scale.end());	// 適当に数字を大きくしてからソートする
 }
 
 ScaleTheory::ScaleTheory(const ScaleIntervals& intervals) : intervalArray(numberOfModal, ScaleIntervals(intervals.size())), modalsInScale(intervals.size())
