@@ -36,11 +36,11 @@ namespace score
 
 		public:
 			static Modal ToModal(const int& modal);
+			static Modal ToModal(const std::wstring& str);
 			static int ToInt(const Modal& modal);
+			static int ToInt(const std::wstring& str);
 			static const std::wstring& ToString(const Modal& modal, const bool isSharp=true);
 			static const std::wstring& ToString(const int& modal, const bool isSharp=true);
-			static int ToInt(const std::wstring& str);
-			static Modal ToModal(const std::wstring& str);
 		};
 	}
 }

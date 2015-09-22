@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include "Modal.hpp"
 
 namespace score
 {
@@ -24,10 +25,11 @@ namespace score
 			/**
 			* 入力インターバルから，それぞれのインターバルより，スケールを自動生成する
 			*/
-			ScaleTheory(const ScaleIntervals& intervals);
+			ScaleTheory(const ScaleIntervals& intervals = { 0, 2, 4, 5, 7, 9, 11 });
 
 			const size_t NumberOfModal() const { return numberOfModal; }
 			const ScaleIntervals& GetScale(const size_t modal) const { return intervalArray[modal]; }
+			const ScaleIntervals& GetScale(const Modal modal) const { return intervalArray[(size_t)modal]; }
 		};
 	}
 }
