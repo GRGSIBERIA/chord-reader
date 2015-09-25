@@ -75,24 +75,40 @@ void FindCareNotes(const ScaleIntervals& buffer, const ScaleIndices& chordTones,
 	}
 }
 
+void MergeAvoidAndTritone(ScaleIndices& avoids, const ScaleIndices& tritones)
+{
+	avoids.insert(avoids.end(), tritones.begin(), tritones.end());
+}
+
+void CreateAvailableScale(const ScaleIndices& buffer, const ScaleIndices& avoids, ScaleIndices& availables)
+{
+	availables = buffer;
+
+	for (const auto& index : avoids)
+		availables[index]++;
+}
+
 void ModeTheory::MakeModeScale(const int i, const Scale& scale)
 {
 	size_t pos = i;
 	ScaleIntervals buffer(scale.Size(), 0);
 	ScaleIndices avoids;
 	ScaleIndices tritones;
+	ScaleIndices availables;
 
 	// ここでbufferにインターバルを展開する
 	UnfoldIntervals(scale.Size(), pos, buffer, scale);
 
 	FindAvoidNotes(buffer, chordTones, avoids);
 	FindCareNotes(buffer, chordTones, tritones);
+	MergeAvoidAndTritone(avoids, tritones);
+	CreateAvailableScale(buffer, avoids, availables);
 
 	//PrintArray(buffer);
 	//PrintArray(avoids);
 	//PrintArray(tritones);
 
-	modeScales.emplace_back(L"", buffer, chordTones, avoids, tritones);
+	modeScales.emplace_back(L"", buffer, chordTones, avoids, tritones, availables);
 }
 
 void ModeTheory::BuildingModeScales(const Scale& scale)

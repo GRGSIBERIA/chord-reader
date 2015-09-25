@@ -17,14 +17,18 @@ const ScaleIntervals& KeyInterval(const Modal& key, const bool isMajor)
 KeyChordModalizer::KeyChordModalizer(const Modal& key, const bool isMajor)
 	: mode(Scale(KeyString(key, isMajor), KeyInterval(key, isMajor)), { 0, 2, 4, 6 }), key(key)
 {
-	for (size_t si = 0; si < scales.size(); ++si)
-	{
-		const auto& modescale = mode.GetMode(si);
-		for (size_t mi = 0; mi < scales[si].size(); ++mi)
-		{
-			const auto interval = modescale.GetInterval(mi);
-			scales[si][mi] = interval + (int)key;
-			if (scales[si][mi] > 11) scales[si][mi] -= 12;
-		}
-	}
+	
+}
+
+const size_t SubKeys(const Modal a, const Modal b)
+{
+	const size_t retval = (size_t)a - (size_t)b;
+	return retval > 11 ? retval - 12 : retval;
+}
+
+const ModeScale& KeyChordModalizer::GetPrimaryMode(const std::wstring& chordStr) const
+{
+	const auto root = SubKeys(Modalize::ToModal(chordStr), key);
+
+	return mode.GetMode(root);		// 早めにこちらをテストしたほうがいいような気がする
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Scale.hpp"
 #include "Chord.hpp"
+#include "Modal.hpp"
 
 namespace score
 {
@@ -28,6 +29,7 @@ namespace score
 			const size_t Size() const { return modeScales.size(); }
 
 			const ModeScale& GetMode(const size_t index) const { return modeScales[index]; }
+			const ModeScale& GetMode(const Modal modal) const { return modeScales[(size_t)modal]; }
 
 			const score::chord::Chord& GetDiatonic(const size_t index) const { return diatonics[index]; }
 

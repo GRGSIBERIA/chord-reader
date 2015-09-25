@@ -46,13 +46,15 @@ namespace score
 			const ScaleIndices chordTones;
 			const ScaleIndices avoidNotes;
 			const ScaleIndices tritones;
+			const ScaleIndices availableScale;
 
 		public:
-			ModeScale(const std::wstring& name, const ScaleIntervals& scale, const ScaleIndices& chordTones, const ScaleIndices& avoidNotes, const ScaleIndices& tritones)
-				: Scale(name, scale), chordTones(chordTones), avoidNotes(avoidNotes), tritones(tritones) {}
+			ModeScale(const std::wstring& name, const ScaleIntervals& scale, const ScaleIndices& chordTones, const ScaleIndices& avoidNotes, const ScaleIndices& tritones, const ScaleIndices& availables)
+				: Scale(name, scale), chordTones(chordTones), avoidNotes(avoidNotes), tritones(tritones), availableScale(availables) {}
 
 			const ScaleIndices& GetAvoids() const { return avoidNotes; }
 			const ScaleIndices& GetTritones() const { return tritones; }
+			const ScaleIndices& GetAvailableScale() const { return availableScale; }
 		};
 	}
 }
