@@ -9,17 +9,19 @@ namespace score
 {
 	namespace scale
 	{
+		typedef std::vector<int> ModalIndices;
+
 		class KeyChordModalizer
 		{
-			const ModeTheory mode;
+			const ModeTheory& mode;
 
 			const Modal key;
 
 		public:
-			KeyChordModalizer(const Modal& key, const bool isMajor = true);
+			KeyChordModalizer(const Modal& key, const ModeTheory& mode);
 
-			const ModeScale& GetPrimaryMode(const std::wstring& chordStr) const;
-			const ModeScale& GetAvailableMode(const std::wstring& chordStr) const;
+			const ModalIndices GetPrimaryMode(const std::wstring& chordStr) const;
+			//const ModeScale& GetAvailableMode(const std::wstring& chordStr);
 		};
 	}
 }

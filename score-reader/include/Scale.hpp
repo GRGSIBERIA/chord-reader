@@ -20,6 +20,7 @@ namespace score
 		*/
 		class ScaleBase
 		{
+		protected:
 			const ScaleIntervals scale;
 			const std::wstring name;
 
