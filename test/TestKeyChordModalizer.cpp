@@ -1,28 +1,58 @@
 #include "gtest\gtest.h"
 #include <KeyChordModalizer.hpp>
+#include <iostream>
+
 using namespace score::scale;
+using namespace std;
 
 const ModeTheory test_c(Scale(L"major", { 0, 2, 4, 5, 7, 9, 11 }), { 0, 2, 4, 6 });
+const ModeTheory test_d(Scale(L"major", { 2, 4, 5, 7, 9, 11, 0 }), { 0, 2, 4, 6 });
 
-void TestInterval(const ModalIndices& scale, const std::vector<int>& interval)
+void PrintInterval(size_t num, int modal)
 {
-	for (size_t i = 0; i < scale.size(); ++i)
+	const auto& scale = test_c.GetMode(num);
+
+	for (size_t i = 0; i < scale.Size(); ++i)
 	{
-		EXPECT_EQ(scale[i], interval[i]);
+		int tmp = scale.GetInterval(i) + (int)modal;
+		tmp = tmp > 11 ? tmp - 12 : tmp;
+		cout << tmp << ",";
 	}
+	cout << endl;
 }
 
-void TestScale(const KeyChordModalizer& modal, const std::wstring& str, const std::vector<int>& comp)
+TEST(TestKeyChordModalizer, test_print_interval)
 {
-	const auto& scale = modal.GetPrimaryMode(str);
-
-	TestInterval(scale, comp);
+	PrintInterval(0, 0);
+	PrintInterval(1, 2);
+	PrintInterval(2, 4);
 }
 
-TEST(TestKeyChordModalizer, test_primary_mode)
+void PrintModeScale(const ScaleTheory& scaleTheory, Modal key, int modeIndex)
 {
-	const auto modal = KeyChordModalizer(Modal::C, test_c);
+	const Scale scale = Scale(L"", scaleTheory.GetScale(key));
+	const ModeTheory modeTheory = ModeTheory(scale, { 0, 2, 4, 6 });
 
-	TestScale(modal, L"CM7", { 0, 2, 4, 5, 7, 9, 11 });
-	TestScale(modal, L"Dm7", { 2, 4, 5, 7, 9, 11, 0 });
+	const auto& mode = modeTheory.GetMode(modeIndex);
+
+	for (size_t i = 0; i < mode.Size(); ++i)
+	{
+		int tmp = mode.GetInterval(i) + (int)key;
+		tmp = tmp > 11 ? tmp - 12 : tmp;
+		wcout << Modalize::ToString(tmp, false) << L",";
+	}
+	cout << endl;
+}
+
+TEST(TestKeyChordModalizer, test_scale_for_mode)
+{
+	const ScaleTheory scaleTheory = ScaleTheory({0, 2, 4, 5, 7, 9, 11});
+
+	PrintModeScale(scaleTheory, Modal::C, 0);
+	PrintModeScale(scaleTheory, Modal::D, 1);
+	PrintModeScale(scaleTheory, Modal::E, 2);
+	PrintModeScale(scaleTheory, Modal::F, 3);
+	PrintModeScale(scaleTheory, Modal::G, 4);
+	PrintModeScale(scaleTheory, Modal::A, 5);
+	PrintModeScale(scaleTheory, Modal::B, 6);
 }

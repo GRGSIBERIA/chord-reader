@@ -1,48 +1,25 @@
 #include "KeyChordModalizer.hpp"
 using namespace score::scale;
 
-const std::wstring KeyString(const Modal& key, const bool isMajor)
+const ScaleTheory KeyChordModalizer::stheory = ScaleTheory({ 0, 2, 4, 5, 7, 9, 11 });
+
+KeyChordModalizer::KeyChordModalizer(const Modal& key)
+	: mtheory(Scale(L"", stheory.GetScale(key)), { 0, 2, 4, 6 }), key(key), scale(L"", stheory.GetScale(key)) 
 {
-	return Modalize::ToString(key, false) + (isMajor ? L"" : L"m");
-}
+	modeScale = ModeModalScales(scale.Size(), ModeModalScale(scale.Size()));
 
-const ScaleIntervals& KeyInterval(const Modal& key, const bool isMajor)
-{
-	const ScaleTheory scale = ScaleTheory({0, 2, 4, 5, 7, 9, 11});
+	// 音階ごとにモードスケールを展開する
 
-	return (isMajor ? scale.GetScale(key) : scale.GetScale(
-		(int)key + 9 > 11 ? (int)key - 12 + 9 : (int)key));
-}
-
-KeyChordModalizer::KeyChordModalizer(const Modal& key, const ModeTheory& mode)
-	: mode(mode), key(key)
-{
-	
-}
-
-const size_t SubstituteKeys(const Modal a, const Modal b)
-{
-	const size_t retval = (size_t)a - (size_t)b;
-	return retval > 11 ? retval - 12 : retval;
-}
-
-ModalIndices MergeInterval(const Modal& modal, const ModeScale& scale)
-{
-	ModalIndices retval(scale.Size());
-
-	for (size_t i = 0; i < scale.Size(); ++i)
+	for (size_t modeIndex = 0; modeIndex < scale.Size(); ++modeIndex)
 	{
-		retval[i] = scale.GetInterval(i) + (int)modal;
+		const auto& mode = mtheory.GetMode(modeIndex);
+
+		for (size_t intervalIndex = 0; intervalIndex < scale.Size(); ++intervalIndex)
+		{
+			int tmp = mode.GetInterval(intervalIndex) + (int)key;
+			tmp = tmp > 11 ? tmp - 12 : tmp;
+			
+			modeScale[modeIndex][intervalIndex] = tmp;
+		}
 	}
-
-	return retval;
-}
-
-const ModalIndices KeyChordModalizer::GetPrimaryMode(const std::wstring& chordStr) const
-{
-	const auto root = (Modal)Modalize::ToModal(chordStr);
-
-	const auto& scale = mode.GetMode(root);		// 早めにこちらをテストしたほうがいいような気がする
-
-	return MergeInterval(root, scale);
 }

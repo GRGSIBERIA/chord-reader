@@ -25,7 +25,7 @@ namespace score
 			/**
 			* 入力インターバルから，それぞれのインターバルより，スケールを自動生成する
 			*/
-			ScaleTheory(const ScaleIntervals& intervals = { 0, 2, 4, 5, 7, 9, 11 });
+			ScaleTheory(const ScaleIntervals& intervals);
 
 			const size_t NumberOfModal() const { return numberOfModal; }
 			const ScaleIntervals& GetScale(const size_t modal) const { return intervalArray[modal]; }

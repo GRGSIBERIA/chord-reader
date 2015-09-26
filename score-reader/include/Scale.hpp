@@ -3,6 +3,7 @@
 #include <string>
 #include <array>
 
+#include "Modal.hpp"
 #include "Chord.hpp"
 
 namespace score
@@ -27,9 +28,15 @@ namespace score
 		public:
 			ScaleBase(const std::wstring& name, const ScaleIntervals& scale) : scale(scale), name(name) {}
 
-			const int GetInterval(const size_t& i) const { return scale[i]; }
+			const int GetInterval(const size_t i) const { return scale[i]; }
+
+			const size_t GetIndex(const size_t i) const { return *std::find(scale.begin(), scale.end(), i); }
+			const size_t GetIndex(const std::wstring& str) const { return GetIndex((size_t)Modalize::ToInt(str)); }
+
 			const ScaleIntervals& Intervals() const { return scale; }
+
 			const std::wstring& Name() const { return name; }
+
 			const size_t Size() const { return scale.size(); }
 		};
 
