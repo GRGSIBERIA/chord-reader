@@ -10,7 +10,7 @@ namespace score
 	namespace scale
 	{
 		typedef std::vector<int> ModeModals;
-		typedef std::vector<ModeModalScale> ModeModalScales;
+		typedef std::vector<ModeModals> ModeModalScales;
 
 		class KeyChordModalizer
 		{
