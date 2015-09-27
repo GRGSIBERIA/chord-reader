@@ -47,7 +47,7 @@ void FindAvoidNotes(const ScaleIntervals& buffer, const ScaleIndices& chordTones
 	}
 }
 
-// ケアノートからコードトーンを除外する
+// トライトーンからコードトーンを除外する
 const bool ExcludeChordTone(const ScaleIndices& chordTones, const size_t i)
 {
 	bool flag = false;
@@ -58,10 +58,11 @@ const bool ExcludeChordTone(const ScaleIndices& chordTones, const size_t i)
 	return flag;
 }
 
-void FindCareNotes(const ScaleIntervals& buffer, const ScaleIndices& chordTones, ScaleIndices& tritones)
+void FindTritones(const ScaleIntervals& buffer, const ScaleIndices& chordTones, ScaleIndices& tritones)
 {
 	for (const auto& tone : chordTones)
 	{
+		// 増4度，もしくは減5度を探す
 		int target = buffer[tone] + 6;
 		if (target >= 12) target -= 12;
 
@@ -69,7 +70,21 @@ void FindCareNotes(const ScaleIntervals& buffer, const ScaleIndices& chordTones,
 		{
 			if (buffer[i] == target && !ExcludeChordTone(chordTones, i))
 			{
-				tritones.push_back(i);
+				int tmp = i;
+
+				// 増4度か減5度か判定する
+				if (i >= 0 && i < buffer.size() - 1)
+				{
+					if (buffer[i - 1] - buffer[i] == 1)
+						tmp = -tmp;
+				}
+				else if (i == buffer.size() - 1)
+				{
+					if ((buffer[0] + 12) - buffer[i] == 1)
+						tmp = -tmp;
+				}
+
+				tritones.push_back(tmp);
 			}
 		}
 	}
@@ -85,7 +100,18 @@ void CreateAvailableScale(const ScaleIndices& buffer, const ScaleIndices& avoids
 	availables = buffer;
 
 	for (const auto& index : avoids)
-		availables[index]++;
+	{
+		int tmp = availables[index];
+
+		if (index >= 0) tmp++;
+		else
+			tmp--;
+		
+		if (tmp < 0) tmp += 12;
+		else if (tmp > 11) tmp -= 12;
+
+		availables[index] = tmp;
+	}
 }
 
 void ModeTheory::MakeModeScale(const int i, const Scale& scale)
@@ -100,7 +126,7 @@ void ModeTheory::MakeModeScale(const int i, const Scale& scale)
 	UnfoldIntervals(scale.Size(), pos, buffer, scale);
 
 	FindAvoidNotes(buffer, chordTones, avoids);
-	FindCareNotes(buffer, chordTones, tritones);
+	FindTritones(buffer, chordTones, tritones);
 	MergeAvoidAndTritone(avoids, tritones);
 	CreateAvailableScale(buffer, avoids, availables);
 
