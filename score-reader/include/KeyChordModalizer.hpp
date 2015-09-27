@@ -34,6 +34,8 @@ namespace score
 			KeyChordModalizer(const Modal& key);
 
 			const ModeModals& GetModeModals(const size_t root, const size_t mode_num) const { return modeScale[root][mode_num]; }
+
+			const ModeModals& GetAvailableModals(const size_t root, const size_t mode_num) const { return availables[root][mode_num]; }
 		};
 	}
 }

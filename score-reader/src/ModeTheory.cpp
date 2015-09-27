@@ -95,22 +95,34 @@ void MergeAvoidAndTritone(ScaleIndices& avoids, const ScaleIndices& tritones)
 	avoids.insert(avoids.end(), tritones.begin(), tritones.end());
 }
 
-void CreateAvailableScale(const ScaleIndices& buffer, const ScaleIndices& avoids, ScaleIndices& availables)
+void CreateAvailableScale(const ScaleIndices& buffer, const ScaleIndices& avoids, const ScaleIndices& tritones, ScaleIndices& availables)
 {
 	availables = buffer;
 
 	for (const auto& index : avoids)
+		availables[index]++;
+
+	for (const auto& index : tritones)
 	{
-		int tmp = availables[index];
+		// トライトーンとアボイドが被ったら無視する
+		auto itr = std::find(avoids.begin(), avoids.end(), index);
+		if (itr != avoids.end())
+			if (*itr)
+				continue;
 
-		if (index >= 0) tmp++;
-		else
-			tmp--;
-		
+		// ルート音に対するトライトーンの場合は無視する
+		if (availables[0] + 6 == availables[index])
+			continue;
+
+		// それ以外の場合はアボイドする
+		int tmp = availables[index] - 6;
 		if (tmp < 0) tmp += 12;
-		else if (tmp > 11) tmp -= 12;
 
-		availables[index] = tmp;
+		int distance = std::find(availables.begin(), availables.end(), tmp) - availables.begin();
+		if (index < distance)
+			availables[index]++;
+		else
+			availables[index]--;
 	}
 }
 
@@ -127,8 +139,8 @@ void ModeTheory::MakeModeScale(const int i, const Scale& scale)
 
 	FindAvoidNotes(buffer, chordTones, avoids);
 	FindTritones(buffer, chordTones, tritones);
-	MergeAvoidAndTritone(avoids, tritones);
-	CreateAvailableScale(buffer, avoids, availables);
+	//MergeAvoidAndTritone(avoids, tritones);
+	CreateAvailableScale(buffer, avoids, tritones, availables);
 
 	//PrintArray(buffer);
 	//PrintArray(avoids);

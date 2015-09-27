@@ -78,7 +78,26 @@ TEST(TestKeyChordModalizer, get_modals_on_c)
 	PrintVector(modalizer, 6, 6);
 }
 
+void PrintAvailables(const KeyChordModalizer& modalizer, const size_t key, const size_t modal)
+{
+	const auto& v = modalizer.GetAvailableModals(key, modal);
+
+	for (size_t i = 0; i < v.size(); ++i)
+	{
+		wcout << Modalize::ToString(v[i]) << ",";
+	}
+	cout << endl;
+}
+
 TEST(TestKeyChordModalizer, test_availables)
 {
 	const auto modalizer = KeyChordModalizer(Modal::C);
+
+	PrintAvailables(modalizer, 0, 0);
+	PrintAvailables(modalizer, 1, 1);
+	PrintAvailables(modalizer, 2, 2);
+	PrintAvailables(modalizer, 3, 3);
+	PrintAvailables(modalizer, 4, 4);
+	PrintAvailables(modalizer, 5, 5);
+	PrintAvailables(modalizer, 6, 6);
 }
