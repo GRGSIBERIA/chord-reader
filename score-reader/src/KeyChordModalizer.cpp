@@ -22,7 +22,7 @@ void KeyChordModalizer::CalcModeScalesOnRoot(const size_t root)
 void KeyChordModalizer::CalcAvailableScaleOnRoot(const size_t root)
 {
 	const auto& primary = modeScale[root][root];
-	const auto& mode = mtheory.GetMode(root);
+	const auto& availableOnMode = mtheory.GetMode(root).GetAvailableScale();
 
 	for (size_t modeIndex = 0; modeIndex < scale.Size(); ++modeIndex)
 	{
@@ -32,7 +32,7 @@ void KeyChordModalizer::CalcAvailableScaleOnRoot(const size_t root)
 		for (size_t intervalIndex = 0; intervalIndex < scale.Size(); ++intervalIndex)
 		{
 			// Available NoteˆÈŠO‚Í’Ç‰Á‚µ‚È‚¢•ûj
-			if (mode.GetAvailableScale()[intervalIndex] != targetMode.GetInterval(intervalIndex))
+			if (availableOnMode[intervalIndex] != targetMode.GetInterval(intervalIndex))
 				continue;
 
 			availables[root][modeIndex].push_back(targetScale[intervalIndex]);

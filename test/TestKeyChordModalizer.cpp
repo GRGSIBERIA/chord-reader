@@ -77,3 +77,8 @@ TEST(TestKeyChordModalizer, get_modals_on_c)
 	PrintVector(modalizer, 5, 5);
 	PrintVector(modalizer, 6, 6);
 }
+
+TEST(TestKeyChordModalizer, test_availables)
+{
+	const auto modalizer = KeyChordModalizer(Modal::C);
+}
