@@ -56,3 +56,24 @@ TEST(TestKeyChordModalizer, test_scale_for_mode)
 	PrintModeScale(scaleTheory, Modal::A, 5);
 	PrintModeScale(scaleTheory, Modal::B, 6);
 }
+
+void PrintVector(const KeyChordModalizer& modalizer, size_t root, size_t mode)
+{
+	const auto& v = modalizer.GetModeModals(root, mode);
+	for (size_t i = 0; i < v.size(); ++i)
+		wcout << Modalize::ToString(v[i]) << ",";
+	cout << endl;
+}
+
+TEST(TestKeyChordModalizer, get_modals_on_c)
+{
+	const auto modalizer = KeyChordModalizer(Modal::C);
+
+	PrintVector(modalizer, 0, 0);
+	PrintVector(modalizer, 1, 1);
+	PrintVector(modalizer, 2, 2);
+	PrintVector(modalizer, 3, 3);
+	PrintVector(modalizer, 4, 4);
+	PrintVector(modalizer, 5, 5);
+	PrintVector(modalizer, 6, 6);
+}

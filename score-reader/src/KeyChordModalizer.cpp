@@ -3,23 +3,60 @@ using namespace score::scale;
 
 const ScaleTheory KeyChordModalizer::stheory = ScaleTheory({ 0, 2, 4, 5, 7, 9, 11 });
 
-KeyChordModalizer::KeyChordModalizer(const Modal& key)
-	: mtheory(Scale(L"", stheory.GetScale(key)), { 0, 2, 4, 6 }), key(key), scale(L"", stheory.GetScale(key)) 
+void KeyChordModalizer::CalcModeScalesOnRoot(const size_t root)
 {
-	modeScale = ModeModalScales(scale.Size(), ModeModalScale(scale.Size()));
-
-	// 音階ごとにモードスケールを展開する
-
 	for (size_t modeIndex = 0; modeIndex < scale.Size(); ++modeIndex)
 	{
 		const auto& mode = mtheory.GetMode(modeIndex);
 
 		for (size_t intervalIndex = 0; intervalIndex < scale.Size(); ++intervalIndex)
 		{
-			int tmp = mode.GetInterval(intervalIndex) + (int)key;
+			int tmp = mode.GetInterval(intervalIndex) + (int)key + scale.GetInterval(root);
 			tmp = tmp > 11 ? tmp - 12 : tmp;
-			
-			modeScale[modeIndex][intervalIndex] = tmp;
+
+			modeScale[root][modeIndex][intervalIndex] = tmp;
 		}
+	}
+}
+
+void KeyChordModalizer::CalcAvailableScaleOnRoot(const size_t root)
+{
+	const auto& primary = modeScale[root][root];
+	const auto& mode = mtheory.GetMode(root);
+
+	for (size_t modeIndex = 0; modeIndex < scale.Size(); ++modeIndex)
+	{
+		const auto& targetScale = modeScale[root][modeIndex];
+		const auto& targetMode = mtheory.GetMode(modeIndex);
+
+		for (size_t intervalIndex = 0; intervalIndex < scale.Size(); ++intervalIndex)
+		{
+			// Available Note以外は追加しない方針
+			if (mode.GetAvailableScale()[intervalIndex] != targetMode.GetInterval(intervalIndex))
+				continue;
+
+			availables[root][modeIndex].push_back(targetScale[intervalIndex]);
+		}
+	}
+}
+
+KeyChordModalizer::KeyChordModalizer(const Modal& key)
+	: mtheory(Scale(L"", stheory.GetScale(key)), { 0, 2, 4, 6 }), key(key), scale(L"", stheory.GetScale(key)) 
+{
+	modeScale = ModesOnScale(scale.Size(), 
+		ModeModalScales(scale.Size(), 
+		ModeModals(scale.Size())));
+	availables = ModesOnScale(scale.Size(),
+		ModeModalScales(scale.Size()));
+
+	// 音階ごとにモードスケールを展開する
+
+	for (size_t root = 0; root < scale.Size(); ++root)
+	{
+		// このループで，あるルート音に対応するすべてのモードスケールを求める
+		CalcModeScalesOnRoot(root);
+
+		// このループで，モードごとに演奏可能な楽音を追加する
+		CalcAvailableScaleOnRoot(root);
 	}
 }
