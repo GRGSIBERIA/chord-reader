@@ -33,9 +33,21 @@ namespace score
 		public:
 			KeyChordModalizer(const Modal& key);
 
-			const ModeModals& GetModeModals(const size_t root, const size_t mode_num) const { return modeScale[root][mode_num]; }
+			// モードを取得する
+			const ModeModals& GetModeScale(const size_t root, const size_t mode_num) const { return modeScale[root][mode_num]; }
+			const ModeModals& GetModeScale(const std::wstring& str, const size_t mode_num) const;
 
-			const ModeModals& GetAvailableModals(const size_t root, const size_t mode_num) const { return availables[root][mode_num]; }
+			// 現在のコードに対して主体的なモードを返す
+			const ModeModals& GetPrimaryModeScale(const std::wstring& str) const;
+			const ModeModals& GetPrimaryModeScale(const size_t rootIndex) const { return modeScale[rootIndex][rootIndex]; }
+
+			// アベイラブルスケールを取得する
+			const ModeModals& GetAvailableScale(const size_t root, const size_t mode_num) const { return availables[root][mode_num]; }
+			const ModeModals& GetAvailableScale(const std::wstring& str, const size_t mode_num) const;
+
+			// 現在のコードに対して主体的なアベイラブルスケールを返す
+			const ModeModals& GetPrimaryAvailableScale(const std::wstring& str) const;
+			const ModeModals& GetPrimaryAvailableScale(const size_t rootIndex) const { return availables[rootIndex][rootIndex]; }
 		};
 	}
 }

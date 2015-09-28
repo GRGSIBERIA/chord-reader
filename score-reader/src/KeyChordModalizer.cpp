@@ -60,3 +60,27 @@ KeyChordModalizer::KeyChordModalizer(const Modal& key)
 		CalcAvailableScaleOnRoot(root);
 	}
 }
+
+const ModeModals& KeyChordModalizer::GetPrimaryModeScale(const std::wstring& str) const
+{
+	auto index = scale.GetIndex(str);
+	return GetModeScale(index, index);
+}
+
+const ModeModals& KeyChordModalizer::GetPrimaryAvailableScale(const std::wstring& str) const
+{
+	auto index = scale.GetIndex(str);
+	return GetAvailableScale(index, index);
+}
+
+const ModeModals& KeyChordModalizer::GetAvailableScale(const std::wstring& str, const size_t mode_num) const
+{
+	auto index = scale.GetIndex(str);
+	return GetModeScale(index, mode_num);
+}
+
+const ModeModals& KeyChordModalizer::GetModeScale(const std::wstring& str, const size_t mode_num) const
+{
+	auto index = scale.GetIndex(str);
+	return GetModeScale(index, mode_num);
+}

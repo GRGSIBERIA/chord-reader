@@ -5,30 +5,8 @@
 using namespace score::scale;
 using namespace std;
 
-const ModeTheory test_c(Scale(L"major", { 0, 2, 4, 5, 7, 9, 11 }), { 0, 2, 4, 6 });
-const ModeTheory test_d(Scale(L"major", { 2, 4, 5, 7, 9, 11, 0 }), { 0, 2, 4, 6 });
 
-void PrintInterval(size_t num, int modal)
-{
-	const auto& scale = test_c.GetMode(num);
-
-	for (size_t i = 0; i < scale.Size(); ++i)
-	{
-		int tmp = scale.GetInterval(i) + (int)modal;
-		tmp = tmp > 11 ? tmp - 12 : tmp;
-		cout << tmp << ",";
-	}
-	cout << endl;
-}
-
-TEST(TestKeyChordModalizer, test_print_interval)
-{
-	PrintInterval(0, 0);
-	PrintInterval(1, 2);
-	PrintInterval(2, 4);
-}
-
-void PrintModeScale(const ScaleTheory& scaleTheory, Modal key, int modeIndex)
+void PrintModeScale(const ScaleTheory& scaleTheory, Modal key, int modeIndex, const std::vector<int>& comp)
 {
 	const Scale scale = Scale(L"", scaleTheory.GetScale(key));
 	const ModeTheory modeTheory = ModeTheory(scale, { 0, 2, 4, 6 });
@@ -39,65 +17,66 @@ void PrintModeScale(const ScaleTheory& scaleTheory, Modal key, int modeIndex)
 	{
 		int tmp = mode.GetInterval(i) + (int)key;
 		tmp = tmp > 11 ? tmp - 12 : tmp;
-		wcout << Modalize::ToString(tmp, false) << L",";
+		//wcout << Modalize::ToString(tmp, false) << L",";
+		EXPECT_EQ(tmp, comp[i]);
 	}
-	cout << endl;
+	//cout << endl;
 }
 
 TEST(TestKeyChordModalizer, test_scale_for_mode)
 {
 	const ScaleTheory scaleTheory = ScaleTheory({0, 2, 4, 5, 7, 9, 11});
 
-	PrintModeScale(scaleTheory, Modal::C, 0);
-	PrintModeScale(scaleTheory, Modal::D, 1);
-	PrintModeScale(scaleTheory, Modal::E, 2);
-	PrintModeScale(scaleTheory, Modal::F, 3);
-	PrintModeScale(scaleTheory, Modal::G, 4);
-	PrintModeScale(scaleTheory, Modal::A, 5);
-	PrintModeScale(scaleTheory, Modal::B, 6);
+	PrintModeScale(scaleTheory, Modal::C, 0, { 0, 2, 4, 5, 7, 9, 11 });
+	PrintModeScale(scaleTheory, Modal::D, 1, { 2, 4, 5, 7, 9, 11, 0 });
+	PrintModeScale(scaleTheory, Modal::E, 2, { 4, 5, 7, 9, 11, 0, 2 });
+	PrintModeScale(scaleTheory, Modal::F, 3, { 5, 7, 9, 11, 0, 2, 4 });
+	PrintModeScale(scaleTheory, Modal::G, 4, { 7, 9, 11, 0, 2, 4, 5 });
+	PrintModeScale(scaleTheory, Modal::A, 5, { 9, 11, 0, 2, 4, 5, 7 });
+	PrintModeScale(scaleTheory, Modal::B, 6, { 11, 0, 2, 4, 5, 7, 9 });
 }
 
-void PrintVector(const KeyChordModalizer& modalizer, size_t root, size_t mode)
+void PrintVector(const KeyChordModalizer& modalizer, size_t root, size_t mode, const std::vector<int>& comp)
 {
-	const auto& v = modalizer.GetModeModals(root, mode);
+	const auto& v = modalizer.GetModeScale(root, mode);
 	for (size_t i = 0; i < v.size(); ++i)
-		wcout << Modalize::ToString(v[i]) << ",";
-	cout << endl;
+		//wcout << Modalize::ToString(v[i]) << ",";
+		EXPECT_EQ(v[i], comp[i]);
+	//cout << endl;
 }
 
 TEST(TestKeyChordModalizer, get_modals_on_c)
 {
 	const auto modalizer = KeyChordModalizer(Modal::C);
 
-	PrintVector(modalizer, 0, 0);
-	PrintVector(modalizer, 1, 1);
-	PrintVector(modalizer, 2, 2);
-	PrintVector(modalizer, 3, 3);
-	PrintVector(modalizer, 4, 4);
-	PrintVector(modalizer, 5, 5);
-	PrintVector(modalizer, 6, 6);
+	PrintVector(modalizer, 0, 0, { 0, 2, 4, 5, 7, 9, 11 });
+	PrintVector(modalizer, 1, 1, { 2, 4, 5, 7, 9, 11, 0 });
+	PrintVector(modalizer, 2, 2, { 4, 5, 7, 9, 11, 0, 2 });
+	PrintVector(modalizer, 3, 3, { 5, 7, 9, 11, 0, 2, 4 });
+	PrintVector(modalizer, 4, 4, { 7, 9, 11, 0, 2, 4, 5 });
+	PrintVector(modalizer, 5, 5, { 9, 11, 0, 2, 4, 5, 7 });
+	PrintVector(modalizer, 6, 6, { 11, 0, 2, 4, 5, 7, 9 });
 }
 
-void PrintAvailables(const KeyChordModalizer& modalizer, const size_t key, const size_t modal)
+void PrintAvailables(const KeyChordModalizer& modalizer, const size_t key, const size_t modal, const std::vector<int>& comp)
 {
-	const auto& v = modalizer.GetAvailableModals(key, modal);
+	const auto& v = modalizer.GetAvailableScale(key, modal);
 
 	for (size_t i = 0; i < v.size(); ++i)
-	{
-		wcout << Modalize::ToString(v[i]) << ",";
-	}
-	cout << endl;
+		//wcout << Modalize::ToString(v[i]) << ",";
+		EXPECT_EQ(v[i], comp[i]);
+	//cout << endl;
 }
 
 TEST(TestKeyChordModalizer, test_availables)
 {
 	const auto modalizer = KeyChordModalizer(Modal::C);
 
-	PrintAvailables(modalizer, 0, 0);
-	PrintAvailables(modalizer, 1, 1);
-	PrintAvailables(modalizer, 2, 2);
-	PrintAvailables(modalizer, 3, 3);
-	PrintAvailables(modalizer, 4, 4);
-	PrintAvailables(modalizer, 5, 5);
-	PrintAvailables(modalizer, 6, 6);
+	PrintAvailables(modalizer, 0, 0, { 0, 2, 4, 7, 9, 11 });
+	PrintAvailables(modalizer, 1, 1, { 2, 4, 5, 7, 9, 0 });
+	PrintAvailables(modalizer, 2, 2, { 4, 7, 9, 11, 2 });
+	PrintAvailables(modalizer, 3, 3, { 5, 7, 9, 11, 0, 2, 4 });
+	PrintAvailables(modalizer, 4, 4, { 7, 9, 11, 2, 4, 5 });
+	PrintAvailables(modalizer, 5, 5, { 9, 11, 0, 2, 4, 7 });
+	PrintAvailables(modalizer, 6, 6, { 11, 2, 4, 5, 7, 9 });
 }
