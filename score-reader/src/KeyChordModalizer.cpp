@@ -40,6 +40,11 @@ void KeyChordModalizer::CalcAvailableScaleOnRoot(const size_t root)
 	}
 }
 
+KeyChordModalizer::KeyChordModalizer(const std::wstring& key) : KeyChordModalizer(Modalize::ToModal(key))
+{
+	// 委譲コンストラクタ
+}
+
 KeyChordModalizer::KeyChordModalizer(const Modal& key)
 	: mtheory(Scale(L"", stheory.GetScale(key)), { 0, 2, 4, 6 }), key(key), scale(L"", stheory.GetScale(key)) 
 {
