@@ -30,7 +30,7 @@ namespace score
 
 			const int GetInterval(const size_t i) const { return scale[i]; }
 
-			const size_t GetIndex(const size_t i) const { return *std::find(scale.begin(), scale.end(), i); }
+			const size_t GetIndex(const size_t i) const { return std::find(scale.begin(), scale.end(), i) - scale.begin(); }
 			const size_t GetIndex(const std::wstring& str) const { return GetIndex((size_t)Modalize::ToInt(str)); }
 
 			const ScaleIntervals& Intervals() const { return scale; }

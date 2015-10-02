@@ -76,7 +76,7 @@ const ModeModals& KeyChordModalizer::GetPrimaryAvailableScale(const std::wstring
 const ModeModals& KeyChordModalizer::GetAvailableScale(const std::wstring& str, const size_t mode_num) const
 {
 	auto index = scale.GetIndex(str);
-	return GetModeScale(index, mode_num);
+	return GetAvailableScale(index, mode_num);
 }
 
 const ModeModals& KeyChordModalizer::GetModeScale(const std::wstring& str, const size_t mode_num) const

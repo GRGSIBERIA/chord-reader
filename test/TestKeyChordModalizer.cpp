@@ -80,3 +80,24 @@ TEST(TestKeyChordModalizer, test_availables)
 	PrintAvailables(modalizer, 5, 5, { 9, 11, 0, 2, 4, 7 });
 	PrintAvailables(modalizer, 6, 6, { 11, 2, 4, 5, 7, 9 });
 }
+
+void TestAvailables(const KeyChordModalizer& modalizer, const std::wstring& key, const size_t modal, const std::vector<int>& comp)
+{
+	const auto& v = modalizer.GetAvailableScale(key, modal);
+
+	for (size_t i = 0; i < v.size(); ++i)
+		EXPECT_EQ(v[i], comp[i]);
+}
+
+TEST(TestKeyChordModalizer, test_chord_name)
+{
+	const auto modalizer = KeyChordModalizer(Modal::C);
+
+	TestAvailables(modalizer, L"CM7",	0, { 0, 2, 4, 7, 9, 11 });
+	TestAvailables(modalizer, L"Dm7",	1, { 2, 4, 5, 7, 9, 0 });
+	TestAvailables(modalizer, L"Em7",	2, { 4, 7, 9, 11, 2 });
+	TestAvailables(modalizer, L"FM7",	3, { 5, 7, 9, 11, 0, 2, 4 });
+	TestAvailables(modalizer, L"G7",	4, { 7, 9, 11, 2, 4, 5 });
+	TestAvailables(modalizer, L"Am7",	5, { 9, 11, 0, 2, 4, 7 });
+	TestAvailables(modalizer, L"Bm7-5", 6, { 11, 2, 4, 5, 7, 9 });
+}
