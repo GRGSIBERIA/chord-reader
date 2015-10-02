@@ -33,6 +33,7 @@ namespace score
 		public:
 			KeyChordModalizer(const Modal& key);
 			KeyChordModalizer(const std::wstring& str);
+			KeyChordModalizer(const size_t& key);
 
 			// ƒ‚[ƒh‚ğæ“¾‚·‚é
 			const ModeModals& GetModeScale(const size_t root, const size_t mode_num) const { return modeScale[root][mode_num]; }

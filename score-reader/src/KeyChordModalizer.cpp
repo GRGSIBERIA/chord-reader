@@ -45,6 +45,11 @@ KeyChordModalizer::KeyChordModalizer(const std::wstring& key) : KeyChordModalize
 	// 委譲コンストラクタ
 }
 
+KeyChordModalizer::KeyChordModalizer(const size_t& key) : KeyChordModalizer(Modalize::ToModal(key))
+{
+	// 委譲コンストラクタ
+}
+
 KeyChordModalizer::KeyChordModalizer(const Modal& key)
 	: mtheory(Scale(L"", stheory.GetScale(key)), { 0, 2, 4, 6 }), key(key), scale(L"", stheory.GetScale(key)) 
 {
