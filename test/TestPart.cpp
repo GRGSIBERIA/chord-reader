@@ -1,13 +1,20 @@
 #include "gtest\gtest.h"
 #include <Part.hpp>
 
-TEST(TestPart, simple)
+void TestPartSimple(const std::wstring& str)
 {
 	score::score::Part part;
 
-	part.PushBack(L"C");
+	part.PushBack(str);
 
 	const auto& c = part.At(0);
 
-	EXPECT_EQ(c->root.Name(), L"C");
+	EXPECT_EQ(c->root.Name(), str);
+}
+
+TEST(TestPart, simple)
+{
+	TestPartSimple(L"C");
+	TestPartSimple(L"D");
+	TestPartSimple(L"Db");
 }
