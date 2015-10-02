@@ -51,6 +51,7 @@
     <measure>
       <chord>Gm</chord>
     </measure>
+  <key code="Bb">
     <measure>
       <chord>Cm7</chord>
     </measure>
@@ -78,6 +79,7 @@
     <measure>
       <chord>Gm</chord>
     </measure>
+  <key code="Bb">
     <measure>
       <chord>C</chord>
       <chord>Cm6</chord>
