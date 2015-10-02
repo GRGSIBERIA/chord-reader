@@ -46,7 +46,7 @@
     <OutDir>$(ProjectDir)Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\..\score-reader\include;..\gtest-1.7.0\include</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\..\score-reader\include;..\gtest-1.7.0\include;$(ProjectDir)\..\score-reader\include\xml</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(VC_SourcePath)</LibraryPath>
     <SourcePath>$(ProjectDir)\..\score-reader\src;$(SourcePath)</SourcePath>
     <OutDir>$(ProjectDir)Release</OutDir>
@@ -89,17 +89,18 @@
     <ClCompile Include="..\score-reader\src\Modal.cpp" />
     <ClCompile Include="..\score-reader\src\ModeTheory.cpp" />
     <ClCompile Include="..\score-reader\src\ScaleTheory.cpp" />
+    <ClCompile Include="..\score-reader\src\tinyxml2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestChordConstructions.cpp" />
     <ClCompile Include="TestKeyChordModalizer.cpp" />
     <ClCompile Include="TestModal.cpp" />
     <ClCompile Include="TestModeTheory.cpp" />
+    <ClCompile Include="TestPart.cpp" />
     <ClCompile Include="TestScaleTheory.cpp" />
     <ClCompile Include="TestTinyXML.cpp" />
-    <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="xml\tinyxml2.h" />
+    <ClInclude Include="..\score-reader\include\xml\tinyxml2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
