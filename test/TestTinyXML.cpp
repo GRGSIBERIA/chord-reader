@@ -7,23 +7,31 @@ TEST(TestTinyXML, read)
 	EXPECT_EQ(doc.LoadFile("..\\autumn leaves.xml"), tinyxml2::XMLError::XML_SUCCESS);
 }
 
+void TestString(const char* a, const char* b)
+{
+	EXPECT_EQ(std::string(a), std::string(b));
+}
+
 TEST(TestTinyXML, read_score)
 {
 	tinyxml2::XMLDocument doc;
 	EXPECT_EQ(doc.LoadFile("..\\autumn leaves.xml"), tinyxml2::XMLError::XML_SUCCESS);
 
-	tinyxml2::XMLElement* root = doc.FirstChildElement("chord-score");
-	const auto score = doc.FirstChildElement("score");
+	const auto root = doc.FirstChildElement("chord-score");
+	const auto score = root->FirstChildElement("score");
 
-	EXPECT_EQ(score->Name(), "score");
+	TestString(score->Name(), "score");
 }
 
 TEST(TestTinyXML, read_part)
 {
 	tinyxml2::XMLDocument doc;
 	EXPECT_EQ(doc.LoadFile("..\\autumn leaves.xml"), tinyxml2::XMLError::XML_SUCCESS);
-	//const auto score = doc.FirstChildElement("chord-score")->FirstChildElement("score");
+	const auto part = doc.FirstChildElement("chord-score")->FirstChildElement("score")->FirstChildElement("part");
 
-	//const auto part = score->FirstChildElement("part");
-	//EXPECT_EQ(part->IntAttribute("repeat"), 2);
+	EXPECT_EQ(part->IntAttribute("repeat"), 2);
+
+	const auto next = part->NextSiblingElement("part");
+
+	EXPECT_EQ(next->IntAttribute("repeat"), 0);
 }

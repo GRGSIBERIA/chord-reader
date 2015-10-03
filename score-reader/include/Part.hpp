@@ -1,15 +1,15 @@
 #pragma once
 #include "ConstructionBase.hpp"
 #include "ChordFactory.hpp"
+#include "Beat.hpp"
 
 namespace score
 {
 	namespace score
 	{
-		class Part : public ConstructionBase<chord::Chord>
+		class Part : public ConstructionBase<Beat>
 		{
 		public:
-			void PushBack(const std::wstring& chordStr) { push_back(chord::ChordFactory::CreateChord(chordStr)); }
 		};
 	}
 }

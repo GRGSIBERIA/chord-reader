@@ -13,6 +13,9 @@ namespace score
 
 			score::Score score;
 
+			void CollectParts(const tinyxml2::XMLElement* part);
+			
+
 		public:
 			ScoreReader(const std::string& path);
 		};

@@ -2,23 +2,30 @@
 #include <exception>
 using namespace score::reader;
 
-ScoreReader::ScoreReader(const std::string& path)
+void ScoreReader::CollectParts(const tinyxml2::XMLElement* part)
 {
-	if (doc.LoadFile(path.c_str()) != tinyxml2::XMLError::XML_SUCCESS)
-		throw std::exception((std::string("File not found: ") + path).c_str());
-
-	const auto& rootP = *doc.FirstChildElement("chord-score");
-	const auto& scoreP = *rootP.FirstChildElement("score");
-	
-	for (const auto part = scoreP.FirstChildElement("part"); part != nullptr; part->NextSiblingElement("part"))
+	for (auto p = part; part != nullptr; p = part->NextSiblingElement("part"))
 	{
-		if (part->Attribute("repeat") != nullptr)
+		const int times = p->IntAttribute("repeat");
+		if (times > 0)
 		{
-			int times = part->IntAttribute("repeat");
+			for (int i = 0; i < times; ++i)
+			{
+
+			}
 		}
 		else
 		{
 
 		}
 	}
+}
+
+ScoreReader::ScoreReader(const std::string& path)
+{
+	if (doc.LoadFile(path.c_str()) != tinyxml2::XMLError::XML_SUCCESS)
+		throw std::exception((std::string("File not found: ") + path).c_str());
+
+	const auto score = doc.FirstChildElement("chord-score")->FirstChildElement("score")->FirstChildElement("part");
+	CollectParts(score);
 }
