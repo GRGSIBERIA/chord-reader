@@ -12,9 +12,6 @@ namespace score
 		public:
 			typedef std::shared_ptr<T> _Ptr;
 
-
-			//const _Ptr& operator[](size_t i) const { return at(i); operator[]}
-
 			const size_t Size() const { return size(); }
 
 			const _Ptr& At(const size_t i) const { return at(i); }
