@@ -6,7 +6,7 @@ namespace score
 {
 	namespace score
 	{
-		class Key : ConstructionBase < Key, Measure >
+		class Key : public ConstructionBase < Key, Measure >
 		{
 			const std::wstring key;
 
@@ -14,6 +14,8 @@ namespace score
 			Key(const std::wstring& key) : key(key) {}
 
 			const std::wstring& KeyString() const { return key;	}
+
+			static _PPtr Instantiate(const std::wstring& key) { return _PPtr(new Key(key)); }
 		};
 	}
 }

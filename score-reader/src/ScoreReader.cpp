@@ -3,7 +3,6 @@
 #include "ChordFactory.hpp"
 #include <exception>
 #include <cstdlib>
-using namespace score::reader;
 using namespace score::score;
 using namespace score::chord;
 
@@ -23,13 +22,18 @@ int CountElements(const tinyxml2::XMLElement* elem, const char* str)
 	return count;
 }
 
+const std::wstring ConvertWidenText(const std::string& str)
+{
+	std::wstring wstr;
+	widen(str, wstr);
+	return wstr;
+}
+
 const ChordPtr ReadChord(const tinyxml2::XMLElement* c)
 {
-	auto chordStr = std::string(c->GetText());
-	std::wstring widedStr;
-	widen(chordStr, widedStr);
+	auto chordStr = ConvertWidenText(c->GetText());
 
-	return ChordFactory::CreateChord(widedStr);
+	return ChordFactory::CreateChord(chordStr);
 }
 
 Measure::_PPtr ScoreReader::CollectChord(const tinyxml2::XMLElement* chord)
@@ -46,16 +50,31 @@ Measure::_PPtr ScoreReader::CollectChord(const tinyxml2::XMLElement* chord)
 	return measurePtr;
 }
 
-Part::_PPtr ScoreReader::CollectMeasure(const tinyxml2::XMLElement* measure)
+Key::_PPtr ScoreReader::CollectMeasure(const tinyxml2::XMLElement* measure, const std::wstring& keyStr)
 {
-	auto partPtr = Part::Instantiate();
+	auto keyPtr = Key::Instantiate(keyStr);
 
 	for (auto m = measure; m != nullptr; m = m->NextSiblingElement("measure"))
 	{
 		const auto chord = m->FirstChildElement("chord");
 		auto measurePtr = CollectChord(chord);
 
-		partPtr->PushBack(measurePtr);
+		keyPtr->PushBack(measurePtr);
+	}
+
+	return keyPtr;
+}
+
+Part::_PPtr ScoreReader::CollectKey(const tinyxml2::XMLElement* key)
+{
+	auto partPtr = Part::Instantiate();
+
+	for (auto k = key; k != nullptr; k = k->NextSiblingElement("key"))
+	{
+		const auto keyStr = ConvertWidenText(key->Attribute("code"));
+		const auto measure = k->FirstChildElement("measure");
+		const auto keyPtr = CollectMeasure(measure, keyStr);
+		partPtr->PushBack(keyPtr);
 	}
 
 	return partPtr;
@@ -63,20 +82,20 @@ Part::_PPtr ScoreReader::CollectMeasure(const tinyxml2::XMLElement* measure)
 
 void ScoreReader::CollectParts(const tinyxml2::XMLElement* part)
 {
-	const auto measure = part->FirstChildElement("measure");
+	const auto key = part->FirstChildElement("key");
 	const int times = part->IntAttribute("repeat");
 
 	if (times > 0)
 	{
 		for (int i = 0; i < times; ++i)
 		{
-			const auto partPtr = CollectMeasure(measure);
+			const auto partPtr = CollectKey(key);
 			score.PushBack(partPtr);
 		}
 	}
 	else
 	{
-		const auto partPtr = CollectMeasure(measure);
+		const auto partPtr = CollectKey(key);
 		score.PushBack(partPtr);
 	}
 }

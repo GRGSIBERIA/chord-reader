@@ -1,13 +1,13 @@
 #pragma once
 #include "ConstructionBase.hpp"
 #include "ChordFactory.hpp"
-#include "Measure.hpp"
+#include "Key.hpp"
 
 namespace score
 {
 	namespace score
 	{
-		class Part : public ConstructionBase<Part, Measure>
+		class Part : public ConstructionBase<Part, Key>
 		{
 		public:
 		};

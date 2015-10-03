@@ -75,6 +75,7 @@
     <ClInclude Include="include\ChordConstruction.hpp" />
     <ClInclude Include="include\ChordFactory.hpp" />
     <ClInclude Include="include\ConstructionBase.hpp" />
+    <ClInclude Include="include\Key.hpp" />
     <ClInclude Include="include\KeyChordModalizer.hpp" />
     <ClInclude Include="include\Measure.hpp" />
     <ClInclude Include="include\Modal.hpp" />

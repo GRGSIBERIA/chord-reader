@@ -37,9 +37,6 @@
     <Filter Include="ソース ファイル\score\chord">
       <UniqueIdentifier>{b301b8a7-a908-4a11-9eec-04e189b3329f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\score\reader">
-      <UniqueIdentifier>{be6761bb-f396-47d3-bf09-129246e7219c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\score\reader">
       <UniqueIdentifier>{f25f2eea-3c0e-4ca4-afb9-298da7486413}</UniqueIdentifier>
     </Filter>
@@ -72,9 +69,6 @@
     <ClInclude Include="include\KeyChordModalizer.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
-    <ClInclude Include="include\ScoreReader.hpp">
-      <Filter>ヘッダー ファイル\score\reader</Filter>
-    </ClInclude>
     <ClInclude Include="include\xml\tinyxml2.h">
       <Filter>ヘッダー ファイル\xml</Filter>
     </ClInclude>
@@ -88,6 +82,12 @@
       <Filter>ヘッダー ファイル\score\score</Filter>
     </ClInclude>
     <ClInclude Include="include\Measure.hpp">
+      <Filter>ヘッダー ファイル\score\score</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Key.hpp">
+      <Filter>ヘッダー ファイル\score\score</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScoreReader.hpp">
       <Filter>ヘッダー ファイル\score\score</Filter>
     </ClInclude>
   </ItemGroup>

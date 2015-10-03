@@ -5,7 +5,7 @@
 
 namespace score
 {
-	namespace reader
+	namespace score
 	{
 		class ScoreReader
 		{
@@ -14,8 +14,9 @@ namespace score
 			score::Score score;
 
 			void CollectParts(const tinyxml2::XMLElement* part);
-			score::Measure::_PPtr CollectChord(const tinyxml2::XMLElement* chord);
-			score::Part::_PPtr CollectMeasure(const tinyxml2::XMLElement* measure);
+			Measure::_PPtr CollectChord(const tinyxml2::XMLElement* chord);
+			Key::_PPtr CollectMeasure(const tinyxml2::XMLElement* measure, const std::wstring& keyStr);
+			Part::_PPtr CollectKey(const tinyxml2::XMLElement* key);
 
 		public:
 			ScoreReader(const std::string& path);
