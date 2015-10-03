@@ -36,7 +36,7 @@ TEST(TestTinyXML, read_part)
 	EXPECT_EQ(next->IntAttribute("repeat"), 0);
 }
 
-int CountElements(const tinyxml2::XMLElement* elem, const char* str)
+int TestCountElements(const tinyxml2::XMLElement* elem, const char* str)
 {
 	int count = 0;
 	for (auto p = elem; p != nullptr; p = p->NextSiblingElement(str))
@@ -50,5 +50,5 @@ TEST(TestBeat, count)
 	EXPECT_EQ(doc.LoadFile("..\\autumn leaves.xml"), tinyxml2::XMLError::XML_SUCCESS);
 	const auto part = doc.FirstChildElement("chord-score")->FirstChildElement("score")->FirstChildElement("part");
 
-	EXPECT_EQ(CountElements(part, "part"), 3);
+	EXPECT_EQ(TestCountElements(part, "part"), 3);
 }

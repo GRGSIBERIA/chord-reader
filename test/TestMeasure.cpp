@@ -1,11 +1,13 @@
 #include "gtest\gtest.h"
 #include <Measure.hpp>
+#include <ChordFactory.hpp>
 
 void TestBeatSimple(const std::wstring& str)
 {
-	score::score::Measure part(4);
+	score::score::Measure part(1);
 
-	part.PushBack(str);
+	const auto chord = score::chord::ChordFactory::CreateChord(str);
+	part.PushBack(chord);
 
 	const auto& c = part.At(0);
 

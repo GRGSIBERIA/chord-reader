@@ -63,8 +63,14 @@
     <ClCompile Include="..\score-reader\src\tinyxml2.cpp">
       <Filter>ソース ファイル\src</Filter>
     </ClCompile>
-    <ClCompile Include="TestBeat.cpp">
+    <ClCompile Include="TestMeasure.cpp">
       <Filter>ソース ファイル\test</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScoreReader.cpp">
+      <Filter>ソース ファイル\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\score-reader\src\ScoreReader.cpp">
+      <Filter>ソース ファイル\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

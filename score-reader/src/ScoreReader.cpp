@@ -9,7 +9,8 @@ using namespace score::chord;
 
 void widen(const std::string &src, std::wstring &dest) {
 	wchar_t *wcs = new wchar_t[src.length() + 1];
-	mbstowcs(wcs, src.c_str(), src.length() + 1);
+	size_t buf;
+	mbstowcs_s(&buf, wcs, src.length() + 1, src.c_str(), src.length() + 1);
 	dest = wcs;
 	delete[] wcs;
 }

@@ -87,7 +87,7 @@
     <ClInclude Include="include\ConstructionBase.hpp">
       <Filter>ヘッダー ファイル\score\score</Filter>
     </ClInclude>
-    <ClInclude Include="include\Beat.hpp">
+    <ClInclude Include="include\Measure.hpp">
       <Filter>ヘッダー ファイル\score\score</Filter>
     </ClInclude>
   </ItemGroup>
