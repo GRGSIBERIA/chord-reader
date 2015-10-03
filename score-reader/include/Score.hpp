@@ -6,7 +6,7 @@ namespace score
 {
 	namespace score
 	{
-		class Score : public ConstructionBase<Part>
+		class Score : public ConstructionBase<Score, Part>
 		{
 		public:
 		};

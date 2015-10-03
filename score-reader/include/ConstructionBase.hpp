@@ -6,19 +6,22 @@ namespace score
 {
 	namespace score
 	{
-		template <class T>
+		template <class P, class T>
 		class ConstructionBase : protected std::vector < std::shared_ptr< T > >
 		{
 		public:
-			typedef std::shared_ptr<T> _Ptr;
+			typedef std::shared_ptr<P> _PPtr;
+			typedef std::shared_ptr<T> _TPtr;
 
 			const size_t Size() const { return size(); }
 
-			const _Ptr& At(const size_t i) const { return at(i); }
+			const _TPtr& At(const size_t i) const { return at(i); }
 
-			static _Ptr Create() { return _Ptr(new T()); }
+			static _TPtr Create() { return _TPtr(new T()); }
 
-			void PushBack(const _Ptr& ptr) { push_back(ptr); }
+			static _PPtr Instantiate() { return _PPtr(new P()); }
+
+			void PushBack(const _TPtr& ptr) { push_back(ptr); }
 		};
 	}
 }

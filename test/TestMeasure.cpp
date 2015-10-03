@@ -1,9 +1,9 @@
 #include "gtest\gtest.h"
-#include <Beat.hpp>
+#include <Measure.hpp>
 
 void TestBeatSimple(const std::wstring& str)
 {
-	score::score::Beat part(4);
+	score::score::Measure part(4);
 
 	part.PushBack(str);
 
@@ -12,7 +12,7 @@ void TestBeatSimple(const std::wstring& str)
 	EXPECT_EQ(c->root.Name(), str);
 }
 
-TEST(TestBeat, simple)
+TEST(TestMeasure, simple)
 {
 	TestBeatSimple(L"C");
 	TestBeatSimple(L"D");
