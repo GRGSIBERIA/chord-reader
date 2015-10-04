@@ -1,7 +1,8 @@
 #include "KeyChordModalizer.hpp"
 using namespace score::scale;
 
-const ScaleTheory KeyChordModalizer::stheory = ScaleTheory({ 0, 2, 4, 5, 7, 9, 11 });
+const ScaleTheory KeyChordModalizer::majtheory = ScaleTheory({ 0, 2, 4, 5, 7, 9, 11 });
+const ScaleTheory KeyChordModalizer::mintheory = ScaleTheory({ 0, 2, 3, 5, 7, 8, 10 });
 
 void KeyChordModalizer::CalcModeScalesOnRoot(const size_t root)
 {
@@ -40,18 +41,19 @@ void KeyChordModalizer::CalcAvailableScaleOnRoot(const size_t root)
 	}
 }
 
-KeyChordModalizer::KeyChordModalizer(const std::wstring& key) : KeyChordModalizer(Modalize::ToModal(key))
+KeyChordModalizer::KeyChordModalizer(const std::wstring& key) 
+	: KeyChordModalizer(Modalize::ToModal(key), Modalize::HasMinor(key) ? mintheory : majtheory, { 0, 2, 4, 6 })
 {
 	// 委譲コンストラクタ
 }
 
-KeyChordModalizer::KeyChordModalizer(const size_t& key) : KeyChordModalizer(Modalize::ToModal(key))
+KeyChordModalizer::KeyChordModalizer(const size_t& key) : KeyChordModalizer(Modalize::ToModal(key), majtheory, { 0, 2, 4, 6 })
 {
 	// 委譲コンストラクタ
 }
 
-KeyChordModalizer::KeyChordModalizer(const Modal& key)
-	: mtheory(Scale(L"", stheory.GetScale(key)), { 0, 2, 4, 6 }), key(key), scale(L"", stheory.GetScale(key)) 
+KeyChordModalizer::KeyChordModalizer(const Modal& key, const ScaleTheory& theory, const ScaleIndices& chordTone)
+	: mtheory(Scale(L"", theory.GetScale(key)), chordTone), key(key), scale(L"", theory.GetScale(key)) 
 {
 	modeScale = ModesOnScale(scale.Size(), 
 		ModeModalScales(scale.Size(), 

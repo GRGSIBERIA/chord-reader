@@ -15,7 +15,8 @@ namespace score
 
 		class KeyChordModalizer
 		{
-			static const ScaleTheory stheory;
+			static const ScaleTheory majtheory;
+			static const ScaleTheory mintheory;
 
 			const ModeTheory mtheory;
 
@@ -31,7 +32,7 @@ namespace score
 			void CalcAvailableScaleOnRoot(const size_t root);
 
 		public:
-			KeyChordModalizer(const Modal& key);
+			KeyChordModalizer(const Modal& key, const ScaleTheory& theory, const ScaleIndices& chordTone);
 			KeyChordModalizer(const std::wstring& str);
 			KeyChordModalizer(const size_t& key);
 
