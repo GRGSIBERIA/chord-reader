@@ -9,19 +9,13 @@ namespace score
 	{
 		class ScoreReader
 		{
-			tinyxml2::XMLDocument doc;
-
-			score::Score score;
-
-			void CollectParts(const tinyxml2::XMLElement* part);
-			Measure::_PPtr CollectChord(const tinyxml2::XMLElement* chord);
-			Key::_PPtr CollectMeasure(const tinyxml2::XMLElement* measure, const std::wstring& keyStr);
-			Part::_PPtr CollectKey(const tinyxml2::XMLElement* key, const std::wstring& partName);
+			static void CollectParts(Score::_PPtr& score, const tinyxml2::XMLElement* part);
+			static Measure::_PPtr CollectChord(const tinyxml2::XMLElement* chord);
+			static Key::_PPtr CollectMeasure(const tinyxml2::XMLElement* measure, const std::wstring& keyStr);
+			static Part::_PPtr CollectKey(const tinyxml2::XMLElement* key, const std::wstring& partName);
 
 		public:
-			ScoreReader(const std::string& path);
-
-			const score::Score& Score() const { return score; }
+			static const Score::_PPtr Load(const std::string& path);
 		};
 	}
 }

@@ -16,6 +16,8 @@ namespace score
 			const int Count() const { return count; }
 
 			static _PPtr Instantiate(const int count) { return _PPtr(new Measure(count)); }
+
+			const chord::Chord& Chord(const size_t i) const { return *elem[i]; }
 		};
 	}
 }

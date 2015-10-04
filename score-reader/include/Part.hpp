@@ -17,6 +17,8 @@ namespace score
 			const std::wstring& Name() const { return name; }
 
 			static _PPtr Instantiate(const std::wstring& name) { return _PPtr(new Part(name)); }
+
+			const Key& Key(const size_t i) const { return *elem[i]; }
 		};
 	}
 }

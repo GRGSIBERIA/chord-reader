@@ -9,9 +9,9 @@ void TestBeatSimple(const std::wstring& str)
 	const auto chord = score::chord::ChordFactory::CreateChord(str);
 	part.PushBack(chord);
 
-	const auto& c = part.At(0);
+	const auto& c = part.Chord(0);
 
-	EXPECT_EQ(c->root.Name(), str);
+	EXPECT_EQ(c.root.Name(), str);
 }
 
 TEST(TestMeasure, simple)

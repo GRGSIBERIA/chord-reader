@@ -80,7 +80,7 @@ Part::_PPtr ScoreReader::CollectKey(const tinyxml2::XMLElement* key, const std::
 	return partPtr;
 }
 
-void ScoreReader::CollectParts(const tinyxml2::XMLElement* part)
+void ScoreReader::CollectParts(Score::_PPtr& score, const tinyxml2::XMLElement* part)
 {
 	const auto key = part->FirstChildElement("key");
 	const int times = part->IntAttribute("repeat");
@@ -91,27 +91,43 @@ void ScoreReader::CollectParts(const tinyxml2::XMLElement* part)
 		for (int i = 0; i < times; ++i)
 		{
 			const auto partPtr = CollectKey(key, partName);
-			score.PushBack(partPtr);
+			score->PushBack(partPtr);
 		}
 	}
 	else
 	{
 		const auto partPtr = CollectKey(key, partName);
-		score.PushBack(partPtr);
+		score->PushBack(partPtr);
 	}
 }
 
-ScoreReader::ScoreReader(const std::string& path)
+Score::_PPtr InstantiateScore(const tinyxml2::XMLElement* header)
 {
+	const auto title = ConvertWidenText(header->FirstChildElement("title")->GetText());
+	const auto key = ConvertWidenText(header->FirstChildElement("key")->GetText());
+
+	return Score::Instantiate(title, key);
+}
+
+const Score::_PPtr ScoreReader::Load(const std::string& path)
+{
+	tinyxml2::XMLDocument doc;
+
 	if (doc.LoadFile(path.c_str()) != tinyxml2::XMLError::XML_SUCCESS)
 		throw std::exception((std::string("File not found: ") + path).c_str());
 
 	setlocale(LC_CTYPE, "");
 
-	const auto part = doc.FirstChildElement("chord-score")->FirstChildElement("score")->FirstChildElement("part");
+	const auto root = doc.FirstChildElement("chord-score");
+	const auto part = root->FirstChildElement("score")->FirstChildElement("part");
+	const auto header = root->FirstChildElement("header");
+
+	auto score = InstantiateScore(header);
 
 	for (auto p = part; p != nullptr; p = p->NextSiblingElement("part"))
 	{
-		CollectParts(p);
+		CollectParts(score, p);
 	}
+
+	return score;
 }
