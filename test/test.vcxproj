@@ -88,8 +88,10 @@
     <ClCompile Include="..\score-reader\src\KeyChordModalizer.cpp" />
     <ClCompile Include="..\score-reader\src\Modal.cpp" />
     <ClCompile Include="..\score-reader\src\ModeTheory.cpp" />
+    <ClCompile Include="..\score-reader\src\ScaleManager.cpp" />
     <ClCompile Include="..\score-reader\src\ScaleTheory.cpp" />
     <ClCompile Include="..\score-reader\src\ScoreReader.cpp" />
+    <ClCompile Include="..\score-reader\src\ScoreTurner.cpp" />
     <ClCompile Include="..\score-reader\src\tinyxml2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestChordConstructions.cpp" />

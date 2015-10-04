@@ -82,9 +82,11 @@
     <ClInclude Include="include\ModeTheory.hpp" />
     <ClInclude Include="include\Part.hpp" />
     <ClInclude Include="include\Scale.hpp" />
+    <ClInclude Include="include\ScaleManager.hpp" />
     <ClInclude Include="include\ScaleTheory.hpp" />
     <ClInclude Include="include\Score.hpp" />
     <ClInclude Include="include\ScoreReader.hpp" />
+    <ClInclude Include="include\ScoreTurner.hpp" />
     <ClInclude Include="include\xml\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>

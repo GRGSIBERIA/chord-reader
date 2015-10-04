@@ -37,11 +37,11 @@
     <Filter Include="ソース ファイル\score\chord">
       <UniqueIdentifier>{b301b8a7-a908-4a11-9eec-04e189b3329f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\score\reader">
-      <UniqueIdentifier>{f25f2eea-3c0e-4ca4-afb9-298da7486413}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\score\score">
       <UniqueIdentifier>{e7ea39bb-744d-424b-8b04-24c4a403da3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\score\score">
+      <UniqueIdentifier>{f25f2eea-3c0e-4ca4-afb9-298da7486413}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +90,12 @@
     <ClInclude Include="include\ScoreReader.hpp">
       <Filter>ヘッダー ファイル\score\score</Filter>
     </ClInclude>
+    <ClInclude Include="include\ScoreTurner.hpp">
+      <Filter>ヘッダー ファイル\score\score</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScaleManager.hpp">
+      <Filter>ヘッダー ファイル\score\score</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -114,7 +120,7 @@
       <Filter>ソース ファイル\score\scale</Filter>
     </ClCompile>
     <ClCompile Include="src\ScoreReader.cpp">
-      <Filter>ソース ファイル\score\reader</Filter>
+      <Filter>ソース ファイル\score\score</Filter>
     </ClCompile>
     <ClCompile Include="src\tinyxml2.cpp">
       <Filter>ソース ファイル\xml</Filter>
