@@ -97,3 +97,32 @@ TEST(TestModal, string_to_int_flat)
 	EXPECT_EQ(Modalize::ToInt(L"Bb"), 10);
 	EXPECT_EQ(Modalize::ToInt(L"B"), 11);
 }
+
+TEST(TestModal, has_minor)
+{
+	EXPECT_EQ(Modalize::HasMinor(L"C"),  false);
+	EXPECT_EQ(Modalize::HasMinor(L"Db"), false);
+	EXPECT_EQ(Modalize::HasMinor(L"D"),  false);
+	EXPECT_EQ(Modalize::HasMinor(L"Eb"), false);
+	EXPECT_EQ(Modalize::HasMinor(L"E"),  false);
+	EXPECT_EQ(Modalize::HasMinor(L"F"),  false);
+	EXPECT_EQ(Modalize::HasMinor(L"Gb"), false);
+	EXPECT_EQ(Modalize::HasMinor(L"G"),  false);
+	EXPECT_EQ(Modalize::HasMinor(L"Ab"), false);
+	EXPECT_EQ(Modalize::HasMinor(L"A"),  false);
+	EXPECT_EQ(Modalize::HasMinor(L"Bb"), false);
+	EXPECT_EQ(Modalize::HasMinor(L"B"),  false);
+
+	EXPECT_EQ(Modalize::HasMinor(L"Cm"),  true);
+	EXPECT_EQ(Modalize::HasMinor(L"Dbm"), true);
+	EXPECT_EQ(Modalize::HasMinor(L"Dm"),  true);
+	EXPECT_EQ(Modalize::HasMinor(L"Ebm"), true);
+	EXPECT_EQ(Modalize::HasMinor(L"Em"),  true);
+	EXPECT_EQ(Modalize::HasMinor(L"Fm"),  true);
+	EXPECT_EQ(Modalize::HasMinor(L"Gbm"), true);
+	EXPECT_EQ(Modalize::HasMinor(L"Gm"),  true);
+	EXPECT_EQ(Modalize::HasMinor(L"Abm"), true);
+	EXPECT_EQ(Modalize::HasMinor(L"Am"),  true);
+	EXPECT_EQ(Modalize::HasMinor(L"Bbm"), true);
+	EXPECT_EQ(Modalize::HasMinor(L"Bm"),  true);
+}
