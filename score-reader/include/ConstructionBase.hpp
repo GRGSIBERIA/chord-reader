@@ -21,6 +21,8 @@ namespace score
 			static _PPtr Instantiate() { return _PPtr(new P()); }
 
 			void PushBack(const _TPtr& ptr) { elem.push_back(ptr); }
+
+			const size_t Size() const { return elem.size(); }
 		};
 	}
 }
