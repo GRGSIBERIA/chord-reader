@@ -15,10 +15,11 @@ namespace score
 		public:
 			ScaleManager(const Score& score);
 
-			const scale::ModeModals& GetScale(const std::wstring& key, const std::wstring& chord)
-			{
+			// アベイラブルスケールの一覧を取得する
+			const scale::ModeModalScales& GetScale(const std::wstring& key, const std::wstring& chord) { return keys[key]->GetAvailables(chord); }
 
-			}
+			// 現在のコードのモードインデックスを取得する
+			const int GetIndexOnScale(const std::wstring& key, const std::wstring& chord) { return keys[key]->ModeIndex(chord); }
 		};
 	}
 }
