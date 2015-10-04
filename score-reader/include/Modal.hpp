@@ -41,6 +41,7 @@ namespace score
 			static int ToInt(const std::wstring& str);
 			static const std::wstring& ToString(const Modal& modal, const bool isSharp=true);
 			static const std::wstring& ToString(const int& modal, const bool isSharp=true);
+			static bool HasMinor(const std::wstring& str);
 		};
 	}
 }
