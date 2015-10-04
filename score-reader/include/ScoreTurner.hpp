@@ -5,6 +5,7 @@ namespace score
 {
 	namespace score
 	{
+		// •ˆ‚ß‚­‚èƒNƒ‰ƒX
 		class ScoreTurner
 		{
 			const int rythm;	// ”q
