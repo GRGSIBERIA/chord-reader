@@ -47,7 +47,7 @@ void PrintVector(const KeyChordModalizer& modalizer, size_t root, size_t mode, c
 
 TEST(TestKeyChordModalizer, get_modals_on_c)
 {
-	const auto modalizer = KeyChordModalizer(Modal::C);
+	const auto modalizer = KeyChordModalizer(L"C");
 
 	PrintVector(modalizer, 0, 0, { 0, 2, 4, 5, 7, 9, 11 });
 	PrintVector(modalizer, 1, 1, { 2, 4, 5, 7, 9, 11, 0 });
@@ -70,7 +70,7 @@ void PrintAvailables(const KeyChordModalizer& modalizer, const size_t key, const
 
 TEST(TestKeyChordModalizer, test_availables)
 {
-	const auto modalizer = KeyChordModalizer(Modal::C);
+	const auto modalizer = KeyChordModalizer(L"C");
 
 	PrintAvailables(modalizer, 0, 0, { 0, 2, 4, 7, 9, 11 });
 	PrintAvailables(modalizer, 1, 1, { 2, 4, 5, 7, 9, 0 });
@@ -91,7 +91,7 @@ void TestAvailables(const KeyChordModalizer& modalizer, const std::wstring& key,
 
 TEST(TestKeyChordModalizer, test_chord_name)
 {
-	const auto modalizer = KeyChordModalizer(Modal::C);
+	const auto modalizer = KeyChordModalizer(L"C");
 
 	TestAvailables(modalizer, L"CM7",	0, { 0, 2, 4, 7, 9, 11 });
 	TestAvailables(modalizer, L"Dm7",	1, { 2, 4, 5, 7, 9, 0 });
