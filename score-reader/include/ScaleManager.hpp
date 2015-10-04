@@ -14,6 +14,11 @@ namespace score
 
 		public:
 			ScaleManager(const Score& score);
+
+			const scale::ModeModals& GetScale(const std::wstring& key, const std::wstring& chord)
+			{
+
+			}
 		};
 	}
 }

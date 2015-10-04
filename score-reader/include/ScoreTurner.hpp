@@ -1,5 +1,6 @@
 #pragma once
 #include "Score.hpp"
+#include "ScaleManager.hpp"
 
 namespace score
 {
@@ -18,6 +19,8 @@ namespace score
 
 			const Score::_PPtr ptr;
 			const Score& score;
+
+			const ScaleManager manager;
 
 		public:
 			ScoreTurner(const Score::_PPtr& score, const int rythm);

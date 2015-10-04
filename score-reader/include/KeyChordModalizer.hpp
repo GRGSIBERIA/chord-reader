@@ -49,12 +49,18 @@ namespace score
 			const ModeModals& GetAvailableScale(const size_t root, const size_t mode_num) const { return availables[root][mode_num]; }
 			const ModeModals& GetAvailableScale(const std::wstring& str, const size_t mode_num) const;
 
+			// あるコードにおけるモードスケールの中で，アベイラブルスケールをすべて取得する
+			const ModeModalScales& GetAvailables(const std::wstring& chord) const;
+
 			// 現在のコードに対して主体的なアベイラブルスケールを返す
 			const ModeModals& GetPrimaryAvailableScale(const std::wstring& str) const;
 			const ModeModals& GetPrimaryAvailableScale(const size_t rootIndex) const { return availables[rootIndex][rootIndex]; }
 
 			// このモードの調を返す
 			const std::wstring& KeyName() const { return keyName; }
+
+			// コードからモードインデックスを返す
+			const int ModeIndex(const std::wstring& chord) const { return scale.GetIndex(chord); }
 		};
 	}
 }
