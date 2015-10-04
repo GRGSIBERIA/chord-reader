@@ -65,9 +65,9 @@ Key::_PPtr ScoreReader::CollectMeasure(const tinyxml2::XMLElement* measure, cons
 	return keyPtr;
 }
 
-Part::_PPtr ScoreReader::CollectKey(const tinyxml2::XMLElement* key)
+Part::_PPtr ScoreReader::CollectKey(const tinyxml2::XMLElement* key, const std::wstring& partName)
 {
-	auto partPtr = Part::Instantiate();
+	auto partPtr = Part::Instantiate(partName);
 
 	for (auto k = key; k != nullptr; k = k->NextSiblingElement("key"))
 	{
@@ -84,18 +84,19 @@ void ScoreReader::CollectParts(const tinyxml2::XMLElement* part)
 {
 	const auto key = part->FirstChildElement("key");
 	const int times = part->IntAttribute("repeat");
+	const auto partName = ConvertWidenText(part->Attribute("name"));
 
 	if (times > 0)
 	{
 		for (int i = 0; i < times; ++i)
 		{
-			const auto partPtr = CollectKey(key);
+			const auto partPtr = CollectKey(key, partName);
 			score.PushBack(partPtr);
 		}
 	}
 	else
 	{
-		const auto partPtr = CollectKey(key);
+		const auto partPtr = CollectKey(key, partName);
 		score.PushBack(partPtr);
 	}
 }

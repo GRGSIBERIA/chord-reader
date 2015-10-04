@@ -68,7 +68,7 @@
         </measure>
       </key>
     </part>
-    <part>
+    <part name="C">
       <key code="Gm">
         <measure>
           <chord>Am7-5</chord>

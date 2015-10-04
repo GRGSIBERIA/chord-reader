@@ -16,7 +16,7 @@ namespace score
 			void CollectParts(const tinyxml2::XMLElement* part);
 			Measure::_PPtr CollectChord(const tinyxml2::XMLElement* chord);
 			Key::_PPtr CollectMeasure(const tinyxml2::XMLElement* measure, const std::wstring& keyStr);
-			Part::_PPtr CollectKey(const tinyxml2::XMLElement* key);
+			Part::_PPtr CollectKey(const tinyxml2::XMLElement* key, const std::wstring& partName);
 
 		public:
 			ScoreReader(const std::string& path);
