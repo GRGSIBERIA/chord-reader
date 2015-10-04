@@ -42,18 +42,13 @@ void KeyChordModalizer::CalcAvailableScaleOnRoot(const size_t root)
 }
 
 KeyChordModalizer::KeyChordModalizer(const std::wstring& key) 
-	: KeyChordModalizer(Modalize::ToModal(key), Modalize::HasMinor(key) ? mintheory : majtheory, { 0, 2, 4, 6 })
+	: KeyChordModalizer(key, Modalize::ToModal(key), Modalize::HasMinor(key) ? mintheory : majtheory, { 0, 2, 4, 6 })
 {
 	// 委譲コンストラクタ
 }
 
-KeyChordModalizer::KeyChordModalizer(const size_t& key) : KeyChordModalizer(Modalize::ToModal(key), majtheory, { 0, 2, 4, 6 })
-{
-	// 委譲コンストラクタ
-}
-
-KeyChordModalizer::KeyChordModalizer(const Modal& key, const ScaleTheory& theory, const ScaleIndices& chordTone)
-	: mtheory(Scale(L"", theory.GetScale(key)), chordTone), key(key), scale(L"", theory.GetScale(key)) 
+KeyChordModalizer::KeyChordModalizer(const std::wstring& keyName, const Modal& key, const ScaleTheory& theory, const ScaleIndices& chordTone)
+	: mtheory(Scale(keyName, theory.GetScale(key)), chordTone), key(key), scale(keyName, theory.GetScale(key)), keyName(keyName)
 {
 	modeScale = ModesOnScale(scale.Size(), 
 		ModeModalScales(scale.Size(), 

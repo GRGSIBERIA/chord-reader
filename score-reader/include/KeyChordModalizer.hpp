@@ -24,6 +24,8 @@ namespace score
 
 			const Modal key;
 
+			const std::wstring keyName;
+
 			ModesOnScale modeScale;
 
 			ModesOnScale availables;
@@ -32,9 +34,8 @@ namespace score
 			void CalcAvailableScaleOnRoot(const size_t root);
 
 		public:
-			KeyChordModalizer(const Modal& key, const ScaleTheory& theory, const ScaleIndices& chordTone);
+			KeyChordModalizer(const std::wstring& keyName, const Modal& key, const ScaleTheory& theory, const ScaleIndices& chordTone);
 			KeyChordModalizer(const std::wstring& str);
-			KeyChordModalizer(const size_t& key);
 
 			// モードを取得する
 			const ModeModals& GetModeScale(const size_t root, const size_t mode_num) const { return modeScale[root][mode_num]; }
@@ -51,6 +52,9 @@ namespace score
 			// 現在のコードに対して主体的なアベイラブルスケールを返す
 			const ModeModals& GetPrimaryAvailableScale(const std::wstring& str) const;
 			const ModeModals& GetPrimaryAvailableScale(const size_t rootIndex) const { return availables[rootIndex][rootIndex]; }
+
+			// このモードの調を返す
+			const std::wstring& KeyName() const { return keyName; }
 		};
 	}
 }
