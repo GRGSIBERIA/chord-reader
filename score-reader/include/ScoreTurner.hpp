@@ -24,6 +24,8 @@ namespace score
 
 		public:
 			ScoreTurner(const Score::_PPtr& score, const int rythm);
+
+			void CountUp();
 		};
 	}
 }
