@@ -125,5 +125,11 @@
     <ClCompile Include="src\tinyxml2.cpp">
       <Filter>ソース ファイル\xml</Filter>
     </ClCompile>
+    <ClCompile Include="src\ScaleManager.cpp">
+      <Filter>ソース ファイル\score\score</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScoreTurner.cpp">
+      <Filter>ソース ファイル\score\score</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

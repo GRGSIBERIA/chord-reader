@@ -101,6 +101,7 @@
     <ClCompile Include="TestMeasure.cpp" />
     <ClCompile Include="TestScaleTheory.cpp" />
     <ClCompile Include="TestScoreReader.cpp" />
+    <ClCompile Include="TestScoreTurner.cpp" />
     <ClCompile Include="TestTinyXML.cpp" />
   </ItemGroup>
   <ItemGroup>

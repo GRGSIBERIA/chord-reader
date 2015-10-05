@@ -96,8 +96,10 @@
     <ClCompile Include="src\KeyChordModalizer.cpp" />
     <ClCompile Include="src\Modal.cpp" />
     <ClCompile Include="src\ModeTheory.cpp" />
+    <ClCompile Include="src\ScaleManager.cpp" />
     <ClCompile Include="src\ScaleTheory.cpp" />
     <ClCompile Include="src\ScoreReader.cpp" />
+    <ClCompile Include="src\ScoreTurner.cpp" />
     <ClCompile Include="src\tinyxml2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

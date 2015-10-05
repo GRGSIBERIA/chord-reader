@@ -75,6 +75,9 @@
     <ClCompile Include="..\score-reader\src\ScaleManager.cpp">
       <Filter>ソース ファイル\src</Filter>
     </ClCompile>
+    <ClCompile Include="TestScoreTurner.cpp">
+      <Filter>ソース ファイル\test</Filter>
+    </ClCompile>
     <ClCompile Include="..\score-reader\src\ScoreTurner.cpp">
       <Filter>ソース ファイル\src</Filter>
     </ClCompile>
