@@ -9,8 +9,7 @@ ScoreTurner::ScoreTurner(const Score::_PPtr& score, const int rythm)
 
 void ScoreTurner::Initialize()
 {
-	partNum = 0; keyNum = 0; measureNum = 0; chordNum = 0; count = 0;
-	nextCount = 4 / this->score.Part(partNum).Key(keyNum).Measure(measureNum).Size();
+	partNum = 0; keyNum = 0; measureNum = 0; count = 0;
 	endFlag = false;
 }
 
@@ -26,38 +25,33 @@ void ScoreTurner::Restart()
 
 bool ScoreTurner::Count()
 {
-	if (++count >= nextCount)
+	if (count++ >= rythm)
 	{
 		count = 0;
 
-		nextCount = 4 / score.Part(partNum).Key(keyNum).Measure(measureNum).Size();
-
-		if (++chordNum >= score.Part(partNum).Key(keyNum).Measure(measureNum).Size())
+		if (measureNum++ >= score.Part(partNum).Key(keyNum).Size())
 		{
-			chordNum = 0;
+			measureNum = 0;
 
-			if (++measureNum >= score.Part(partNum).Key(keyNum).Size())
+			if (keyNum++ >= score.Part(partNum).Size())
 			{
-				measureNum = 0;
+				keyNum = 0;
 
-				if (++keyNum >= score.Part(partNum).Size())
+				if (partNum++ >= score.Size())
 				{
-					keyNum = 0;
-
-					if (++partNum >= score.Size())
-					{
-						partNum = 0;
-						endFlag = true;
-					}
+					partNum = 0;
+					endFlag = true;
 				}
 			}
 		}
+		
 		return true;
 	}
 	return false;
 }
 
-const score::chord::Chord& ScoreTurner::CurrentChord() const 
+const Measure& ScoreTurner::CurrentMeasure() const 
 { 
-	return score.Part(partNum).Key(keyNum).Measure(measureNum).Chord(chordNum);
+	return score.Part(partNum).Key(keyNum).Measure(measureNum);
 }
+

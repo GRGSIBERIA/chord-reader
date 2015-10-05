@@ -14,8 +14,6 @@ namespace score
 			size_t partNum;
 			size_t keyNum;
 			size_t measureNum;
-			size_t chordNum;
-			int nextCount;
 			int count;
 			bool endFlag;
 
@@ -32,6 +30,8 @@ namespace score
 			bool Count();	// カウントを取って，次の小節に飛んだらtrueを返す
 
 			const chord::Chord& CurrentChord() const;
+
+			const Measure& CurrentMeasure() const;
 
 			const bool IsEnded() const;
 
