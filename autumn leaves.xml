@@ -3,7 +3,7 @@
   <header>
     <title>Autumn Leaves</title>
     <key>Bb</key>
-    <rhythm note="4" time="4" />
+    <rhythm beat="4" note="4" />
   </header>
   <score>
     <part name="A" repeat="2">
