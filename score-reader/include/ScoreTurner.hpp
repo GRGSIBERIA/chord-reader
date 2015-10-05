@@ -15,17 +15,27 @@ namespace score
 			size_t keyNum;
 			size_t measureNum;
 			size_t chordNum;
-			int beat;
+			int nextCount;
+			int count;
+			bool endFlag;
 
 			const Score::_PPtr ptr;
 			const Score& score;
 
 			const ScaleManager manager;
 
+			void Initialize();
+
 		public:
 			ScoreTurner(const Score::_PPtr& score, const int rythm);
 
-			void CountUp();
+			bool Count();	// カウントを取って，次の小節に飛んだらtrueを返す
+
+			const chord::Chord& CurrentChord() const;
+
+			const bool IsEnded() const;
+
+			void Restart();
 		};
 	}
 }
