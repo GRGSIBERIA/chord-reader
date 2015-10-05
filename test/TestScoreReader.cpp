@@ -12,6 +12,8 @@ TEST(TestScoreReader, header)
 	const auto score = ScoreReader::Load("..\\autumn leaves.xml");
 	EXPECT_EQ(score->Title(), L"Autumn Leaves");
 	EXPECT_EQ(score->Key(), L"Bb");
+	EXPECT_EQ(score->Beat(), 4);
+	EXPECT_EQ(score->Note(), 4);
 }
 
 TEST(TestScoreReader, part)

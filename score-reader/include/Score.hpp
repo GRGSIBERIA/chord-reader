@@ -20,8 +20,8 @@ namespace score
 
 			const std::wstring& Title() const { return title; }
 			const std::wstring& Key() const { return key; }
-			const int Beat() const { return beat; }
-			const int Note() const { return note; }
+			const int Beat() const { return beat; }		// ”q
+			const int Note() const { return note; }		// ‰¹•„‚Ìí—Ş
 
 			const Part& Part(const size_t i) const { return *elem[i]; }
 		};

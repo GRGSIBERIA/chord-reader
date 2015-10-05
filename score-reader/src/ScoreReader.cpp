@@ -107,7 +107,10 @@ Score::_PPtr InstantiateScore(const tinyxml2::XMLElement* header)
 	const auto key = ConvertWidenText(header->FirstChildElement("key")->GetText());
 	const auto rhythm = header->FirstChildElement("rhythm");
 
-	return Score::Instantiate(title, key);
+	const int beat = rhythm->IntAttribute("beat");
+	const int note = rhythm->IntAttribute("note");
+
+	return Score::Instantiate(title, key, note, beat);
 }
 
 const Score::_PPtr ScoreReader::Load(const std::string& path)
