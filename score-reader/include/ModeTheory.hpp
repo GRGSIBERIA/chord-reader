@@ -8,7 +8,7 @@ namespace score
 	namespace scale
 	{
 		typedef std::vector<ModeScale> ScalesOnModeTheory;
-		typedef std::vector<score::chord::Chord> DiatonicChords;
+		typedef std::vector<chord::Chord> DiatonicChords;
 
 		/**
 		* スケールからモードを自動生成するためのクラス
@@ -31,7 +31,7 @@ namespace score
 			const ModeScale& GetMode(const size_t index) const { return modeScales[index]; }
 			const ModeScale& GetMode(const Modal modal) const { return modeScales[(size_t)modal]; }
 
-			const score::chord::Chord& GetDiatonic(const size_t index) const { return diatonics[index]; }
+			const chord::Chord& GetDiatonic(const size_t index) const { return diatonics[index]; }
 
 			//const Scale& GetScale(const int key, const int root, const int mode);
 		};
