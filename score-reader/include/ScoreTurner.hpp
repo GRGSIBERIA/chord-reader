@@ -25,12 +25,10 @@ namespace score
 			void Initialize();
 
 		public:
-			ScoreTurner(const Score::_PPtr& score, const int rythm);
+			ScoreTurner(const Score::_PPtr& score);
 
 			bool Count();	// カウントを取って，次の小節に飛んだらtrueを返す
-
-			const chord::Chord& CurrentChord() const;
-
+			
 			const Measure& CurrentMeasure() const;
 
 			const bool IsEnded() const;

@@ -1,8 +1,8 @@
 #include "ScoreTurner.hpp"
 using namespace score::score;
 
-ScoreTurner::ScoreTurner(const Score::_PPtr& score, const int rythm) 
-	: rythm(rythm), ptr(score), score(*score), manager(*score)
+ScoreTurner::ScoreTurner(const Score::_PPtr& score) 
+	: rythm(score->Beat()), ptr(score), score(*score), manager(*score)
 {
 	Initialize();
 }
@@ -25,19 +25,22 @@ void ScoreTurner::Restart()
 
 bool ScoreTurner::Count()
 {
+	if (endFlag)
+		return true;
+
 	if (count++ >= rythm)
 	{
-		count = 0;
+		count = 1;
 
-		if (measureNum++ >= score.Part(partNum).Key(keyNum).Size())
+		if (++measureNum >= score.Part(partNum).Key(keyNum).Size())
 		{
 			measureNum = 0;
 
-			if (keyNum++ >= score.Part(partNum).Size())
+			if (++keyNum >= score.Part(partNum).Size())
 			{
 				keyNum = 0;
 
-				if (partNum++ >= score.Size())
+				if (++partNum >= score.Size())
 				{
 					partNum = 0;
 					endFlag = true;
