@@ -72,29 +72,17 @@
     <ClInclude Include="include\xml\tinyxml2.h">
       <Filter>ヘッダー ファイル\xml</Filter>
     </ClInclude>
-    <ClInclude Include="include\Part.hpp">
+    <ClInclude Include="include\ChordScore.hpp">
       <Filter>ヘッダー ファイル\score\score</Filter>
     </ClInclude>
-    <ClInclude Include="include\Score.hpp">
+    <ClInclude Include="include\ChordUnit.hpp">
       <Filter>ヘッダー ファイル\score\score</Filter>
     </ClInclude>
-    <ClInclude Include="include\ConstructionBase.hpp">
+    <ClInclude Include="include\Header.hpp">
       <Filter>ヘッダー ファイル\score\score</Filter>
     </ClInclude>
-    <ClInclude Include="include\Measure.hpp">
-      <Filter>ヘッダー ファイル\score\score</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Key.hpp">
-      <Filter>ヘッダー ファイル\score\score</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ScoreReader.hpp">
-      <Filter>ヘッダー ファイル\score\score</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ScoreTurner.hpp">
-      <Filter>ヘッダー ファイル\score\score</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ScaleManager.hpp">
-      <Filter>ヘッダー ファイル\score\score</Filter>
+    <ClInclude Include="include\Property.hpp">
+      <Filter>ヘッダー ファイル\score</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,16 +107,10 @@
     <ClCompile Include="src\KeyChordModalizer.cpp">
       <Filter>ソース ファイル\score\scale</Filter>
     </ClCompile>
-    <ClCompile Include="src\ScoreReader.cpp">
-      <Filter>ソース ファイル\score\score</Filter>
-    </ClCompile>
     <ClCompile Include="src\tinyxml2.cpp">
       <Filter>ソース ファイル\xml</Filter>
     </ClCompile>
-    <ClCompile Include="src\ScaleManager.cpp">
-      <Filter>ソース ファイル\score\score</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ScoreTurner.cpp">
+    <ClCompile Include="src\ChordScore.cpp">
       <Filter>ソース ファイル\score\score</Filter>
     </ClCompile>
   </ItemGroup>
