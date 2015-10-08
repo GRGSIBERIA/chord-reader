@@ -3,6 +3,7 @@
 #include <vector>
 #include "Chord.hpp"
 #include "ChordFactory.hpp"
+#include "Property.hpp"
 
 namespace score
 {
@@ -23,10 +24,15 @@ namespace score
 				
 			}
 
-			const chord::Chord& Chord() const { return *chordPtr; }
-			const std::wstring& Key() const { return key; }
-			const int Count() const { return count; }
-			const std::wstring& Part() const { return part; }
+			const chord::Chord& _GetChord() const { return *chordPtr; }
+			//const std::wstring& Key() const { return key; }
+			//const int Count() const { return count; }
+			//const std::wstring& Part() const { return part; }
+
+			GET_PROPERTY(const std::wstring&, Key);
+			GET_PROPERTY(const std::wstring&, Part);
+			GET_PROPERTY(const int, Count);
+			__declspec(property(get = _GetChord)) const chord::Chord& Chord;
 		};
 
 		// 専用の配列クラス
