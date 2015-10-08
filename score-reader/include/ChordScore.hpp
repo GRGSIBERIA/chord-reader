@@ -8,6 +8,7 @@ namespace score
 {
 	namespace score
 	{
+		// XMLからコードを読み込んで，Chordインスタンスの配列を作る
 		class ChordScore
 		{
 			ChordUnitArray chords;
@@ -18,6 +19,12 @@ namespace score
 
 		public:
 			ChordScore(const std::string& path);
+
+			const Header& _GetHeader() const { return *header; }
+			const ChordUnitArray& _GetChords() const { return chords; }
+
+			__declspec(property(get = _GetHeader)) const Header& Header;
+			__declspec(property(get = _GetChords)) const ChordUnitArray& Chords;
 		};
 	}
 }
