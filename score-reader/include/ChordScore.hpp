@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <xml\tinyxml2.h>
 #include "ChordUnit.hpp"
 #include "Header.hpp"
 

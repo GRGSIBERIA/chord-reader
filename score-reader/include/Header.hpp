@@ -18,10 +18,10 @@ namespace score
 			Header(const std::wstring& title, const std::wstring& key, const int beat, const int note)
 				: title(title), key(key), beat(beat), note(note) {}
 
-			GET_PROPERTY(const std::wstring&, Title);
-			GET_PROPERTY(const std::wstring&, Key);
-			GET_PROPERTY(const int, Beat);
-			GET_PROPERTY(const int, Note);
+			GET_PROPERTY(const std::wstring&, Title, title);
+			GET_PROPERTY(const std::wstring&, Key, key);
+			GET_PROPERTY(const int, Beat, beat);
+			GET_PROPERTY(const int, Note, note);
 		};
 		typedef std::shared_ptr<Header> HeaderPtr;
 	}

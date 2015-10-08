@@ -25,13 +25,10 @@ namespace score
 			}
 
 			const chord::Chord& _GetChord() const { return *chordPtr; }
-			//const std::wstring& Key() const { return key; }
-			//const int Count() const { return count; }
-			//const std::wstring& Part() const { return part; }
 
-			GET_PROPERTY(const std::wstring&, Key);
-			GET_PROPERTY(const std::wstring&, Part);
-			GET_PROPERTY(const int, Count);
+			GET_PROPERTY(const std::wstring&, Key, key);
+			GET_PROPERTY(const std::wstring&, Part, part);
+			GET_PROPERTY(const int, Count, count);
 			__declspec(property(get = _GetChord)) const chord::Chord& Chord;
 		};
 
@@ -44,15 +41,15 @@ namespace score
 			ChordUnitArray() { reserve(128); }
 
 			// 次のパートの位置を返す
-			Itr NextPart(const Itr& now) const
+			Itr NextPart(Itr& now) const
 			{
-				return std::find_if(now, end(), [now](Itr b) { return now->Part() == b->Part(); });
+				return std::find_if(now, end(), [now](const ChordUnit& b) { return now->Part != b.Part; });
 			}
 
 			// 次のキーの位置を返す
-			Itr NextKey(const Itr& now) const
+			Itr NextKey(Itr& now) const
 			{
-				return std::find_if(now, end(), [now](Itr b) { return now->Key() == b->Key(); });
+				return std::find_if(now, end(), [now](const ChordUnit& b) { return now->Key != b.Key; });
 			}
 		};
 	}

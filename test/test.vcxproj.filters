@@ -63,15 +63,16 @@
     <ClCompile Include="..\score-reader\src\tinyxml2.cpp">
       <Filter>ソース ファイル\src</Filter>
     </ClCompile>
+    <ClCompile Include="TestChordScore.cpp">
+      <Filter>ソース ファイル\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\score-reader\src\ChordScore.cpp">
+      <Filter>ソース ファイル\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\score-reader\include\xml\tinyxml2.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TestChordScore.cpp">
-      <Filter>ソース ファイル\test</Filter>
-    </None>
   </ItemGroup>
 </Project>

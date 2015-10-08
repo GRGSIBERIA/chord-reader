@@ -6,8 +6,8 @@ using namespace score::score;
 
 std::wstring widen(const std::string &src) {
 	wchar_t *wcs = new wchar_t[src.length() + 1];
-	mbstowcs(wcs, src.c_str(), src.length() + 1);
-	std::wstring retval = wcs;
+	mbstowcs_s(nullptr, wcs, src.length() + 1, src.c_str(), src.length() + 1);
+	std::wstring retval(wcs);
 	delete[] wcs;
 	return retval;
 }
@@ -21,10 +21,10 @@ void ChordScore::CollectHeader(const tinyxml2::XMLElement* header)
 	const int beat = rhythm->IntAttribute("beat");
 	const int note = rhythm->IntAttribute("note");
 
-	this->header = HeaderPtr(new Header(title, key, beat, note));
+	this->header = HeaderPtr(new score::Header(title, key, beat, note));
 }
 
-#define FOR_ELEM(PARENT, CHILD) for (auto CHILD = PARENT->FirstChildElement("#CHILD"); CHILD != nullptr; CHILD = CHILD->NextSiblingElement("#CHILD"))
+#define FOR_ELEM(PARENT, CHILD) for (auto CHILD = PARENT->FirstChildElement("##CHILD"); CHILD != nullptr; CHILD = CHILD->NextSiblingElement("##CHILD"))
 
 const int CountElements(const tinyxml2::XMLElement* head)
 {
@@ -36,26 +36,42 @@ const int CountElements(const tinyxml2::XMLElement* head)
 	return retval;
 }
 
+const std::wstring MakeDash(const int repeat)
+{
+	std::wstring retval = L"";
+	for (int i = 0; i < repeat; ++i)
+		retval += L"'";
+	return retval;
+}
+
+void Loop(const char* str, void (*func)())
+{
+
+}
+
 void ChordScore::CollectScore(const tinyxml2::XMLElement* score)
 {
-	FOR_ELEM(score, part)
+	for (auto part = score->FirstChildElement("part"); part != nullptr; part = part->NextSiblingElement("part"))
 	{
-		const int repeat = part->IntAttribute("repeat");
 		const auto partName = widen(part->Attribute("name"));
+		int repeat = part->IntAttribute("repeat");
+		if (repeat == 0) repeat = 1;
 
 		for (int i = 0; i < repeat; ++i)
 		{
-			FOR_ELEM(part, key)
+			for (auto key = part->FirstChildElement("key"); key != nullptr; key = key->NextSiblingElement("key"))
 			{
 				const auto keyCode = widen(key->Attribute("code"));
-				FOR_ELEM(key, measure)
+
+				for (auto measure = key->FirstChildElement("measure"); measure != nullptr; measure = measure->NextSiblingElement("measure"))
 				{
 					const auto count = CountElements(measure->FirstChildElement("chord"));
 					const auto time = 4 >> (count - 1);
-					FOR_ELEM(measure, chord)
+
+					for (auto chord = measure->FirstChildElement("chord"); chord != nullptr; chord = chord->NextSiblingElement("chord"))
 					{
 						const auto chordName = widen(chord->GetText());
-						chords.emplace_back(partName, keyCode, chordName, time);
+						chords.emplace_back(partName + MakeDash(i), keyCode, chordName, time);
 					}
 				}
 			}
