@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "Chord.hpp"
 #include "ChordFactory.hpp"
 
@@ -7,6 +8,7 @@ namespace score
 {
 	namespace score
 	{
+		// スコア上のコードクラス
 		class ChordUnit
 		{
 			const std::wstring part;
@@ -25,6 +27,13 @@ namespace score
 			const std::wstring& Key() const { return key; }
 			const int Count() const { return count; }
 			const std::wstring& Part() const { return part; }
+		};
+
+		// 専用の配列クラス
+		class ChordUnitArray : public std::vector < ChordUnit >
+		{
+		public:
+			ChordUnitArray() { reserve(128); }
 		};
 	}
 }

@@ -10,7 +10,7 @@ namespace score
 	{
 		class ChordScore
 		{
-			std::vector<ChordUnit> chords;
+			ChordUnitArray chords;
 			HeaderPtr header;
 
 			void CollectHeader(const tinyxml2::XMLElement* header);
