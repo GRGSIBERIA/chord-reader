@@ -38,13 +38,13 @@ namespace score
 			ChordUnitArray() { reserve(128); }
 
 			// 次のパートの位置を返す
-			Itr NextPart(Itr now) const
+			Itr NextPart(const Itr& now) const
 			{
 				return std::find_if(now, end(), [now](Itr b) { return now->Part() == b->Part(); });
 			}
 
 			// 次のキーの位置を返す
-			Itr NextKey(Itr now) const
+			Itr NextKey(const Itr& now) const
 			{
 				return std::find_if(now, end(), [now](Itr b) { return now->Key() == b->Key(); });
 			}
