@@ -49,9 +49,3 @@ Modal Modalize::ToModal(const std::wstring& str)
 {
 	return (Modal)ToInt(str);
 }
-bool Modalize::HasMinor(const std::wstring& str)
-{
-	if (str.find(L"m") == str.npos)
-		return false;
-	return true;
-}
