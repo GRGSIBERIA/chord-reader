@@ -84,11 +84,11 @@
     <ClInclude Include="include\Property.hpp">
       <Filter>ヘッダー ファイル\score</Filter>
     </ClInclude>
-    <ClInclude Include="include\Key.hpp">
-      <Filter>ヘッダー ファイル\score\scale</Filter>
-    </ClInclude>
     <ClInclude Include="include\ModeManager.hpp">
       <Filter>ヘッダー ファイル\score\score</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Modulation.hpp">
+      <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,7 +119,7 @@
     <ClCompile Include="src\ChordScore.cpp">
       <Filter>ソース ファイル\score\score</Filter>
     </ClCompile>
-    <ClCompile Include="src\Key.cpp">
+    <ClCompile Include="src\Modulation.cpp">
       <Filter>ソース ファイル\score\scale</Filter>
     </ClCompile>
   </ItemGroup>

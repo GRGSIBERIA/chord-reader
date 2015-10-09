@@ -66,11 +66,14 @@
     <ClCompile Include="..\score-reader\src\ChordScore.cpp">
       <Filter>ソース ファイル\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\score-reader\src\Key.cpp">
-      <Filter>ソース ファイル\src</Filter>
-    </ClCompile>
     <ClCompile Include="..\score-reader\src\Modal.cpp">
       <Filter>ソース ファイル\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\score-reader\src\Modulation.cpp">
+      <Filter>ソース ファイル\src</Filter>
+    </ClCompile>
+    <ClCompile Include="TestModulation.cpp">
+      <Filter>ソース ファイル\test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
