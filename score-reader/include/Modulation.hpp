@@ -5,7 +5,7 @@ namespace score
 {
 	namespace scale
 	{
-		class Key
+		class Modulation
 		{
 		public:
 			static const std::wstring Parallel(const std::wstring& str);	// “¯Žå’²(I)

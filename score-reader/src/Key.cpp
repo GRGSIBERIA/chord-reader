@@ -1,4 +1,4 @@
-#include "Key.hpp"
+#include "Modulation.hpp"
 using namespace score::scale;
 
 int Round(int num)
@@ -33,20 +33,20 @@ const std::wstring CalcUnder(const std::wstring& str, int maj, int min)
 	}
 }
 
-const std::wstring Key::Parallel(const std::wstring& str)
+const std::wstring Modulation::Parallel(const std::wstring& str)
 {
 	auto num = Modalize::ToInt(str);
 	return Modalize::ToString(num) + SwapMinor(str);
 }
-const std::wstring Key::Relative(const std::wstring& str)
+const std::wstring Modulation::Relative(const std::wstring& str)
 {
 	return CalcUnder(str, 9, 4);
 }
-const std::wstring Key::Dominant(const std::wstring& str)
+const std::wstring Modulation::Dominant(const std::wstring& str)
 {
 	return CalcTop(str, 7);
 }
-const std::wstring Key::SubDominant(const std::wstring& str)
+const std::wstring Modulation::SubDominant(const std::wstring& str)
 {
 	return CalcTop(str, 5);
 }
