@@ -5,7 +5,7 @@ namespace score
 {
 	namespace score
 	{
-		class KeyManager : public std::vector<scale::KeyChordModalizer>
+		class ModeManager : public std::vector<scale::KeyChordModalizer>
 		{
 		public:
 			// ÉLÅ[Ç©ÇÁí«â¡
