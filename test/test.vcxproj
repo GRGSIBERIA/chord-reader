@@ -86,6 +86,7 @@
     <ClCompile Include="..\score-reader\src\ChordConstructions.cpp" />
     <ClCompile Include="..\score-reader\src\ChordFactory.cpp" />
     <ClCompile Include="..\score-reader\src\ChordScore.cpp" />
+    <ClCompile Include="..\score-reader\src\Key.cpp" />
     <ClCompile Include="..\score-reader\src\KeyChordModalizer.cpp" />
     <ClCompile Include="..\score-reader\src\Modal.cpp" />
     <ClCompile Include="..\score-reader\src\ModeTheory.cpp" />

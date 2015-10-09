@@ -77,7 +77,9 @@
     <ClInclude Include="include\ChordScore.hpp" />
     <ClInclude Include="include\ChordUnit.hpp" />
     <ClInclude Include="include\Header.hpp" />
+    <ClInclude Include="include\Key.hpp" />
     <ClInclude Include="include\KeyChordModalizer.hpp" />
+    <ClInclude Include="include\ModeManager.hpp" />
     <ClInclude Include="include\Modal.hpp" />
     <ClInclude Include="include\ModeTheory.hpp" />
     <ClInclude Include="include\Property.hpp" />
@@ -90,6 +92,7 @@
     <ClCompile Include="src\ChordConstructions.cpp" />
     <ClCompile Include="src\ChordFactory.cpp" />
     <ClCompile Include="src\ChordScore.cpp" />
+    <ClCompile Include="src\Key.cpp" />
     <ClCompile Include="src\KeyChordModalizer.cpp" />
     <ClCompile Include="src\Modal.cpp" />
     <ClCompile Include="src\ModeTheory.cpp" />

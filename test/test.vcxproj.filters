@@ -51,9 +51,6 @@
     <ClCompile Include="TestModal.cpp">
       <Filter>ソース ファイル\test</Filter>
     </ClCompile>
-    <ClCompile Include="..\score-reader\src\Modal.cpp">
-      <Filter>ソース ファイル\src</Filter>
-    </ClCompile>
     <ClCompile Include="TestKeyChordModalizer.cpp">
       <Filter>ソース ファイル\test</Filter>
     </ClCompile>
@@ -67,6 +64,12 @@
       <Filter>ソース ファイル\test</Filter>
     </ClCompile>
     <ClCompile Include="..\score-reader\src\ChordScore.cpp">
+      <Filter>ソース ファイル\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\score-reader\src\Key.cpp">
+      <Filter>ソース ファイル\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\score-reader\src\Modal.cpp">
       <Filter>ソース ファイル\src</Filter>
     </ClCompile>
   </ItemGroup>
