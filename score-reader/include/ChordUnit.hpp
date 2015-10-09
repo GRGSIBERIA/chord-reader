@@ -38,7 +38,7 @@ namespace score
 		public:
 			typedef ChordUnitArray::const_iterator Itr;
 
-			ChordUnitArray() { reserve(128); }
+			ChordUnitArray() { reserve(64); }
 
 			// 次のパートの位置を返す
 			Itr NextPart(Itr& now) const
