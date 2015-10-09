@@ -30,3 +30,30 @@ TEST(TestChordScore, Chords)
 		EXPECT_EQ(test[i], cs.Chords[i].Chord.Name());
 	}
 }
+
+TEST(TestChordScore, next_part)
+{
+	auto ad = cs.Chords.NextPart(cs.Chords.begin());
+	EXPECT_EQ(ad->Part, L"A'");
+
+	auto b = cs.Chords.NextPart(ad);
+	EXPECT_EQ(b->Part, L"B");
+
+	auto c = cs.Chords.NextPart(b);
+	EXPECT_EQ(c->Part, L"C");
+}
+
+ChordUnitArray::Itr TestKey(ChordUnitArray::Itr k, const std::wstring& str)
+{
+	EXPECT_EQ(k->Key, str);
+	return cs.Chords.NextKey(k);
+}
+
+TEST(TestChordScore, next_key)
+{
+	std::vector<std::wstring> s = { L"Bb", L"Gm", L"Bb", L"Gm", L"G", L"Gm", L"Bb", L"Gm", L"Bb" };
+
+	auto k = cs.Chords.cbegin();
+	for (const auto& str : s)
+		k = TestKey(k, str);
+}
