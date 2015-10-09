@@ -5,6 +5,7 @@ namespace score
 {
 	namespace scale
 	{
+		// •¶Žš—ñ‚ð“]’²‚³‚¹‚é
 		class Modulation
 		{
 		public:
