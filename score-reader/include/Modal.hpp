@@ -35,14 +35,15 @@ namespace score
 			static const std::array<std::wstring, 12> flat;
 
 		public:
-			static Modal ToModal(const int& modal);
-			static Modal ToModal(const std::wstring& str);
-			static int ToInt(const Modal& modal);
-			static int ToInt(const std::wstring& str);
+			static const bool HasMinor(const std::wstring& str);
+			static const int HasAccidental(const std::wstring& str);
+
+			static const Modal ToModal(const int& modal);
+			static const Modal ToModal(const std::wstring& str);
+			static const int ToInt(const Modal& modal);
+			static const int ToInt(const std::wstring& str);
 			static const std::wstring& ToString(const Modal modal, const bool isSharp=true);
 			static const std::wstring& ToString(const int modal, const bool isSharp=true);
-
-			static bool HasMinor(const std::wstring& str);
 		};
 	}
 }

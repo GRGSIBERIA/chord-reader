@@ -20,8 +20,6 @@ namespace score
 
 			// ƒL[‚©‚ç’T‚·
 			const Itr Find(const std::wstring& key) const;
-			const Itr Find(const int key) const;
-			const Itr Find(const scale::Modal& key) const;
 
 			// “]’²
 			const Itr Parallel(const std::wstring& key) const;	// “¯å’²

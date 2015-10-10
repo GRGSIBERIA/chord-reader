@@ -5,11 +5,19 @@ using namespace score::scale;
 const std::array<std::wstring, 12> Modalize::sharp = { L"C", L"C#", L"D", L"D#", L"E", L"F", L"F#", L"G", L"G#", L"A", L"A#", L"B" };
 const std::array<std::wstring, 12> Modalize::flat = { L"C", L"Db", L"D", L"Eb", L"E", L"F", L"Gb", L"G", L"Ab", L"A", L"Bb", L"B" };
 
-Modal Modalize::ToModal(const int& modal) 
+const int Modalize::HasAccidental(const std::wstring& str)
+{
+	if (str[1] == L'b')
+		return -1;
+	else if (str[1] == L'#')
+		return 1;
+	return 0;
+}
+const Modal Modalize::ToModal(const int& modal) 
 { 
 	return (Modal)modal; 
 }
-int Modalize::ToInt(const Modal& modal) 
+const int Modalize::ToInt(const Modal& modal) 
 { 
 	return (int)modal; 
 }
@@ -36,20 +44,15 @@ int RootToInt(const std::wstring& str)
 #undef IFSTR
 	throw std::invalid_argument("Unrecognized root name");
 }
-int Modalize::ToInt(const std::wstring& str)
+const int Modalize::ToInt(const std::wstring& str)
 {
-	int num = RootToInt(str);
-	if (str[1] == L'b')
-		--num;
-	else if (str[1] == L'#')
-		++num;
-	return num;
+	return RootToInt(str) + HasAccidental(str);
 }
-Modal Modalize::ToModal(const std::wstring& str)
+const Modal Modalize::ToModal(const std::wstring& str)
 {
 	return (Modal)ToInt(str);
 }
-bool Modalize::HasMinor(const std::wstring& str)
+const bool Modalize::HasMinor(const std::wstring& str)
 {
 	return str.find(L'm') != std::wstring::npos;
 }

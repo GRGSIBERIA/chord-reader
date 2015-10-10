@@ -19,25 +19,28 @@ const std::wstring CalcTop(const std::wstring& str, int plus)
 	auto num = Round(Modalize::ToInt(str) + plus);
 	return Modalize::ToString(num) + GetMinor(str);
 }
+const std::wstring AccidentaledPlusSwap(const int num, const std::wstring& str, const bool hasm)
+{
+	const auto accidental = Modalize::HasAccidental(str);
+	return Modalize::ToString(num, accidental >= 0 ? true : false) + SwapMinor(hasm);
+}
 const std::wstring CalcUnder(const std::wstring& str, int maj, int min)
 {
 	const bool hasm = Modalize::HasMinor(str);
+	
+	int num;
 	if (!hasm)
-	{
-		auto num = Round(Modalize::ToInt(str) + maj);
-		return Modalize::ToString(num) + SwapMinor(hasm);
-	}
+		num = Round(Modalize::ToInt(str) + maj);
 	else
-	{
-		auto num = Round(Modalize::ToInt(str) + min);
-		return Modalize::ToString(num) + SwapMinor(hasm);
-	}
+		num = Round(Modalize::ToInt(str) + min);
+
+	return AccidentaledPlusSwap(num, str, hasm);
 }
 
 const std::wstring Modulation::Parallel(const std::wstring& str)
 {
 	const auto num = Modalize::ToInt(str);
-	return Modalize::ToString(num) + SwapMinor(Modalize::HasMinor(str));
+	return AccidentaledPlusSwap(num, str, Modalize::HasMinor(str));
 }
 const std::wstring Modulation::Relative(const std::wstring& str)
 {
