@@ -13,11 +13,11 @@ int Modalize::ToInt(const Modal& modal)
 { 
 	return (int)modal; 
 }
-const std::wstring& Modalize::ToString(const Modal& modal, const bool isSharp)
+const std::wstring& Modalize::ToString(const Modal modal, const bool isSharp)
 {
 	return ToString((int)modal, isSharp);
 }
-const std::wstring& Modalize::ToString(const int& modal, const bool isSharp)
+const std::wstring& Modalize::ToString(const int modal, const bool isSharp)
 {
 	if (isSharp)
 		return sharp[modal];
@@ -51,5 +51,5 @@ Modal Modalize::ToModal(const std::wstring& str)
 }
 bool Modalize::HasMinor(const std::wstring& str)
 {
-	return str.find(L'm') != str.npos;
+	return str.find(L'm') != std::wstring::npos;
 }

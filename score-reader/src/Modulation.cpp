@@ -6,9 +6,9 @@ int Round(int num)
 	if (num > 11) num -= 12;
 	return num;
 }
-std::wstring SwapMinor(const std::wstring& str)
+std::wstring SwapMinor(const bool hasminor)
 {
-	return !Modalize::HasMinor(str) ? L"m" : L"";
+	return !hasminor ? L"m" : L"";
 }
 std::wstring GetMinor(const std::wstring& str)
 {
@@ -21,22 +21,23 @@ const std::wstring CalcTop(const std::wstring& str, int plus)
 }
 const std::wstring CalcUnder(const std::wstring& str, int maj, int min)
 {
-	if (!Modalize::HasMinor(str))
+	const bool hasm = Modalize::HasMinor(str);
+	if (!hasm)
 	{
 		auto num = Round(Modalize::ToInt(str) + maj);
-		return Modalize::ToString(num) + SwapMinor(str);
+		return Modalize::ToString(num) + SwapMinor(hasm);
 	}
 	else
 	{
 		auto num = Round(Modalize::ToInt(str) + min);
-		return Modalize::ToString(num) + SwapMinor(str);
+		return Modalize::ToString(num) + SwapMinor(hasm);
 	}
 }
 
 const std::wstring Modulation::Parallel(const std::wstring& str)
 {
-	auto num = Modalize::ToInt(str);
-	return Modalize::ToString(num) + SwapMinor(str);
+	const auto num = Modalize::ToInt(str);
+	return Modalize::ToString(num) + SwapMinor(Modalize::HasMinor(str));
 }
 const std::wstring Modulation::Relative(const std::wstring& str)
 {

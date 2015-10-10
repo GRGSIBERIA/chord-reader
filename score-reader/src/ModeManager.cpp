@@ -5,7 +5,7 @@ using namespace score::scale;
 
 ModeManager::ModeManager(const ChordUnitArray chords)
 {
-	auto k = chords.NextKey(chords.begin());
+	auto k = chords.begin();
 	while (k != chords.end())
 	{
 		PushBack(k->Key);

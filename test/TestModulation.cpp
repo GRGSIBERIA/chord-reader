@@ -14,6 +14,9 @@ TEST(TestModulation, parallel)
 
 	for (size_t i = 0; i < strs.size(); ++i)
 		EXPECT_EQ(Modulation::Parallel(min[i]), strs[i]);
+
+	EXPECT_EQ(Modulation::Parallel(L"C#"), L"C#m");
+	EXPECT_EQ(Modulation::Parallel(L"Db"), L"Dbm");
 }
 
 TEST(TestModulation, dominant)
