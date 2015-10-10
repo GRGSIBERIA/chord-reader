@@ -10,13 +10,13 @@ namespace score
 		{
 			std::vector<scale::KeyChordModalizer> modes;
 
+			// キーから追加
+			void PushBack(const std::wstring& key);
+
 		public:
 			typedef std::vector<scale::KeyChordModalizer>::const_iterator Itr;
 
 			ModeManager(const ChordUnitArray chords);
-
-			// キーから追加
-			void PushBack(const std::wstring& key);
 
 			// キーから探す
 			const Itr Find(const std::wstring& key) const;

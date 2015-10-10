@@ -20,3 +20,10 @@ TEST(TestModeManager, test_parallel)
 	auto t = mng.Parallel(L"Bb");
 	EXPECT_EQ(t->KeyName(), L"Bbm");
 }
+
+TEST(TestModeManager, test_relative)
+{
+	ModeManager mng(csb.Chords);
+
+	EXPECT_EQ(mng.Relative(L"Bb")->KeyName(), L"Gm");
+}
