@@ -20,43 +20,44 @@ ModeManager::ModeManager(const ChordUnitArray chords)
 }
 
 void ModeManager::PushBack(const std::wstring& key) {
-	if (Find(key) == end())
-		emplace_back(key);
+	if (Find(key) == modes.end())
+		modes.emplace_back(key);
 }
 
-const ModeManager::const_iterator ModeManager::Find(const std::wstring& key) const {
-	return std::find_if(begin(), end(), [key](const scale::KeyChordModalizer& m) { return key == m.KeyName(); });
+const ModeManager::Itr ModeManager::Find(const std::wstring& key) const {
+	return std::find_if(modes.begin(), modes.end(), [key](const scale::KeyChordModalizer& m) { return key == m.KeyName(); });
 }
-const ModeManager::const_iterator ModeManager::Find(const int& key) const
+const ModeManager::Itr ModeManager::Find(const int key) const
 {
-	return std::find_if(begin(), end(), [key](const scale::KeyChordModalizer& m) { return key == Modalize::ToInt(m.KeyName()); });
+	return std::find_if(modes.begin(), modes.end(), [key](const scale::KeyChordModalizer& m) { return key == Modalize::ToInt(m.KeyName()); });
 }
-const ModeManager::const_iterator ModeManager::Find(const scale::Modal& key) const
+const ModeManager::Itr ModeManager::Find(const scale::Modal& key) const
 {
-	return std::find_if(begin(), end(), [key](const scale::KeyChordModalizer& m) { return key == Modalize::ToModal(m.KeyName()); });
+	return std::find_if(modes.begin(), modes.end(), [key](const scale::KeyChordModalizer& m) { return key == Modalize::ToModal(m.KeyName()); });
 }
 
-const ModeManager::const_iterator ModeManager::Parallel(const std::wstring& key) const
+const ModeManager::Itr ModeManager::Parallel(const std::wstring& key) const
 {
 	return Find(Modulation::Parallel(key));
 }
-const ModeManager::const_iterator ModeManager::Relative(const std::wstring& key) const
+const ModeManager::Itr ModeManager::Relative(const std::wstring& key) const
 {
 	return Find(Modulation::Relative(key));
 }
-const ModeManager::const_iterator ModeManager::Dominant(const std::wstring& key) const
+const ModeManager::Itr ModeManager::Dominant(const std::wstring& key) const
 {
 	return Find(Modulation::Dominant(key));
 }
-const ModeManager::const_iterator ModeManager::SubDominant(const std::wstring& key) const
+const ModeManager::Itr ModeManager::SubDominant(const std::wstring& key) const
 {
 	return Find(Modulation::SubDominant(key));
 }
-const ModeManager::const_iterator ModeManager::MinorDominant(const std::wstring& key) const
+const ModeManager::Itr ModeManager::MinorDominant(const std::wstring& key) const
 {
 	return Find(Modulation::MinorDominant(key));
 }
-const ModeManager::const_iterator ModeManager::MinorSubDominant(const std::wstring& key) const
+const ModeManager::Itr ModeManager::MinorSubDominant(const std::wstring& key) const
 {
 	return Find(Modulation::MinorSubDominant(key));
 }
+

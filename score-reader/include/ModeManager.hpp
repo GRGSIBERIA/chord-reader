@@ -6,28 +6,44 @@ namespace score
 {
 	namespace score
 	{
-		class ModeManager : public std::vector<scale::KeyChordModalizer>
+		class ModeManager
 		{
+			std::vector<scale::KeyChordModalizer> modes;
+
 		public:
+			typedef std::vector<scale::KeyChordModalizer>::const_iterator Itr;
+
 			ModeManager(const ChordUnitArray chords);
 
 			// キーから追加
-			void PushBack(const std::wstring& key) {
-				if (std::find_if(begin(), end(), [key](const scale::KeyChordModalizer& m) { return key == m.KeyName(); }) == end())
-					emplace_back(key);
-			}
-			
-			// キーから探す
-			const const_iterator Find(const std::wstring& key) const;
-			const const_iterator Find(const int& key) const;
-			const const_iterator Find(const scale::Modal& key) const;
+			void PushBack(const std::wstring& key);
 
-			const const_iterator Parallel(const std::wstring& key) const;	// 同主調
-			const const_iterator Relative(const std::wstring& key) const;	// 平行調
-			const const_iterator Dominant(const std::wstring& key) const;	// 属調
-			const const_iterator SubDominant(const std::wstring& key) const;	// 下属調
-			const const_iterator MinorDominant(const std::wstring& key) const;	// 属調2
-			const const_iterator MinorSubDominant(const std::wstring& key) const;	// 下属調2
+			// キーから探す
+			const Itr Find(const std::wstring& key) const;
+			const Itr Find(const int key) const;
+			const Itr Find(const scale::Modal& key) const;
+
+			// 転調
+			const Itr Parallel(const std::wstring& key) const;	// 同主調
+			const Itr Relative(const std::wstring& key) const;	// 平行調
+			const Itr Dominant(const std::wstring& key) const;	// 属調
+			const Itr SubDominant(const std::wstring& key) const;	// 下属調
+			const Itr MinorDominant(const std::wstring& key) const;	// 属調2
+			const Itr MinorSubDominant(const std::wstring& key) const;	// 下属調2
+
+			const Itr Parallel(const int key) const;	// 同主調
+			const Itr Relative(const int key) const;	// 平行調
+			const Itr Dominant(const int key) const;	// 属調
+			const Itr SubDominant(const int key) const;	// 下属調
+			const Itr MinorDominant(const int key) const;	// 属調2
+			const Itr MinorSubDominant(const int key) const;	// 下属調2
+
+			const Itr Parallel(const scale::Modal key) const;	// 同主調
+			const Itr Relative(const scale::Modal key) const;	// 平行調
+			const Itr Dominant(const scale::Modal key) const;	// 属調
+			const Itr SubDominant(const scale::Modal key) const;	// 下属調
+			const Itr MinorDominant(const scale::Modal key) const;	// 属調2
+			const Itr MinorSubDominant(const scale::Modal key) const;	// 下属調2
 		};
 	}
 }
