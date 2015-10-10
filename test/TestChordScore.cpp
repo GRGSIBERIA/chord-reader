@@ -1,8 +1,9 @@
 #include "gtest/gtest.h"
+#include "Global.hpp"
 #include <ChordScore.hpp>
 using namespace score::score;
 
-ChordScore cs("..\\autumn leaves.xml");
+
 
 TEST(TestChordScore, header)
 {

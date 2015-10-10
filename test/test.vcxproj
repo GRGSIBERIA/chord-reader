@@ -88,11 +88,13 @@
     <ClCompile Include="..\score-reader\src\ChordScore.cpp" />
     <ClCompile Include="..\score-reader\src\KeyChordModalizer.cpp" />
     <ClCompile Include="..\score-reader\src\Modal.cpp" />
+    <ClCompile Include="..\score-reader\src\ModeManager.cpp" />
     <ClCompile Include="..\score-reader\src\ModeTheory.cpp" />
     <ClCompile Include="..\score-reader\src\Modulation.cpp" />
     <ClCompile Include="..\score-reader\src\ScaleTheory.cpp" />
     <ClCompile Include="..\score-reader\src\tinyxml2.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TestModeManager.cpp" />
     <ClCompile Include="TestChordConstructions.cpp" />
     <ClCompile Include="TestChordScore.cpp" />
     <ClCompile Include="TestKeyChordModalizer.cpp" />
@@ -104,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\score-reader\include\xml\tinyxml2.h" />
+    <ClInclude Include="Global.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
