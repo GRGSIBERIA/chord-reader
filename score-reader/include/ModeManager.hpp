@@ -19,8 +19,15 @@ namespace score
 			
 			// ƒL[‚©‚ç’T‚·
 			const const_iterator Find(const std::wstring& key) const;
+			const const_iterator Find(const int& key) const;
+			const const_iterator Find(const scale::Modal& key) const;
 
 			const const_iterator Parallel(const std::wstring& key) const;	// “¯å’²
+			const const_iterator Relative(const std::wstring& key) const;	// •½s’²
+			const const_iterator Dominant(const std::wstring& key) const;	// ‘®’²
+			const const_iterator SubDominant(const std::wstring& key) const;	// ‰º‘®’²
+			const const_iterator MinorDominant(const std::wstring& key) const;	// ‘®’²2
+			const const_iterator MinorSubDominant(const std::wstring& key) const;	// ‰º‘®’²2
 		};
 	}
 }
