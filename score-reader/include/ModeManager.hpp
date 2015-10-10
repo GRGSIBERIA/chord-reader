@@ -30,20 +30,6 @@ namespace score
 			const Itr SubDominant(const std::wstring& key) const;	// ‰º‘®’²
 			const Itr MinorDominant(const std::wstring& key) const;	// ‘®’²2
 			const Itr MinorSubDominant(const std::wstring& key) const;	// ‰º‘®’²2
-
-			const Itr Parallel(const int key) const;	// “¯å’²
-			const Itr Relative(const int key) const;	// •½s’²
-			const Itr Dominant(const int key) const;	// ‘®’²
-			const Itr SubDominant(const int key) const;	// ‰º‘®’²
-			const Itr MinorDominant(const int key) const;	// ‘®’²2
-			const Itr MinorSubDominant(const int key) const;	// ‰º‘®’²2
-
-			const Itr Parallel(const scale::Modal key) const;	// “¯å’²
-			const Itr Relative(const scale::Modal key) const;	// •½s’²
-			const Itr Dominant(const scale::Modal key) const;	// ‘®’²
-			const Itr SubDominant(const scale::Modal key) const;	// ‰º‘®’²
-			const Itr MinorDominant(const scale::Modal key) const;	// ‘®’²2
-			const Itr MinorSubDominant(const scale::Modal key) const;	// ‰º‘®’²2
 		};
 	}
 }
