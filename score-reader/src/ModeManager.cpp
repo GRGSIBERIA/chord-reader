@@ -2,14 +2,6 @@
 #include "Modulation.hpp"
 using namespace score::score;
 
-void ModeManager::PushBack(const std::wstring& key) {
-	if (std::find_if(begin(), end(), [key](const scale::KeyChordModalizer& m) { return key == m.KeyName(); }) == end())
-		emplace_back(key);
-}
-
-const score::scale::KeyChordModalizer& ModeManager::Find(const std::wstring& key) const {
-	return *std::find_if(begin(), end(), [key](const scale::KeyChordModalizer& m) { return key == m.KeyName(); });
-}
 
 ModeManager::ModeManager(const ChordUnitArray chords)
 {
@@ -25,4 +17,13 @@ ModeManager::ModeManager(const ChordUnitArray chords)
 		PushBack(scale::Modulation::MinorSubDominant(k->Key));
 		k = chords.NextKey(k);
 	}
+}
+
+void ModeManager::PushBack(const std::wstring& key) {
+	if (Find(key) == end())
+		emplace_back(key);
+}
+
+const ModeManager::const_iterator ModeManager::Find(const std::wstring& key) const {
+	return std::find_if(begin(), end(), [key](const scale::KeyChordModalizer& m) { return key == m.KeyName(); });
 }

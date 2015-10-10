@@ -75,18 +75,15 @@
     <ClCompile Include="TestModulation.cpp">
       <Filter>ソース ファイル\test</Filter>
     </ClCompile>
-    <ClCompile Include="..\score-reader\src\ModeManager.cpp">
-      <Filter>ソース ファイル\src</Filter>
-    </ClCompile>
     <ClCompile Include="TestModeManager.cpp">
       <Filter>ソース ファイル\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\score-reader\src\ModeManager.cpp">
+      <Filter>ソース ファイル\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\score-reader\include\xml\tinyxml2.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Global.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

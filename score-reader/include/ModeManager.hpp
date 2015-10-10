@@ -12,10 +12,15 @@ namespace score
 			ModeManager(const ChordUnitArray chords);
 
 			// キーから追加
-			void PushBack(const std::wstring& key);
+			void PushBack(const std::wstring& key) {
+				if (std::find_if(begin(), end(), [key](const scale::KeyChordModalizer& m) { return key == m.KeyName(); }) == end())
+					emplace_back(key);
+			}
 			
 			// キーから探す
-			const scale::KeyChordModalizer& Find(const std::wstring& key) const;
+			const const_iterator Find(const std::wstring& key) const;
+
+			const const_iterator Parallel(const std::wstring& key) const;	// 同主調
 		};
 	}
 }

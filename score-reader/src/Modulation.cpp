@@ -50,11 +50,11 @@ const std::wstring Modulation::SubDominant(const std::wstring& str)
 {
 	return CalcTop(str, 5);
 }
-const std::wstring MinorDominant(const std::wstring& str)
+const std::wstring Modulation::MinorDominant(const std::wstring& str)
 {
 	return CalcUnder(str, 4, 11);
 }
-const std::wstring MinorSubDominant(const std::wstring& str)
+const std::wstring Modulation::MinorSubDominant(const std::wstring& str)
 {
 	return CalcUnder(str, 5, 9);
 }

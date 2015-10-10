@@ -1,12 +1,14 @@
 #include "gtest\gtest.h"
-#include "Global.hpp"
 #include <ModeManager.hpp>
 #include <ChordScore.hpp>
 using namespace score::score;
 
-TEST(TestModeManager, test)
+score::score::ChordScore csb("..\\autumn leaves.xml");
+
+TEST(TestModeManager, hogehoge)
 {
-	ModeManager mng(cs.Chords);
+	ModeManager mng(csb.Chords);
 
 	auto t = mng.Find(L"Bb");
+	EXPECT_EQ(t->KeyName(), L"Bb");
 }

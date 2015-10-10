@@ -44,11 +44,6 @@ const std::wstring MakeDash(const int repeat)
 	return retval;
 }
 
-void Loop(const char* str, void (*func)())
-{
-
-}
-
 void ChordScore::CollectScore(const tinyxml2::XMLElement* score)
 {
 	for (auto part = score->FirstChildElement("part"); part != nullptr; part = part->NextSiblingElement("part"))
