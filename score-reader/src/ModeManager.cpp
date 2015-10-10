@@ -61,3 +61,52 @@ const ModeManager::Itr ModeManager::MinorSubDominant(const std::wstring& key) co
 	return Find(Modulation::MinorSubDominant(key));
 }
 
+const ModeManager::Itr ModeManager::Parallel(const int key) const
+{
+	return Find(Modulation::Parallel(key));
+}
+const ModeManager::Itr ModeManager::Relative(const int key) const
+{
+	return Find(Modulation::Relative(key));
+}
+const ModeManager::Itr ModeManager::Dominant(const int key) const
+{
+	return Find(Modulation::Dominant(key));
+}
+const ModeManager::Itr ModeManager::SubDominant(const int key) const
+{
+	return Find(Modulation::SubDominant(key));
+}
+const ModeManager::Itr ModeManager::MinorDominant(const int key) const
+{
+	return Find(Modulation::MinorDominant(key));
+}
+const ModeManager::Itr ModeManager::MinorSubDominant(const int key) const
+{
+	return Find(Modulation::MinorSubDominant(key));
+}
+
+const ModeManager::Itr ModeManager::Parallel(const Modal key) const
+{
+	return Find(Modulation::Parallel(key));
+}
+const ModeManager::Itr ModeManager::Relative(const Modal key) const
+{
+	return Find(Modulation::Relative(key));
+}
+const ModeManager::Itr ModeManager::Dominant(const Modal key) const
+{
+	return Find(Modulation::Dominant(key));
+}
+const ModeManager::Itr ModeManager::SubDominant(const Modal key) const
+{
+	return Find(Modulation::SubDominant(key));
+}
+const ModeManager::Itr ModeManager::MinorDominant(const Modal key) const
+{
+	return Find(Modulation::MinorDominant(key));
+}
+const ModeManager::Itr ModeManager::MinorSubDominant(const Modal key) const
+{
+	return Find(Modulation::MinorSubDominant(key));
+}
