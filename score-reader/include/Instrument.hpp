@@ -20,7 +20,7 @@ namespace score
 
 			GET_PROPERTY(const std::vector<String>&, Strings, strings);
 
-			// MIDIノート番号を返す
+			// 弦とフレット数からMIDIノート番号を返す
 			const MidiNoteNumber MidiNum(const int stringNum, const int fretNum) const { return strings[stringNum].Tuning + fretNum; }
 
 			// フレット番号を返す，マイナスの場合は存在しない
