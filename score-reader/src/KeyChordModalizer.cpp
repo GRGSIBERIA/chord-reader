@@ -4,6 +4,13 @@ using namespace score::scale;
 const ScaleTheory KeyChordModalizer::majtheory = ScaleTheory({ 0, 2, 4, 5, 7, 9, 11 });
 const ScaleTheory KeyChordModalizer::mintheory = ScaleTheory({ 0, 2, 3, 5, 7, 8, 10 });
 
+int RoundInterval(int num)
+{
+	if (num > 11) return RoundInterval(num - 12);
+	else if (num < 0) return RoundInterval(num + 12);
+	return num;
+}
+
 void KeyChordModalizer::CalcModeScalesOnRoot(const size_t root)
 {
 	for (size_t modeIndex = 0; modeIndex < scale.Size(); ++modeIndex)
@@ -13,7 +20,7 @@ void KeyChordModalizer::CalcModeScalesOnRoot(const size_t root)
 		for (size_t intervalIndex = 0; intervalIndex < scale.Size(); ++intervalIndex)
 		{
 			int tmp = mode.GetInterval(intervalIndex) + (int)key + scale.GetInterval(root);
-			tmp = tmp > 11 ? tmp - 12 : tmp;
+			tmp = RoundInterval(tmp);
 
 			modeScale[root][modeIndex][intervalIndex] = tmp;
 		}

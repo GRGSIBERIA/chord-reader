@@ -43,6 +43,9 @@
     <Filter Include="ソース ファイル\score\score">
       <UniqueIdentifier>{f25f2eea-3c0e-4ca4-afb9-298da7486413}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\score\inst">
+      <UniqueIdentifier>{b525fbb2-2757-45af-9faf-dfb90f095812}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ChordConstruction.hpp">
@@ -89,6 +92,12 @@
     </ClInclude>
     <ClInclude Include="include\Modulation.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
+    </ClInclude>
+    <ClInclude Include="include\String.hpp">
+      <Filter>ヘッダー ファイル\score\inst</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Instrument.hpp">
+      <Filter>ヘッダー ファイル\score\inst</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

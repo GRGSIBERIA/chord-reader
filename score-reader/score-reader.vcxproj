@@ -77,6 +77,7 @@
     <ClInclude Include="include\ChordScore.hpp" />
     <ClInclude Include="include\ChordUnit.hpp" />
     <ClInclude Include="include\Header.hpp" />
+    <ClInclude Include="include\Instrument.hpp" />
     <ClInclude Include="include\Modulation.hpp" />
     <ClInclude Include="include\KeyChordModalizer.hpp" />
     <ClInclude Include="include\ModeManager.hpp" />
@@ -85,6 +86,7 @@
     <ClInclude Include="include\Property.hpp" />
     <ClInclude Include="include\Scale.hpp" />
     <ClInclude Include="include\ScaleTheory.hpp" />
+    <ClInclude Include="include\String.hpp" />
     <ClInclude Include="include\xml\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>

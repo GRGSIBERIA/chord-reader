@@ -13,7 +13,7 @@ TEST(TestModeManager, challenge)
 	EXPECT_EQ(t->KeyName(), L"Bb");
 }
 
-TEST(TestModeManager, test_parallel)
+TEST(TestModeManager, parallel)
 {
 	ModeManager mng(csb.Chords);
 
@@ -21,9 +21,17 @@ TEST(TestModeManager, test_parallel)
 	EXPECT_EQ(t->KeyName(), L"Bbm");
 }
 
-TEST(TestModeManager, test_relative)
+TEST(TestModeManager, relative)
 {
 	ModeManager mng(csb.Chords);
 
 	EXPECT_EQ(mng.Relative(L"Bb")->KeyName(), L"Gm");
+}
+
+TEST(TestModeManager, hoge)
+{
+	ModeManager mng(csb.Chords);
+
+	const auto& b4 = mng.Find(L"Bb")->GetPrimaryAvailableScale(0);
+	const auto& h = mng.Parallel(L"Bb")->GetPrimaryAvailableScale(0);
 }
