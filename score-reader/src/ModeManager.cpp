@@ -1,5 +1,6 @@
 #include "ModeManager.hpp"
 #include "Modulation.hpp"
+#include "ScaleDatabase.hpp"
 using namespace score::score;
 using namespace score::scale;
 

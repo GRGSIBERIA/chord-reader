@@ -8,13 +8,13 @@ namespace score
 	{
 		class ModeManager
 		{
-			std::vector<scale::KeyChordModalizer> modes;
+			std::vector<const scale::KeyChordModalizer> modes;
 
 			// ÉLÅ[Ç©ÇÁí«â¡
 			void PushBack(const std::wstring& key);
 
 		public:
-			typedef std::vector<scale::KeyChordModalizer>::const_iterator Itr;
+			typedef std::vector<const scale::KeyChordModalizer>::const_iterator Itr;
 
 			ModeManager(const ChordUnitArray chords);
 
