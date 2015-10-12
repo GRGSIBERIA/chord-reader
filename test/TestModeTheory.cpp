@@ -49,11 +49,11 @@ TEST(TestModeTheory, test_avoid)
 
 TEST(TestModeTheory, test_diatonic)
 {
-	EXPECT_EQ(theory.GetDiatonic(0).ChordTone(), L"M7");
-	EXPECT_EQ(theory.GetDiatonic(1).ChordTone(), L"m7");
-	EXPECT_EQ(theory.GetDiatonic(2).ChordTone(), L"m7");
-	EXPECT_EQ(theory.GetDiatonic(3).ChordTone(), L"M7");
-	EXPECT_EQ(theory.GetDiatonic(4).ChordTone(), L"7");
-	EXPECT_EQ(theory.GetDiatonic(5).ChordTone(), L"m7");
-	EXPECT_EQ(theory.GetDiatonic(6).ChordTone(), L"m7-5");
+	EXPECT_EQ(theory.Diatonics[0].ChordTone(), L"M7");
+	EXPECT_EQ(theory.Diatonics[1].ChordTone(), L"m7");
+	EXPECT_EQ(theory.Diatonics[2].ChordTone(), L"m7");
+	EXPECT_EQ(theory.Diatonics[3].ChordTone(), L"M7");
+	EXPECT_EQ(theory.Diatonics[4].ChordTone(), L"7");
+	EXPECT_EQ(theory.Diatonics[5].ChordTone(), L"m7");
+	EXPECT_EQ(theory.Diatonics[6].ChordTone(), L"m7-5");
 }

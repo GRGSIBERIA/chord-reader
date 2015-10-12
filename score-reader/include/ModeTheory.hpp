@@ -2,6 +2,7 @@
 #include "Scale.hpp"
 #include "Chord.hpp"
 #include "Modal.hpp"
+#include "Property.hpp"
 
 namespace score
 {
@@ -31,7 +32,8 @@ namespace score
 			const ModeScale& GetMode(const size_t index) const { return modeScales[index]; }
 			const ModeScale& GetMode(const Modal modal) const { return modeScales[(size_t)modal]; }
 
-			const chord::Chord& GetDiatonic(const size_t index) const { return diatonics[index]; }
+			GET_PROPERTY(const ScalesOnModeTheory&, Modes, modeScales);
+			GET_PROPERTY(const DiatonicChords&, Diatonics, diatonics);
 
 			//const Scale& GetScale(const int key, const int root, const int mode);
 		};
