@@ -1,4 +1,5 @@
 #include "ScaleDatabase.hpp"
+#include "Modulation.hpp"
 using namespace score::scale;
 
 const std::array<KeyChordModalizer, 12> ScaleDatabase::major = { {
@@ -52,4 +53,29 @@ const KeyChordModalizer& ScaleDatabase::Major(const std::wstring& key)
 const KeyChordModalizer& ScaleDatabase::Minor(const std::wstring& key)
 {
 	return Find(Modalize::ToInt(key), false);
+}
+
+const KeyChordModalizer& ScaleDatabase::Parallel(const std::wstring& key)
+{
+	return Find(Modulation::Parallel(key));
+}
+const KeyChordModalizer& ScaleDatabase::Relative(const std::wstring& key)
+{
+	return Find(Modulation::Relative(key));
+}
+const KeyChordModalizer& ScaleDatabase::Dominant(const std::wstring& key)
+{
+	return Find(Modulation::Dominant(key));
+}
+const KeyChordModalizer& ScaleDatabase::Subdominant(const std::wstring& key)
+{
+	return Find(Modulation::SubDominant(key));
+}
+const KeyChordModalizer& ScaleDatabase::MinorDominant(const std::wstring& key)
+{
+	return Find(Modulation::MinorDominant(key));
+}
+const KeyChordModalizer& ScaleDatabase::MinorSubdominant(const std::wstring& key)
+{
+	return Find(Modulation::MinorSubDominant(key));
 }
