@@ -105,7 +105,7 @@ const ModeModalScales& KeyChordModalizer::Availables(const std::wstring& chord) 
 }
 
 /**************************************************************************************************
-* ここから新仕様のメンバ関数
+* ここから先は新仕様のメンバ関数
 */
 
 const ChordScale KeyChordModalizer::Mode(const size_t root, const size_t mode_num) const 
