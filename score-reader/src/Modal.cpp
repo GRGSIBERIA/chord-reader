@@ -56,3 +56,7 @@ const bool Modalize::HasMinor(const std::wstring& str)
 {
 	return str.find(L'm') != std::wstring::npos;
 }
+const bool Modalize::HasMajor(const std::wstring& str)
+{
+	return str.find(L'm') == std::wstring::npos;
+}

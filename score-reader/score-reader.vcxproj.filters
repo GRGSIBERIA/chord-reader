@@ -99,6 +99,9 @@
     <ClInclude Include="include\Instrument.hpp">
       <Filter>ヘッダー ファイル\score\inst</Filter>
     </ClInclude>
+    <ClInclude Include="include\ScaleDatabase.hpp">
+      <Filter>ヘッダー ファイル\score\scale</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -133,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="src\ModeManager.cpp">
       <Filter>ソース ファイル\score\score</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScaleDatabase.cpp">
+      <Filter>ソース ファイル\score\scale</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

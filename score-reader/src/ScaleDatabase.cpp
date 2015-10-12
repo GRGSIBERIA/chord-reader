@@ -33,7 +33,7 @@ const std::array<KeyChordModalizer, 12> ScaleDatabase::minor = { {
 
 const KeyChordModalizer& ScaleDatabase::Find(const std::wstring& key)
 {
-	return Find(Modalize::ToInt(key), !Modalize::HasMinor(key));
+	return Find(Modalize::ToInt(key), Modalize::HasMajor(key));
 }
 const KeyChordModalizer& ScaleDatabase::Find(const int modal, const bool isMajor)
 {
@@ -47,9 +47,9 @@ const KeyChordModalizer& ScaleDatabase::Find(const Modal modal, const bool isMaj
 }
 const KeyChordModalizer& ScaleDatabase::Major(const std::wstring& key)
 {
-
+	return Find(Modalize::ToInt(key), true);
 }
 const KeyChordModalizer& ScaleDatabase::Minor(const std::wstring& key)
 {
-
+	return Find(Modalize::ToInt(key), false);
 }

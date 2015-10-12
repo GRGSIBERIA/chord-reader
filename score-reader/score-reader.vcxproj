@@ -85,6 +85,7 @@
     <ClInclude Include="include\ModeTheory.hpp" />
     <ClInclude Include="include\Property.hpp" />
     <ClInclude Include="include\Scale.hpp" />
+    <ClInclude Include="include\ScaleDatabase.hpp" />
     <ClInclude Include="include\ScaleTheory.hpp" />
     <ClInclude Include="include\String.hpp" />
     <ClInclude Include="include\xml\tinyxml2.h" />
@@ -99,6 +100,7 @@
     <ClCompile Include="src\KeyChordModalizer.cpp" />
     <ClCompile Include="src\Modal.cpp" />
     <ClCompile Include="src\ModeTheory.cpp" />
+    <ClCompile Include="src\ScaleDatabase.cpp" />
     <ClCompile Include="src\ScaleTheory.cpp" />
     <ClCompile Include="src\tinyxml2.cpp" />
   </ItemGroup>

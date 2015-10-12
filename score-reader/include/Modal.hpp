@@ -36,6 +36,7 @@ namespace score
 
 		public:
 			static const bool HasMinor(const std::wstring& str);
+			static const bool HasMajor(const std::wstring& str);
 			static const int HasAccidental(const std::wstring& str);
 
 			static const Modal ToModal(const int& modal);
