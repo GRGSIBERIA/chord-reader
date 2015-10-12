@@ -32,6 +32,6 @@ TEST(TestModeManager, hoge)
 {
 	ModeManager mng(csb.Chords);
 
-	const auto& b4 = mng.Find(L"Bb")->GetPrimaryAvailableScale(0);
-	const auto& h = mng.Parallel(L"Bb")->GetPrimaryAvailableScale(0);
+	const auto& b4 = mng.Find(L"Bb")->PrimaryAvailableScale(0);
+	const auto& h = mng.Parallel(L"Bb")->PrimaryAvailableScale(0);
 }

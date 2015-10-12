@@ -38,7 +38,7 @@ TEST(TestKeyChordModalizer, test_scale_for_mode)
 
 void PrintVector(const KeyChordModalizer& modalizer, size_t root, size_t mode, const std::vector<int>& comp)
 {
-	const auto& v = modalizer.GetModeScale(root, mode);
+	const auto& v = modalizer.ModeScale(root, mode);
 	for (size_t i = 0; i < v.size(); ++i)
 		//wcout << Modalize::ToString(v[i]) << ",";
 		EXPECT_EQ(v[i], comp[i]);
@@ -60,7 +60,7 @@ TEST(TestKeyChordModalizer, get_modals_on_c)
 
 void PrintAvailables(const KeyChordModalizer& modalizer, const size_t key, const size_t modal, const std::vector<int>& comp)
 {
-	const auto& v = modalizer.GetAvailableScale(key, modal);
+	const auto& v = modalizer.AvailableScale(key, modal);
 
 	for (size_t i = 0; i < v.size(); ++i)
 		//wcout << Modalize::ToString(v[i]) << ",";
@@ -83,7 +83,7 @@ TEST(TestKeyChordModalizer, test_availables)
 
 void TestAvailables(const KeyChordModalizer& modalizer, const std::wstring& key, const size_t modal, const std::vector<int>& comp)
 {
-	const auto& v = modalizer.GetAvailableScale(key, modal);
+	const auto& v = modalizer.AvailableScale(key, modal);
 
 	for (size_t i = 0; i < v.size(); ++i)
 		EXPECT_EQ(v[i], comp[i]);

@@ -75,32 +75,31 @@ KeyChordModalizer::KeyChordModalizer(const std::wstring& keyName, const Modal& k
 	}
 }
 
-const ModeModals& KeyChordModalizer::GetPrimaryModeScale(const std::wstring& str) const
+const ModeModals& KeyChordModalizer::PrimaryModeScale(const std::wstring& str) const
 {
 	auto index = scale.GetIndex(str);
-	return GetModeScale(index, index);
+	return ModeScale(index, index);
 }
 
-const ModeModals& KeyChordModalizer::GetPrimaryAvailableScale(const std::wstring& str) const
+const ModeModals& KeyChordModalizer::PrimaryAvailableScale(const std::wstring& str) const
 {
 	auto index = scale.GetIndex(str);
-	return GetAvailableScale(index, index);
+	return AvailableScale(index, index);
 }
 
-const ModeModals& KeyChordModalizer::GetAvailableScale(const std::wstring& str, const size_t mode_num) const
+const ModeModals& KeyChordModalizer::AvailableScale(const std::wstring& str, const size_t mode_num) const
 {
 	auto index = scale.GetIndex(str);
-	return GetAvailableScale(index, mode_num);
+	return AvailableScale(index, mode_num);
 }
 
-const ModeModals& KeyChordModalizer::GetModeScale(const std::wstring& str, const size_t mode_num) const
+const ModeModals& KeyChordModalizer::ModeScale(const std::wstring& str, const size_t mode_num) const
 {
 	auto index = scale.GetIndex(str);
-	return GetModeScale(index, mode_num);
+	return ModeScale(index, mode_num);
 }
 
-const ModeModalScales& KeyChordModalizer::GetAvailables(const std::wstring& chord) const
+const ModeModalScales& KeyChordModalizer::Availables(const std::wstring& chord) const
 {
-	auto index = scale.GetIndex(chord);
-	return availables[index];
+	return availables[scale.GetIndex(chord)];
 }
