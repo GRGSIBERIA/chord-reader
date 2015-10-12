@@ -4,6 +4,7 @@
 #include "Scale.hpp"
 #include "ModeTheory.hpp"
 #include <array>
+#include "Property.hpp"
 
 namespace score
 {
@@ -13,6 +14,7 @@ namespace score
 		typedef std::vector<ModeModals> ModeModalScales;
 		typedef std::vector<ModeModalScales> ModesOnScale;
 
+		// あるキーのモードスケールを管理するクラス
 		class KeyChordModalizer
 		{
 			static const ScaleTheory majtheory;
@@ -35,7 +37,7 @@ namespace score
 
 		public:
 			KeyChordModalizer(const std::wstring& keyName, const Modal& key, const ScaleTheory& theory, const ScaleIndices& chordTone);
-			KeyChordModalizer(const std::wstring& str);
+			KeyChordModalizer(const std::wstring& str);		// キーを指定する
 
 			// モードを取得する
 			const ModeModals& GetModeScale(const size_t root, const size_t mode_num) const { return modeScale[root][mode_num]; }
@@ -58,6 +60,7 @@ namespace score
 
 			// このモードの調を返す
 			const std::wstring& KeyName() const { return keyName; }
+			GET_PROPERTY(const std::wstring&, Key, keyName);
 
 			// コードからモードインデックスを返す
 			const int ModeIndex(const std::wstring& chord) const { return scale.GetIndex(chord); }
