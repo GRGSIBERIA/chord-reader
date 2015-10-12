@@ -3,16 +3,13 @@
 #include "ScaleTheory.hpp"
 #include "Scale.hpp"
 #include "ModeTheory.hpp"
-#include <array>
-#include "Property.hpp"
+#include "ChordScale.hpp"
 
 namespace score
 {
 	namespace scale
 	{
-		typedef std::vector<int> ModeModals;
-		typedef std::vector<ModeModals> ModeModalScales;
-		typedef std::vector<ModeModalScales> ModesOnScale;
+		
 
 		// あるキーのモードスケールを管理するクラス
 		class KeyChordModalizer
