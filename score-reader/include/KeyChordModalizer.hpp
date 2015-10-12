@@ -58,12 +58,11 @@ namespace score
 			const ModeModals& GetPrimaryAvailableScale(const std::wstring& str) const;
 			const ModeModals& GetPrimaryAvailableScale(const size_t rootIndex) const { return availables[rootIndex][rootIndex]; }
 
-			// このモードの調を返す
-			const std::wstring& KeyName() const { return keyName; }
-			GET_PROPERTY(const std::wstring&, Key, keyName);
-
 			// コードからモードインデックスを返す
 			const int ModeIndex(const std::wstring& chord) const { return scale.GetIndex(chord); }
+
+			GET_PROPERTY(const std::wstring&, KeyName, keyName);
+			GET_PROPERTY(const DiatonicChords&, Diatonics, mtheory.Diatonics);
 		};
 	}
 }

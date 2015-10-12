@@ -26,7 +26,7 @@ void ModeManager::PushBack(const std::wstring& key) {
 }
 
 const ModeManager::Itr ModeManager::Find(const std::wstring& key) const {
-	return std::find_if(modes.begin(), modes.end(), [key](const scale::KeyChordModalizer& m) { return key == m.KeyName(); });
+	return std::find_if(modes.begin(), modes.end(), [key](const scale::KeyChordModalizer& m) { return key == m.KeyName; });
 }
 
 const ModeManager::Itr ModeManager::Parallel(const std::wstring& key) const
