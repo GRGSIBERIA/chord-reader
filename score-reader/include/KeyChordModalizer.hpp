@@ -60,6 +60,16 @@ namespace score
 
 			GET_PROPERTY(const std::wstring&, KeyName, keyName);
 			GET_PROPERTY(const DiatonicChords&, Diatonics, mtheory.Diatonics);
+
+			const ChordScale Mode(const std::wstring& chord, const size_t mode_num) const;
+			const ChordScale Mode(const size_t root, const size_t mode_num) const;
+			const ChordScale PrimaryMode(const size_t root) const;
+			const ChordScale PrimaryMode(const std::wstring& root) const;
+
+			const ChordScale Available(const std::wstring& chord, const size_t mode_num) const;
+			const ChordScale Available(const size_t root, const size_t mode_num) const;
+			const ChordScale PrimaryAvailable(const std::wstring& chord) const;
+			const ChordScale PrimaryAvailable(const size_t root) const;
 		};
 	}
 }

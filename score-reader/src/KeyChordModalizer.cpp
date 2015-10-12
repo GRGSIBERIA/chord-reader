@@ -103,3 +103,40 @@ const ModeModalScales& KeyChordModalizer::Availables(const std::wstring& chord) 
 {
 	return availables[scale.GetIndex(chord)];
 }
+
+/**************************************************************************************************
+* ここから新仕様のメンバ関数
+*/
+
+const ChordScale KeyChordModalizer::Mode(const size_t root, const size_t mode_num) const 
+{ 
+	return ChordScale(Diatonics[root], mode_num, ModeScale(root, mode_num)); 
+}
+const ChordScale KeyChordModalizer::Mode(const std::wstring& chord, const size_t mode_num) const
+{
+	return Mode(scale.GetIndex(chord), mode_num);
+}
+const ChordScale KeyChordModalizer::PrimaryMode(const size_t root) const
+{
+	return ChordScale(Diatonics[root], root, PrimaryModeScale(root));
+}
+const ChordScale KeyChordModalizer::PrimaryMode(const std::wstring& root) const
+{
+	return PrimaryMode(scale.GetIndex(root));
+}
+const ChordScale KeyChordModalizer::Available(const std::wstring& chord, const size_t mode_num) const
+{
+	return Available(scale.GetIndex(chord), mode_num);
+}
+const ChordScale KeyChordModalizer::Available(const size_t root, const size_t mode_num) const
+{
+	return ChordScale(Diatonics[root], mode_num, AvailableScale(root, mode_num));
+}
+const ChordScale KeyChordModalizer::PrimaryAvailable(const std::wstring& chord) const
+{
+	return Available(chord, scale.GetIndex(chord));
+}
+const ChordScale KeyChordModalizer::PrimaryAvailable(const size_t root) const
+{
+	return ChordScale(Diatonics[root], root, PrimaryAvailableScale(root));
+}
