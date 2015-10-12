@@ -157,12 +157,12 @@ void ModeTheory::BuildingModeScales(const Scale& scale)
 	}
 }
 
-void ModeTheory::BuildingDiatonicChords()
+void ModeTheory::BuildingDiatonicChords(const Scale& scale)
 {
 	for (size_t i = 0; i < Size(); ++i)
 	{
 		diatonics.emplace_back(score::chord::ChordFactory::CreateChord(
-			modeScales[i].GetInterval(chordTones[0]),
+			modeScales[i].GetInterval(chordTones[0]) + Modalize::ToInt(scale.Name()),
 			modeScales[i].GetInterval(chordTones[1]),
 			modeScales[i].GetInterval(chordTones[2]),
 			modeScales[i].GetInterval(chordTones[3])));
@@ -172,5 +172,5 @@ void ModeTheory::BuildingDiatonicChords()
 ModeTheory::ModeTheory(const Scale& scale, const ScaleIndices& chordTones) : chordTones(chordTones)
 {
 	BuildingModeScales(scale);
-	BuildingDiatonicChords();
+	BuildingDiatonicChords(scale);
 }

@@ -3,7 +3,7 @@
 
 using namespace score::scale;
 
-ModeTheory theory(Scale(L"major", { 0, 2, 4, 5, 7, 9, 11 }), { 0, 2, 4, 6 });
+ModeTheory theory(Scale(L"C", { 0, 2, 4, 5, 7, 9, 11 }), { 0, 2, 4, 6 });
 
 void TestScale(const ModeScale& mode, const std::vector<int>& target)
 {

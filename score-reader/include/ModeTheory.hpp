@@ -22,7 +22,7 @@ namespace score
 
 			void MakeModeScale(const int i, const Scale& scale);
 			void BuildingModeScales(const Scale& scale);
-			void BuildingDiatonicChords();
+			void BuildingDiatonicChords(const Scale& scale);
 
 		public:
 			ModeTheory(const Scale& scale, const ScaleIndices& chordTones);

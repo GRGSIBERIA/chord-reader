@@ -8,7 +8,7 @@ using namespace std;
 
 void PrintModeScale(const ScaleTheory& scaleTheory, Modal key, int modeIndex, const std::vector<int>& comp)
 {
-	const Scale scale = Scale(L"", scaleTheory.GetScale(key));
+	const Scale scale = Scale(L"C", scaleTheory.GetScale(key));
 	const ModeTheory modeTheory = ModeTheory(scale, { 0, 2, 4, 6 });
 
 	const auto& mode = modeTheory.GetMode(modeIndex);
