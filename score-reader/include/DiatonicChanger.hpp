@@ -9,7 +9,7 @@ namespace score
 		class DiatonicChanger
 		{
 		public:
-			static const scale::KeyChordModalizer& SecondaryDominant(const std::wstring& key, const std::wstring& chord);
+			static const scale::ChordScale SecondaryDominant(const std::wstring& targetChord);
 		};
 	}
 }
