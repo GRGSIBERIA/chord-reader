@@ -79,3 +79,28 @@ const KeyChordModalizer& ScaleDatabase::MinorSubdominant(const std::wstring& key
 {
 	return Find(Modulation::MinorSubDominant(key));
 }
+const KeyChordModalizer& ScaleDatabase::Related(const std::wstring& key, const RelatedKey related)
+{
+	switch (related)
+	{
+	case RelatedKey::Parallel:
+		return ScaleDatabase::Parallel(key);
+
+	case RelatedKey::Relative:
+		return ScaleDatabase::Relative(key);
+
+	case RelatedKey::Dominant:
+		return ScaleDatabase::Dominant(key);
+
+	case RelatedKey::Subdominant:
+		return ScaleDatabase::Subdominant(key);
+
+	case RelatedKey::MinorDominant:
+		return ScaleDatabase::MinorDominant(key);
+
+	case RelatedKey::MinorSubdominant:
+		return ScaleDatabase::MinorSubdominant(key);
+	}
+
+	throw UndefinedRelatedKeyException();
+}

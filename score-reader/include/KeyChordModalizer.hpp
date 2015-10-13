@@ -9,8 +9,6 @@ namespace score
 {
 	namespace scale
 	{
-		
-
 		// あるキーのモードスケールを管理するクラス
 		class KeyChordModalizer
 		{

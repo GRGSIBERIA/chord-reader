@@ -6,34 +6,20 @@ const ChordScale DiatonicChanger::SecondaryDominant(const std::wstring& targetCh
 {
 	const auto& secondaryKey = useMinor ? ScaleDatabase::Find(targetChord) : ScaleDatabase::Major(targetChord);
 	const auto& chord = secondaryKey.Diatonics[4];
-	return secondaryKey.Available(4, 4);
+	return secondaryKey.Mode(4, 4);
 }
 
 const ChordScale DiatonicChanger::ModalInterchange(const std::wstring& key, const std::wstring& chord, const RelatedKey related = RelatedKey::Parallel)
 {
-	const auto index = ScaleDatabase::Find(key).ModeIndex(chord);
+	const auto& base = ScaleDatabase::Find(key);
+	
+	const auto modeIndex = base.ModeIndex(chord);
 
-	switch (related)
-	{
-	case RelatedKey::Parallel:
-		return ScaleDatabase::Parallel(key).PrimaryMode(index);
+	const auto& changed = ScaleDatabase::Related(key, related);
 
-	case RelatedKey::Relative:
-		return ScaleDatabase::Relative(key).PrimaryMode(index);
+	const auto changedIndex = base.ModeIndex(changed.KeyName);
 
-	case RelatedKey::Dominant:
-		return ScaleDatabase::Dominant(key).PrimaryMode(index);
-
-	case RelatedKey::Subdominant:
-		return ScaleDatabase::Subdominant(key).PrimaryMode(index);
-
-	case RelatedKey::MinorDominant:
-		return ScaleDatabase::MinorDominant(key).PrimaryMode(index);
-
-	case RelatedKey::MinorSubdominant:
-		return ScaleDatabase::MinorSubdominant(key).PrimaryMode(index);
-		break;
-	}
-
-	throw UndefinedRelatedKeyException();
+	int targetIndex = modeIndex < changedIndex ? modeIndex + 7 : modeIndex;
+	
+	return changed.PrimaryMode(targetIndex - changedIndex);
 }
