@@ -87,9 +87,6 @@
     <ClInclude Include="include\Property.hpp">
       <Filter>ヘッダー ファイル\score</Filter>
     </ClInclude>
-    <ClInclude Include="include\ModeManager.hpp">
-      <Filter>ヘッダー ファイル\score\score</Filter>
-    </ClInclude>
     <ClInclude Include="include\Modulation.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
@@ -100,6 +97,12 @@
       <Filter>ヘッダー ファイル\score\inst</Filter>
     </ClInclude>
     <ClInclude Include="include\ScaleDatabase.hpp">
+      <Filter>ヘッダー ファイル\score\scale</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DiatonicChanger.hpp">
+      <Filter>ヘッダー ファイル\score\scale</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ChordScale.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
   </ItemGroup>
@@ -134,10 +137,10 @@
     <ClCompile Include="src\Modulation.cpp">
       <Filter>ソース ファイル\score\scale</Filter>
     </ClCompile>
-    <ClCompile Include="src\ModeManager.cpp">
-      <Filter>ソース ファイル\score\score</Filter>
-    </ClCompile>
     <ClCompile Include="src\ScaleDatabase.cpp">
+      <Filter>ソース ファイル\score\scale</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DiatonicChanger.cpp">
       <Filter>ソース ファイル\score\scale</Filter>
     </ClCompile>
   </ItemGroup>
