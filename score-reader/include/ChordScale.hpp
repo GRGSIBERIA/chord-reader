@@ -14,16 +14,16 @@ namespace score
 		// コードとスケールの組み
 		class ChordScale
 		{
-			const int modeIndex;
+			const int scaleIndex;
 			const chord::Chord& chord;
 			const ModeModals& scale;
 		public:
-			GET_PROPERTY(const int, ModeIndex, modeIndex);
+			GET_PROPERTY(const int, scaleIndex, scaleIndex);
 			GET_PROPERTY(const chord::Chord&, Chord, chord);
 			GET_PROPERTY(const ModeModals&, Scale, scale);
 
-			ChordScale(const chord::Chord& chord, const int modeIndex, const ModeModals& scale)
-				: chord(chord), scale(scale), modeIndex(modeIndex) {}
+			ChordScale(const chord::Chord& chord, const int scaleIndex, const ModeModals& scale)
+				: chord(chord), scale(scale), scaleIndex(scaleIndex) {}
 		};
 	}
 }
