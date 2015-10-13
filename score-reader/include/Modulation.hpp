@@ -5,6 +5,23 @@ namespace score
 {
 	namespace scale
 	{
+		enum class RelatedKey
+		{
+			Parallel,			// 同主調
+			Relative,			// 平行調
+			Dominant,			// 属調
+			Subdominant,		// 下属調
+			MinorDominant,		// 反転属調
+			MinorSubdominant	// 反転下属調
+		};
+
+		// 未定義のRelatedKeyが投げられた場合の例外
+		class UndefinedRelatedKeyException : public std::exception
+		{
+		public:
+			UndefinedRelatedKeyException() : exception("なんかよーわからん") {}
+		};
+
 		// 文字列を転調させる
 		class Modulation
 		{
