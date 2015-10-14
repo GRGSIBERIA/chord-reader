@@ -13,13 +13,13 @@ const ChordScale DiatonicChanger::ModalInterchange(const std::wstring& key, cons
 {
 	const auto& base = ScaleDatabase::Find(key);
 	
-	const auto modeIndex = base.ModeIndex(chord);
+	const auto chordIndex = base.ModeIndex(chord);
 
 	const auto& changed = ScaleDatabase::Related(key, related);
 
 	const auto changedIndex = base.ModeIndex(changed.KeyName);
 
-	int targetIndex = modeIndex < changedIndex ? modeIndex + 7 : modeIndex;
+	int targetIndex = chordIndex < changedIndex ? chordIndex + 7 : chordIndex;
 	
 	return changed.PrimaryMode(targetIndex - changedIndex);
 }
