@@ -1,21 +1,12 @@
 #pragma once
 #include "Modal.hpp"
+#include "RelatedKey.hpp"
 #include "ScaleDatabase.hpp"
 
 namespace score
 {
 	namespace scale
 	{
-		enum class RelatedKey
-		{
-			Parallel,			// “¯å’²
-			Relative,			// •½s’²
-			Dominant,			// ‘®’²
-			Subdominant,		// ‰º‘®’²
-			MinorDominant,		// ”½“]‘®’²
-			MinorSubdominant	// ”½“]‰º‘®’²
-		};
-
 		// –¢’è‹`‚ÌRelatedKey‚ª“Š‚°‚ç‚ê‚½ê‡‚Ì—áŠO
 		class UndefinedRelatedKeyException : public std::exception
 		{

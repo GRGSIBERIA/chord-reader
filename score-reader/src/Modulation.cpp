@@ -100,7 +100,7 @@ const ChordScale Modulation::ModalInterchange(const std::wstring& key, const std
 
 	const auto chordIndex = base.ModeIndex(chord);
 
-	const auto& changed = ScaleDatabase::Related(key, related);
+	const auto& changed = ScaleDatabase::Modulate(key, related);
 
 	const auto changedIndex = base.ModeIndex(changed.KeyName);
 

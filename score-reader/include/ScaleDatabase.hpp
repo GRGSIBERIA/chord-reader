@@ -2,6 +2,7 @@
 #include <array>
 #include "Modal.hpp"
 #include "KeyChordModalizer.hpp"
+#include "Modulation.hpp"
 
 namespace score
 {
@@ -20,7 +21,8 @@ namespace score
 			static const KeyChordModalizer& Major(const std::wstring& key);
 			static const KeyChordModalizer& Minor(const std::wstring& key);
 
-			static const KeyChordModalizer& Related(const std::wstring& key, const RelatedKey related);
+			static const KeyChordModalizer& Modulate(const std::wstring& key, const RelatedKey type);
+
 			static const KeyChordModalizer& Parallel(const std::wstring& key);
 			static const KeyChordModalizer& Relative(const std::wstring& key);
 			static const KeyChordModalizer& Dominant(const std::wstring& key);
