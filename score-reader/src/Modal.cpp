@@ -60,3 +60,9 @@ const bool Modalize::HasMajor(const std::wstring& str)
 {
 	return str.find(L'm') == std::wstring::npos;
 }
+const int Modalize::Round(const int modal)
+{
+	if (modal > 11) Round(modal - 12);
+	else if (modal < 0) Round(modal + 12);
+	return modal;
+}
