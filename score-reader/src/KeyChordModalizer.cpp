@@ -2,7 +2,10 @@
 using namespace score::scale;
 
 const ScaleTheory KeyChordModalizer::majtheory = ScaleTheory({ 0, 2, 4, 5, 7, 9, 11 });
-const ScaleTheory KeyChordModalizer::mintheory = ScaleTheory({ 0, 2, 3, 5, 7, 8, 11 });
+const ScaleTheory KeyChordModalizer::harmonic = ScaleTheory({ 0, 2, 3, 5, 7, 8, 11 });
+const ScaleTheory KeyChordModalizer::natural = ScaleTheory({ 0, 2, 3, 5, 7, 8, 10 });
+const ScaleTheory KeyChordModalizer::melodic = ScaleTheory({ 0, 2, 3, 5, 7, 9, 11 });
+const ScaleTheory* KeyChordModalizer::current = &harmonic;
 
 int RoundInterval(int num)
 {
@@ -48,8 +51,28 @@ void KeyChordModalizer::CalcAvailableScaleOnRoot(const size_t root)
 	}
 }
 
+const ScaleTheory& KeyChordModalizer::GetMinor(const MinorType minor) const
+{
+	switch (minor)
+	{
+	case MinorType::Harmonic:
+		return harmonic;
+	case MinorType::Natural:
+		return natural;
+	case MinorType::Melodic:
+		return melodic;
+	}
+	throw std::exception("知らん奴が投げられてるぞ");
+}
+
+KeyChordModalizer::KeyChordModalizer(const std::wstring& key, const MinorType minor)
+	: KeyChordModalizer(key, Modalize::ToModal(key), Modalize::HasMinor(key) ? GetMinor(minor) : majtheory, { 0, 2, 4, 6 })
+{
+	// 委譲コンストラクタ
+}
+
 KeyChordModalizer::KeyChordModalizer(const std::wstring& key) 
-	: KeyChordModalizer(key, Modalize::ToModal(key), Modalize::HasMinor(key) ? mintheory : majtheory, { 0, 2, 4, 6 })
+	: KeyChordModalizer(key, Modalize::ToModal(key), Modalize::HasMinor(key) ? *current : majtheory, { 0, 2, 4, 6 })
 {
 	// 委譲コンストラクタ
 }

@@ -166,9 +166,9 @@ void ModeTheory::BuildingDiatonicChords(const Scale& scale)
 
 		diatonics.emplace_back(score::chord::ChordFactory::CreateChord(
 			roundNum,
-			modeScales[i].GetInterval(chordTones[1]),
-			modeScales[i].GetInterval(chordTones[2]),
-			modeScales[i].GetInterval(chordTones[3])));
+			Modalize::Round(modeScales[i].GetInterval(chordTones[1])),
+			Modalize::Round(modeScales[i].GetInterval(chordTones[2])),
+			Modalize::Round(modeScales[i].GetInterval(chordTones[3]))));
 	}
 }
 

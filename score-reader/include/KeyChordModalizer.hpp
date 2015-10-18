@@ -9,11 +9,22 @@ namespace score
 {
 	namespace scale
 	{
+		// 利用するマイナーキーの種類
+		enum class MinorType
+		{
+			Natural,
+			Harmonic,
+			Melodic
+		};
+
 		// あるキーのモードスケールを管理するクラス
 		class KeyChordModalizer
 		{
 			static const ScaleTheory majtheory;
-			static const ScaleTheory mintheory;
+			static const ScaleTheory harmonic;
+			static const ScaleTheory natural;
+			static const ScaleTheory melodic;
+			static const ScaleTheory* current;
 
 			const ModeTheory mtheory;
 
@@ -29,10 +40,12 @@ namespace score
 
 			void CalcModeScalesOnRoot(const size_t root);
 			void CalcAvailableScaleOnRoot(const size_t root);
+			const ScaleTheory& GetMinor(const MinorType minor) const;
 
 		public:
 			KeyChordModalizer(const std::wstring& keyName, const Modal& key, const ScaleTheory& theory, const ScaleIndices& chordTone);
-			KeyChordModalizer(const std::wstring& str);		// キーを指定する
+			KeyChordModalizer(const std::wstring& key);
+			KeyChordModalizer(const std::wstring& key, const MinorType minor);
 
 			// モードを取得する
 			const ModeModals& ModeScale(const size_t root, const size_t mode_num) const { return modeScale[root][mode_num]; }
