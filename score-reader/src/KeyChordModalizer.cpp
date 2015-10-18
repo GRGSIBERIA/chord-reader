@@ -43,10 +43,11 @@ void KeyChordModalizer::CalcAvailableScaleOnRoot(const size_t root)
 		for (size_t intervalIndex = 0; intervalIndex < scale.Size(); ++intervalIndex)
 		{
 			// Available Note以外は追加しない方針
-			if (availableOnMode[intervalIndex] != targetMode.GetInterval(intervalIndex))
-				continue;
-
-			availables[root][modeIndex].push_back(targetScale[intervalIndex]);
+			usables[root][modeIndex].push_back(targetScale[intervalIndex]);
+			if (availableOnMode[intervalIndex] == targetMode.GetInterval(intervalIndex))
+			{
+				availables[root][modeIndex].push_back(targetScale[intervalIndex]);
+			}
 		}
 	}
 }
@@ -84,6 +85,8 @@ KeyChordModalizer::KeyChordModalizer(const std::wstring& keyName, const Modal& k
 		ModeModalScales(scale.Size(), 
 		ModeModals(scale.Size())));
 	availables = ModesOnScale(scale.Size(),
+		ModeModalScales(scale.Size()));
+	usables = ModesOnScale(scale.Size(),
 		ModeModalScales(scale.Size()));
 
 	// 音階ごとにモードスケールを展開する
@@ -133,7 +136,7 @@ const ModeModalScales& KeyChordModalizer::Availables(const std::wstring& chord) 
 
 const ChordScale KeyChordModalizer::Mode(const size_t root, const size_t mode_num) const 
 { 
-	return ChordScale(Diatonics[root], root, mode_num, ModeScale(root, mode_num), AvailableScale(root, mode_num), *this); 
+	return ChordScale(Diatonics[root], root, mode_num, ModeScale(root, mode_num), AvailableScale(root, mode_num), usables[root][mode_num], *this); 
 }
 const ChordScale KeyChordModalizer::Mode(const std::wstring& chord, const size_t mode_num) const
 {
@@ -141,7 +144,7 @@ const ChordScale KeyChordModalizer::Mode(const std::wstring& chord, const size_t
 }
 const ChordScale KeyChordModalizer::PrimaryMode(const size_t root) const
 {
-	return ChordScale(Diatonics[root], root, root, PrimaryModeScale(root), PrimaryAvailableScale(root), *this);
+	return ChordScale(Diatonics[root], root, root, PrimaryModeScale(root), PrimaryAvailableScale(root), usables[root][root], *this);
 }
 const ChordScale KeyChordModalizer::PrimaryMode(const std::wstring& root) const
 {

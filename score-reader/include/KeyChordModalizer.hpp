@@ -37,7 +37,7 @@ namespace score
 			const MinorType minorType;
 
 			ModesOnScale modeScale;
-
+			ModesOnScale usables;
 			ModesOnScale availables;
 
 			void CalcModeScalesOnRoot(const size_t root);
