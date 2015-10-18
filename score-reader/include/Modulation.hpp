@@ -17,6 +17,9 @@ namespace score
 		// 文字列を転調させる
 		class Modulation
 		{
+		private:
+			static const scale::ChordScale ModalInterchange(const std::wstring& key, const int chordIndex, const RelatedKey related, const KeyChordModalizer& base);
+
 		public:
 			static const std::wstring Modulate(const RelatedKey relate, const std::wstring& key);
 			static const std::wstring Parallel(const std::wstring& key);			// 同主調(I)
@@ -31,6 +34,7 @@ namespace score
 
 			// モーダルインターチェンジ
 			static const scale::ChordScale ModalInterchange(const std::wstring& key, const std::wstring& chord, const RelatedKey related);
+			static const scale::ChordScale ModalInterchange(const std::wstring& key, const size_t scaleIndex, const RelatedKey related);
 
 			// 裏コード，代理ドミナント，一般的にはVの代理
 			static const scale::ChordScale SubstituteDominant(const std::wstring& key, const std::wstring& chord);

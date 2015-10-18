@@ -94,12 +94,8 @@ const ChordScale Modulation::SecondaryDominant(const std::wstring& targetChord, 
 	return secondaryKey.Mode(4, 4);
 }
 
-const ChordScale Modulation::ModalInterchange(const std::wstring& key, const std::wstring& chord, const RelatedKey related = RelatedKey::Parallel)
+const ChordScale Modulation::ModalInterchange(const std::wstring& key, const int chordIndex, const RelatedKey related, const KeyChordModalizer& base)
 {
-	const auto& base = ScaleDatabase::Find(key);
-
-	const auto chordIndex = base.ModeIndex(chord);
-
 	const auto& changed = ScaleDatabase::Modulate(key, related);
 
 	const auto changedIndex = base.ModeIndex(changed.KeyName);
@@ -107,6 +103,22 @@ const ChordScale Modulation::ModalInterchange(const std::wstring& key, const std
 	int targetIndex = chordIndex < changedIndex ? chordIndex + 7 : chordIndex;
 
 	return changed.PrimaryMode(targetIndex - changedIndex);
+}
+
+const ChordScale Modulation::ModalInterchange(const std::wstring& key, const std::wstring& chord, const RelatedKey related = RelatedKey::Parallel)
+{
+	const auto& base = ScaleDatabase::Find(key);
+
+	const auto chordIndex = base.ModeIndex(chord);
+
+	return ModalInterchange(key, chordIndex, related, base);
+}
+
+const ChordScale Modulation::ModalInterchange(const std::wstring& key, const size_t scaleIndex, const RelatedKey related)
+{
+	const auto& base = ScaleDatabase::Find(key);
+
+	return ModalInterchange(key, scaleIndex, related, base);
 }
 
 const ChordScale SubstituteDominant(const std::wstring& key, const std::wstring& chord)
