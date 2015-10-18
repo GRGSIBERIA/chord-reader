@@ -89,8 +89,8 @@ const std::wstring Modulation::Modulate(const RelatedKey relate, const std::wstr
 
 const ChordScale Modulation::SecondaryDominant(const std::wstring& targetChord, const bool useMinor = false)
 {
-	const auto& secondaryKey = useMinor ? ScaleDatabase::Find(targetChord) : ScaleDatabase::Major(targetChord);
-	const auto& chord = secondaryKey.Diatonics[4];
+	const auto& findTargetKey = Modalize::ToInt(targetChord);
+	const auto& secondaryKey = useMinor ? ScaleDatabase::Minor(targetChord) : ScaleDatabase::Major(targetChord);
 	return secondaryKey.Mode(4, 4);
 }
 

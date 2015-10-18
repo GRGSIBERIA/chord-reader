@@ -62,7 +62,9 @@ const bool Modalize::HasMajor(const std::wstring& str)
 }
 const int Modalize::Round(const int modal)
 {
-	if (modal > 11) Round(modal - 12);
-	else if (modal < 0) Round(modal + 12);
+	if (modal > 11)
+		return Round(modal - 12);
+	else if (modal < 0)
+		return Round(modal + 12);
 	return modal;
 }

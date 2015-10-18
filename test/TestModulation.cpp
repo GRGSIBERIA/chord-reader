@@ -1,6 +1,8 @@
 #include "gtest\gtest.h"
+#include <iostream>
 #include <Modulation.hpp>
 using namespace score::scale;
+using namespace std;
 
 TEST(TestModulation, parallel)
 {
@@ -41,4 +43,20 @@ TEST(TestModulation, subdominant)
 	EXPECT_EQ(Modulation::SubDominant(L"D"), L"G");
 	EXPECT_EQ(Modulation::SubDominant(L"Cm"), L"Fm");
 	EXPECT_EQ(Modulation::SubDominant(L"Dm"), L"Gm");
+}
+
+TEST(TestModulation, secondary)
+{
+	EXPECT_EQ(Modulation::SecondaryDominant(L"CM7", false).Chord.Name(), L"G7");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"Dm7", false).Chord.Name(), L"A7");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"Em7", false).Chord.Name(), L"B7");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"FM7", false).Chord.Name(), L"C7");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"G7", false).Chord.Name(), L"D7");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"Am7", false).Chord.Name(), L"E7");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"Bm7-5", false).Chord.Name(), L"Gb7");
+}
+
+TEST(TestModulation, interchange)
+{
+	Modulation::ModalInterchange(L"", L"", RelatedKey::Parallel);
 }
