@@ -99,10 +99,10 @@
     <ClInclude Include="include\ScaleDatabase.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
-    <ClInclude Include="include\DiatonicChanger.hpp">
+    <ClInclude Include="include\ChordScale.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
-    <ClInclude Include="include\ChordScale.hpp">
+    <ClInclude Include="include\RelatedKey.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
     </ClInclude>
   </ItemGroup>
@@ -138,9 +138,6 @@
       <Filter>ソース ファイル\score\scale</Filter>
     </ClCompile>
     <ClCompile Include="src\ScaleDatabase.cpp">
-      <Filter>ソース ファイル\score\scale</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DiatonicChanger.cpp">
       <Filter>ソース ファイル\score\scale</Filter>
     </ClCompile>
   </ItemGroup>

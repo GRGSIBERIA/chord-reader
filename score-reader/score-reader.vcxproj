@@ -77,7 +77,6 @@
     <ClInclude Include="include\ChordScale.hpp" />
     <ClInclude Include="include\ChordScore.hpp" />
     <ClInclude Include="include\ChordUnit.hpp" />
-    <ClInclude Include="include\DiatonicChanger.hpp" />
     <ClInclude Include="include\Header.hpp" />
     <ClInclude Include="include\Instrument.hpp" />
     <ClInclude Include="include\Modulation.hpp" />
@@ -85,6 +84,7 @@
     <ClInclude Include="include\Modal.hpp" />
     <ClInclude Include="include\ModeTheory.hpp" />
     <ClInclude Include="include\Property.hpp" />
+    <ClInclude Include="include\RelatedKey.hpp" />
     <ClInclude Include="include\Scale.hpp" />
     <ClInclude Include="include\ScaleDatabase.hpp" />
     <ClInclude Include="include\ScaleTheory.hpp" />
@@ -96,7 +96,6 @@
     <ClCompile Include="src\ChordConstructions.cpp" />
     <ClCompile Include="src\ChordFactory.cpp" />
     <ClCompile Include="src\ChordScore.cpp" />
-    <ClCompile Include="src\DiatonicChanger.cpp" />
     <ClCompile Include="src\Modulation.cpp" />
     <ClCompile Include="src\KeyChordModalizer.cpp" />
     <ClCompile Include="src\Modal.cpp" />
