@@ -62,3 +62,27 @@ const std::wstring Modulation::MinorSubDominant(const std::wstring& str)
 {
 	return CalcUnder(str, 5, 9);
 }
+const std::wstring Modulation::Modulate(const RelatedKey relate, const std::wstring& key)
+{
+	switch (relate)
+	{
+	case RelatedKey::Parallel:
+		return Parallel(key);
+
+	case RelatedKey::Relative:
+		return Relative(key);
+
+	case RelatedKey::Dominant:
+		return Dominant(key);
+
+	case RelatedKey::Subdominant:
+		return SubDominant(key);
+
+	case RelatedKey::MinorDominant:
+		return MinorDominant(key);
+
+	case RelatedKey::MinorSubdominant:
+		return MinorSubDominant(key);
+	}
+	throw UndefinedRelatedKeyException();
+}

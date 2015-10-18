@@ -26,6 +26,7 @@ namespace score
 		class Modulation
 		{
 		public:
+			static const std::wstring Modulate(const RelatedKey relate, const std::wstring& key);
 			static const std::wstring Parallel(const std::wstring& key);			// “¯å’²(I)
 			static const std::wstring Relative(const std::wstring& key);			// •½s’²(maj=VIm, min=III)
 			static const std::wstring Dominant(const std::wstring& key);			// ‘®’²(V)
