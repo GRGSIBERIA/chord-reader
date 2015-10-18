@@ -58,5 +58,16 @@ TEST(TestModulation, secondary)
 
 TEST(TestModulation, interchange)
 {
-	Modulation::ModalInterchange(L"", L"", RelatedKey::Parallel);
+	wcout << Modulation::ModalInterchange(L"C", 0, RelatedKey::Parallel).Chord.Name() << endl;
+	wcout << Modulation::ModalInterchange(L"C", 1, RelatedKey::Parallel).Chord.Name() << endl;
+	wcout << Modulation::ModalInterchange(L"C", 2, RelatedKey::Parallel).Chord.Name() << endl;
+	wcout << Modulation::ModalInterchange(L"C", 3, RelatedKey::Parallel).Chord.Name() << endl;
+	wcout << Modulation::ModalInterchange(L"C", 4, RelatedKey::Parallel).Chord.Name() << endl;
+	wcout << Modulation::ModalInterchange(L"C", 5, RelatedKey::Parallel).Chord.Name() << endl;
+	wcout << Modulation::ModalInterchange(L"C", 6, RelatedKey::Parallel).Chord.Name() << endl;
+
+	for (int i = 0; i < 7; ++i)
+	{
+		cout << Modulation::ModalInterchange(L"C", 6, RelatedKey::Parallel).Scale[i] << endl;
+	}
 }
