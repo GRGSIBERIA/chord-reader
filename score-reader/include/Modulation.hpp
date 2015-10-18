@@ -1,5 +1,6 @@
 #pragma once
 #include "Modal.hpp"
+#include "ScaleDatabase.hpp"
 
 namespace score
 {
@@ -33,6 +34,12 @@ namespace score
 			static const std::wstring SubDominant(const std::wstring& key);			// 下属調(IV)
 			static const std::wstring MinorDominant(const std::wstring& key);		// 属調2(maj=IIIm, min=VII)
 			static const std::wstring MinorSubDominant(const std::wstring& key);	// 下属調2(maj=IIm, min=VI)
+
+			// 遷移したいコードをIとして，Vのコードを求める
+			static const scale::ChordScale SecondaryDominant(const std::wstring& targetChord, const bool useMinor);
+
+			// 同主調借用
+			static const scale::ChordScale ModalInterchange(const std::wstring& key, const std::wstring& chord, const RelatedKey related);
 		};
 	}
 }
