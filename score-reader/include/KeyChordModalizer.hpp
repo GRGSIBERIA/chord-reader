@@ -34,6 +34,8 @@ namespace score
 
 			const std::wstring keyName;
 
+			const MinorType minorType;
+
 			ModesOnScale modeScale;
 
 			ModesOnScale availables;
@@ -43,7 +45,7 @@ namespace score
 			const ScaleTheory& GetMinor(const MinorType minor) const;
 
 		public:
-			KeyChordModalizer(const std::wstring& keyName, const Modal& key, const ScaleTheory& theory, const ScaleIndices& chordTone);
+			KeyChordModalizer(const std::wstring& keyName, const Modal& key, const ScaleTheory& theory, const ScaleIndices& chordTone, const MinorType minor = MinorType::Harmonic);
 			KeyChordModalizer(const std::wstring& key);
 			KeyChordModalizer(const std::wstring& key, const MinorType minor);
 
@@ -71,6 +73,7 @@ namespace score
 
 			GET_PROPERTY(const std::wstring&, KeyName, keyName);
 			GET_PROPERTY(const DiatonicChords&, Diatonics, mtheory.Diatonics);
+			GET_PROPERTY(const MinorType, Minor, minorType);
 
 			const ChordScale Mode(const std::wstring& chord, const size_t mode_num) const;
 			const ChordScale Mode(const size_t root, const size_t mode_num) const;

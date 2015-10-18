@@ -11,6 +11,8 @@ namespace score
 		typedef std::vector<ModeModals> ModeModalScales;
 		typedef std::vector<ModeModalScales> ModesOnScale;
 
+		class KeyChordModalizer;
+
 		// コードとスケールの組み
 		class ChordScale
 		{
@@ -19,8 +21,7 @@ namespace score
 			const chord::Chord& chord;
 			const ModeModals& scale;
 			const ModeModals& available;
-			const ModeModalScales& modes;
-			const ModeModalScales& availables;
+			const KeyChordModalizer& modalizer;
 
 		public:
 			GET_PROPERTY(const int, ScaleIndex, scaleIndex);
@@ -29,10 +30,10 @@ namespace score
 			GET_PROPERTY(const ModeModals&, Scale, scale);
 			GET_PROPERTY(const ModeModals&, Available, available);
 
-			ChordScale(const chord::Chord& chord, const int scaleIndex, const int modeIndex, const ModeModals& scale, const ModeModals& available, const ModeModalScales& modes, const ModeModalScales& availables)
-				: chord(chord), scale(scale), scaleIndex(scaleIndex), modeIndex(modeIndex), available(available), modes(modes), availables(availables) {}
+			ChordScale(const chord::Chord& chord, const int scaleIndex, const int modeIndex, const ModeModals& scale, const ModeModals& available, const KeyChordModalizer& modalizer)
+				: chord(chord), scale(scale), scaleIndex(scaleIndex), modeIndex(modeIndex), available(available), modalizer(modalizer) {}
 
-			const ChordScale Mode(const int i) const { return ChordScale(chord, scaleIndex, i, modes[(size_t)i], availables[(size_t)i], modes, availables); }
+			const ChordScale Mode(const int i) const;
 		};
 	}
 }

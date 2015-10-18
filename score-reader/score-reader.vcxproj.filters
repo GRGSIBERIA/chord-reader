@@ -140,5 +140,8 @@
     <ClCompile Include="src\ScaleDatabase.cpp">
       <Filter>ソース ファイル\score\scale</Filter>
     </ClCompile>
+    <ClCompile Include="src\ChordScale.cpp">
+      <Filter>ソース ファイル\score\scale</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
