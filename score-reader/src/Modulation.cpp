@@ -108,3 +108,19 @@ const ChordScale Modulation::ModalInterchange(const std::wstring& key, const std
 
 	return changed.PrimaryMode(targetIndex - changedIndex);
 }
+
+const ChordScale SubstituteDominant(const std::wstring& key, const std::wstring& chord)
+{
+	const auto& base = ScaleDatabase::Find(key);
+
+	const int chordNum = base.ModeIndex(chord);
+
+	const int keyNum = Modalize::ToInt(key);
+	const int roundNum = Modalize::Round(keyNum - 6);
+
+	const auto circleOfFifth = Modalize::ToString(roundNum);
+
+	const auto& dominantKey = ScaleDatabase::Find(circleOfFifth);
+	
+	return dominantKey.PrimaryMode(chordNum);
+}
