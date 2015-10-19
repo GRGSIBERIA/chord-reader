@@ -4,6 +4,8 @@
 #include "Chord.hpp"
 #include "ChordFactory.hpp"
 #include "Property.hpp"
+#include "KeyChordModalizer.hpp"
+#include "ScaleDatabase.hpp"
 
 namespace score
 {
@@ -13,24 +15,26 @@ namespace score
 		class ChordUnit
 		{
 			const std::wstring part;
+
 			const std::wstring key;
 			const chord::ChordPtr chordPtr;
-			//const scale::ChordScale& chordScale;
+			const scale::KeyChordModalizer& modalizer;
+
+			int scaleIndex;
 			const int count;
 
 		public:
-			ChordUnit(const std::wstring& part, const std::wstring& key, const std::wstring& chordName, const int count)
-				: key(key), chordPtr(chord::ChordFactory::CreateChord(chordName)), count(count), part(part)
-			{
-				
-			}
+			ChordUnit(const std::wstring& part, const std::wstring& key, const std::wstring& chordName, const int count);
 
 			const chord::Chord& _GetChord() const { return *chordPtr; }
+			const scale::ChordScale& Scale(const size_t index) const;
 
 			GET_PROPERTY(const std::wstring&, Key, key);
 			GET_PROPERTY(const std::wstring&, Part, part);
 			GET_PROPERTY(const int, Count, count);
 			__declspec(property(get = _GetChord)) const chord::Chord& Chord;
+
+			
 		};
 
 		// 専用の配列クラス
