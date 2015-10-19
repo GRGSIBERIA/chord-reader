@@ -106,29 +106,42 @@ const ModeModals& KeyChordModalizer::PrimaryModeScale(const std::wstring& str) c
 	auto index = scale.GetIndex(str);
 	return ModeScale(index, index);
 }
-
 const ModeModals& KeyChordModalizer::PrimaryAvailableScale(const std::wstring& str) const
 {
 	auto index = scale.GetIndex(str);
 	return AvailableScale(index, index);
 }
-
+const ModeModals& KeyChordModalizer::PrimaryUsableScale(const std::wstring& str) const
+{
+	auto index = scale.GetIndex(str);
+	return UsableScale(index, index);
+}
 const ModeModals& KeyChordModalizer::AvailableScale(const std::wstring& str, const size_t mode_num) const
 {
 	auto index = scale.GetIndex(str);
 	return AvailableScale(index, mode_num);
 }
-
 const ModeModals& KeyChordModalizer::ModeScale(const std::wstring& str, const size_t mode_num) const
 {
 	auto index = scale.GetIndex(str);
 	return ModeScale(index, mode_num);
 }
-
+const ModeModals& KeyChordModalizer::UsableScale(const std::wstring& str, const size_t mode_num) const
+{
+	auto index = scale.GetIndex(str);
+	return ModeScale(index, mode_num);
+}
 const ModeModalScales& KeyChordModalizer::Availables(const std::wstring& chord) const
 {
 	return availables[scale.GetIndex(chord)];
 }
+
+const ModeModals& KeyChordModalizer::ModeScale(const size_t root, const size_t mode_num) const { return modeScale[root][mode_num]; }
+const ModeModals& KeyChordModalizer::PrimaryModeScale(const size_t rootIndex) const { return modeScale[rootIndex][rootIndex]; }
+const ModeModals& KeyChordModalizer::AvailableScale(const size_t root, const size_t mode_num) const { return availables[root][mode_num]; }
+const ModeModals& KeyChordModalizer::PrimaryAvailableScale(const size_t rootIndex) const { return availables[rootIndex][rootIndex]; }
+const ModeModals& KeyChordModalizer::UsableScale(const size_t rootIndex, const size_t mode_num) const { return usables[rootIndex][mode_num]; }
+const ModeModals& KeyChordModalizer::PrimaryUsableScale(const size_t rootIndex) const { return usables[rootIndex][rootIndex]; }
 
 /**************************************************************************************************
 * ここから先は新仕様のメンバ関数
@@ -136,7 +149,7 @@ const ModeModalScales& KeyChordModalizer::Availables(const std::wstring& chord) 
 
 const ChordScale KeyChordModalizer::Mode(const size_t root, const size_t mode_num) const 
 { 
-	return ChordScale(Diatonics[root], root, mode_num, ModeScale(root, mode_num), AvailableScale(root, mode_num), usables[root][mode_num], *this); 
+	return ChordScale(keyName, Diatonics[root], root, mode_num, modeScale[root][mode_num], availables[root][mode_num], usables[root][mode_num]); 
 }
 const ChordScale KeyChordModalizer::Mode(const std::wstring& chord, const size_t mode_num) const
 {
@@ -144,7 +157,7 @@ const ChordScale KeyChordModalizer::Mode(const std::wstring& chord, const size_t
 }
 const ChordScale KeyChordModalizer::PrimaryMode(const size_t root) const
 {
-	return ChordScale(Diatonics[root], root, root, PrimaryModeScale(root), PrimaryAvailableScale(root), usables[root][root], *this);
+	return ChordScale(keyName, Diatonics[root], root, root, modeScale[root][root], availables[root][root], usables[root][root]);
 }
 const ChordScale KeyChordModalizer::PrimaryMode(const std::wstring& root) const
 {

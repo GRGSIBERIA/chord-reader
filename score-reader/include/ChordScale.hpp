@@ -16,26 +16,26 @@ namespace score
 		// コードとスケールの組み
 		class ChordScale
 		{
+			const std::wstring key;
 			const int scaleIndex;
 			const int modeIndex;
 			const chord::Chord& chord;
+
 			const ModeModals& scale;
 			const ModeModals& available;
 			const ModeModals& usable;
-			const KeyChordModalizer& modalizer;
 
 		public:
+			GET_PROPERTY(const std::wstring, Key, key);
 			GET_PROPERTY(const int, ScaleIndex, scaleIndex);
 			GET_PROPERTY(const int, ModeIndex, modeIndex);
 			GET_PROPERTY(const chord::Chord&, Chord, chord);
-			GET_PROPERTY(const ModeModals&, Scale, scale);			// 普通のスケール
-			GET_PROPERTY(const ModeModals&, Available, available);	// 完全に利用可能なスケール
-			GET_PROPERTY(const ModeModals&, Usable, usable);		// 利用可能なスケール
+			GET_PROPERTY(const ModeModals&, Scale, scale);
+			GET_PROPERTY(const ModeModals&, Available, available);
+			GET_PROPERTY(const ModeModals&, Usable, usable);
 
-			ChordScale(const chord::Chord& chord, const int scaleIndex, const int modeIndex, const ModeModals& scale, const ModeModals& available, const ModeModals& usable, const KeyChordModalizer& modalizer)
-				: chord(chord), scale(scale), scaleIndex(scaleIndex), modeIndex(modeIndex), available(available), modalizer(modalizer), usable(usable) {}
-
-			const ChordScale Mode(const int i) const;
+			ChordScale(const std::wstring& key, const chord::Chord& chord, const int scaleIndex, const int modeIndex, const ModeModals& scale, const ModeModals& available, const ModeModals& usable)
+				: key(key), chord(chord), scaleIndex(scaleIndex), modeIndex(modeIndex), scale(scale), available(available), usable(usable) {}
 		};
 	}
 }

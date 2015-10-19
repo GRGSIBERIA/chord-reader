@@ -69,6 +69,6 @@ TEST(TestModulation, interchange)
 	const auto& test = Modulation::ModalInterchange(L"C", 4, RelatedKey::Parallel);
 	for (int i = 0; i < 7; ++i)
 	{
-		cout << test.Scale[i] << endl;
+		wcout << test.Usable[i] << endl;
 	}
 }

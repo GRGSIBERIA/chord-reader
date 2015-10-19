@@ -15,6 +15,7 @@ namespace score
 			const std::wstring part;
 			const std::wstring key;
 			const chord::ChordPtr chordPtr;
+			//const scale::ChordScale& chordScale;
 			const int count;
 
 		public:

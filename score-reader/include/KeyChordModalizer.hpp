@@ -50,23 +50,31 @@ namespace score
 			KeyChordModalizer(const std::wstring& key, const MinorType minor);
 
 			// モードを取得する
-			const ModeModals& ModeScale(const size_t root, const size_t mode_num) const { return modeScale[root][mode_num]; }
+			const ModeModals& ModeScale(const size_t root, const size_t mode_num) const;
 			const ModeModals& ModeScale(const std::wstring& str, const size_t mode_num) const;
 
 			// 現在のコードに対して主体的なモードを返す
 			const ModeModals& PrimaryModeScale(const std::wstring& str) const;
-			const ModeModals& PrimaryModeScale(const size_t rootIndex) const { return modeScale[rootIndex][rootIndex]; }
+			const ModeModals& PrimaryModeScale(const size_t rootIndex) const;
 
 			// アベイラブルスケールを取得する
-			const ModeModals& AvailableScale(const size_t root, const size_t mode_num) const { return availables[root][mode_num]; }
+			const ModeModals& AvailableScale(const size_t root, const size_t mode_num) const;
 			const ModeModals& AvailableScale(const std::wstring& str, const size_t mode_num) const;
-
-			// あるコードにおけるモードスケールの中で，アベイラブルスケールをすべて取得する
-			const ModeModalScales& Availables(const std::wstring& chord) const;
 
 			// 現在のコードに対して主体的なアベイラブルスケールを返す
 			const ModeModals& PrimaryAvailableScale(const std::wstring& str) const;
-			const ModeModals& PrimaryAvailableScale(const size_t rootIndex) const { return availables[rootIndex][rootIndex]; }
+			const ModeModals& PrimaryAvailableScale(const size_t rootIndex) const;
+
+			// 現在のコードに対して使用可能な音階を返す
+			const ModeModals& UsableScale(const size_t rootIndex, const size_t mode_num) const;
+			const ModeModals& UsableScale(const std::wstring& str, const size_t mode_num) const;
+
+			// 現在のコードに対して主体的で使用可能な音階を返す
+			const ModeModals& PrimaryUsableScale(const size_t rootIndex) const;
+			const ModeModals& PrimaryUsableScale(const std::wstring& str) const;
+
+			// あるコードにおけるモードスケールの中で，アベイラブルスケールをすべて取得する
+			const ModeModalScales& Availables(const std::wstring& chord) const;
 
 			// コードからモードインデックスを返す
 			const int ModeIndex(const std::wstring& chord) const { return scale.GetIndex(chord); }
