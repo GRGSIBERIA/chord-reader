@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include <ChordScore.hpp>
+#include <ChordUnit.hpp>
 using namespace score::score;
 
 score::score::ChordScore cs("..\\autumn leaves.xml");
@@ -61,5 +62,5 @@ TEST(TestChordScore, next_key)
 TEST(TestChordScore, chord_unit)
 {
 	const auto k = cs.Chords.cbegin();
-	const auto& hoge = k->Scale(0);
+	const auto hoge = k->Scale(0);
 }

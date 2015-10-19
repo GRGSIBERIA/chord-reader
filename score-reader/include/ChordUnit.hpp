@@ -22,11 +22,7 @@ namespace score
 			int scaleIndex;
 
 		public:
-			ChordUnit(const std::wstring& part, const std::wstring& key, const std::wstring& chordName, const int count)
-				: key(key), chordPtr(chord::ChordFactory::CreateChord(chordName)), count(count), part(part), modalizer(scale::ScaleDatabase::Find(key))
-			{
-				scaleIndex = modalizer.ModeIndex(chordName);
-			}
+			ChordUnit(const std::wstring& part, const std::wstring& key, const std::wstring& chordName, const int count);
 
 			const chord::Chord& _GetChord() const { return *chordPtr; }
 
@@ -35,7 +31,7 @@ namespace score
 			GET_PROPERTY(const int, Count, count);
 			__declspec(property(get = _GetChord)) const chord::Chord& Chord;
 
-			const scale::ChordScale& Scale(const size_t modeIndex) const { return modalizer.Mode(scaleIndex, modeIndex); }
+			const scale::ChordScale Scale(const size_t modeIndex) const { return modalizer.Mode(scaleIndex, modeIndex); }
 		};
 
 		// 専用の配列クラス
