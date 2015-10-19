@@ -78,9 +78,6 @@
     <ClInclude Include="include\ChordScore.hpp">
       <Filter>ヘッダー ファイル\score\score</Filter>
     </ClInclude>
-    <ClInclude Include="include\ChordUnit.hpp">
-      <Filter>ヘッダー ファイル\score\score</Filter>
-    </ClInclude>
     <ClInclude Include="include\Header.hpp">
       <Filter>ヘッダー ファイル\score\score</Filter>
     </ClInclude>
@@ -104,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="include\RelatedKey.hpp">
       <Filter>ヘッダー ファイル\score\scale</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ChordUnit.hpp">
+      <Filter>ヘッダー ファイル\score\score</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -57,3 +57,9 @@ TEST(TestChordScore, next_key)
 	for (const auto& str : s)
 		k = TestKey(k, str);
 }
+
+TEST(TestChordScore, chord_unit)
+{
+	const auto k = cs.Chords.cbegin();
+	const auto& hoge = k->Scale(0);
+}

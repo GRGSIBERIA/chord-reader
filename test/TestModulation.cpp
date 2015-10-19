@@ -65,10 +65,4 @@ TEST(TestModulation, interchange)
 	wcout << Modulation::ModalInterchange(L"C", 4, RelatedKey::Parallel).Chord.Name() << endl;
 	wcout << Modulation::ModalInterchange(L"C", 5, RelatedKey::Parallel).Chord.Name() << endl;
 	wcout << Modulation::ModalInterchange(L"C", 6, RelatedKey::Parallel).Chord.Name() << endl;
-
-	const auto& test = Modulation::ModalInterchange(L"C", 4, RelatedKey::Parallel);
-	for (int i = 0; i < 7; ++i)
-	{
-		wcout << test.Usable[i] << endl;
-	}
 }
