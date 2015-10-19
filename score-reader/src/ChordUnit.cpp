@@ -12,3 +12,7 @@ const ChordScale ChordUnit::Scale(const size_t modeIndex) const
 { 
 	return modalizer.Mode(scaleIndex, modeIndex); 
 }
+const ChordScale ChordUnit::Scale() const
+{
+	return modalizer.Mode(scaleIndex, scaleIndex);
+}

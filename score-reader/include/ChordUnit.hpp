@@ -29,9 +29,11 @@ namespace score
 			GET_PROPERTY(const std::wstring&, Key, key);
 			GET_PROPERTY(const std::wstring&, Part, part);
 			GET_PROPERTY(const int, Count, count);
+			GET_PROPERTY(const int, ModeIndex, scaleIndex);
 			__declspec(property(get = _GetChord)) const chord::Chord& Chord;
 
-			const scale::ChordScale Scale(const size_t modeIndex) const { return modalizer.Mode(scaleIndex, modeIndex); }
+			const scale::ChordScale Scale(const size_t modeIndex) const;
+			const scale::ChordScale Scale() const;
 		};
 
 		// 専用の配列クラス
