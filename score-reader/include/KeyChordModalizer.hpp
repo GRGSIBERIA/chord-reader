@@ -79,6 +79,8 @@ namespace score
 			const ChordScale Mode(const size_t root, const size_t mode_num) const;
 			const ChordScale PrimaryMode(const size_t root) const;
 			const ChordScale PrimaryMode(const std::wstring& root) const;
+
+			static void ChangeCurrentMinorScale(const MinorType minor);
 		};
 	}
 }

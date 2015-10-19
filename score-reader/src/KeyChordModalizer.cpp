@@ -150,3 +150,22 @@ const ChordScale KeyChordModalizer::PrimaryMode(const std::wstring& root) const
 {
 	return PrimaryMode(scale.GetIndex(root));
 }
+void KeyChordModalizer::ChangeCurrentMinorScale(const MinorType minor)
+{
+	switch (minor)
+	{
+	case MinorType::Harmonic:
+		current = &harmonic;
+		break;
+
+	case MinorType::Melodic:
+		current = &melodic;
+		break;
+
+	case MinorType::Natural:
+		current = &natural;
+		break;
+	}
+
+	throw std::exception("‚È‚ñ‚©‚í‚©‚ç‚ñ‚Ì“Š‚°‚ç‚ê‚½‚¼");
+}
