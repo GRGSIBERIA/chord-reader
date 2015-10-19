@@ -62,5 +62,5 @@ TEST(TestChordScore, next_key)
 TEST(TestChordScore, chord_unit)
 {
 	const auto k = cs.Chords.cbegin();
-	const auto hoge = k->Scale(0);
+	EXPECT_EQ(k->Scale(0).Key, L"A#");
 }

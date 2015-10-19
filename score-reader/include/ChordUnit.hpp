@@ -40,21 +40,12 @@ namespace score
 		class ChordUnitArray : public std::vector < ChordUnit >
 		{
 		public:
-			typedef ChordUnitArray::const_iterator Itr;
+			typedef const ChordUnitArray::const_iterator Itr;
 
 			ChordUnitArray() { reserve(64); }
 
-			// 次のパートの位置を返す
-			Itr NextPart(Itr& now) const
-			{
-				return std::find_if(now, end(), [now](const ChordUnit& b) { return now->Part != b.Part; });
-			}
-
-			// 次のキーの位置を返す
-			Itr NextKey(Itr& now) const
-			{
-				return std::find_if(now, end(), [now](const ChordUnit& b) { return now->Key != b.Key; });
-			}
+			Itr NextPart(Itr& now) const;	// 次のパートの位置を返す
+			Itr NextKey(Itr& now) const;	// 次のキーの位置を返す
 		};
 	}
 }

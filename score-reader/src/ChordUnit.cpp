@@ -16,3 +16,12 @@ const ChordScale ChordUnit::Scale() const
 {
 	return modalizer.Mode(scaleIndex, scaleIndex);
 }
+
+ChordUnitArray::Itr ChordUnitArray::NextPart(ChordUnitArray::Itr& now) const
+{
+	return std::find_if(now, end(), [now](const ChordUnit& b) { return now->Part != b.Part; });
+}
+ChordUnitArray::Itr ChordUnitArray::NextKey(ChordUnitArray::Itr& now) const
+{
+	return std::find_if(now, end(), [now](const ChordUnit& b) { return now->Key != b.Key; });
+}
