@@ -1,5 +1,6 @@
 #include "gtest\gtest.h"
 #include <iostream>
+#include <fstream>
 #include <Modulation.hpp>
 using namespace score::scale;
 using namespace std;
@@ -56,13 +57,59 @@ TEST(TestModulation, secondary)
 	EXPECT_EQ(Modulation::SecondaryDominant(L"Bm7-5", false).Chord.Name(), L"Gb7");
 }
 
+std::wstring RelatesToString(const RelatedKey key)
+{
+	switch (key)
+	{
+	case RelatedKey::Parallel:
+		return L"Parallel";
+	case RelatedKey::Relative:
+		return L"Relative";
+	case RelatedKey::Dominant:
+		return L"Dominant";
+	case RelatedKey::Subdominant:
+		return L"Subdominant";
+	case RelatedKey::MinorDominant:
+		return L"mDominant";
+	case RelatedKey::MinorSubdominant:
+		return L"mSubdominant";
+	default:
+		return L"";
+	}
+}
+
 TEST(TestModulation, interchange)
 {
-	wcout << Modulation::ModalInterchange(L"C", 0, RelatedKey::Parallel).Chord.Name() << endl;
-	wcout << Modulation::ModalInterchange(L"C", 1, RelatedKey::Parallel).Chord.Name() << endl;
-	wcout << Modulation::ModalInterchange(L"C", 2, RelatedKey::Parallel).Chord.Name() << endl;
-	wcout << Modulation::ModalInterchange(L"C", 3, RelatedKey::Parallel).Chord.Name() << endl;
-	wcout << Modulation::ModalInterchange(L"C", 4, RelatedKey::Parallel).Chord.Name() << endl;
-	wcout << Modulation::ModalInterchange(L"C", 5, RelatedKey::Parallel).Chord.Name() << endl;
-	wcout << Modulation::ModalInterchange(L"C", 6, RelatedKey::Parallel).Chord.Name() << endl;
+	// キーの各コードより，平行調にモーダルチェンジした場合の結果
+	// 現実で計算するの凄く面倒くさいので，ダンプする
+
+	std::wofstream ofst(L"./dump/modal_interchange.csv", std::ios::out);
+	std::vector<std::wstring> keys = { L"C", L"C#", L"D", L"D#", L"E", L"F", L"F#", L"G", L"G#", L"A", L"A#", L"B" };
+	std::vector<RelatedKey> relates = { RelatedKey::Parallel, RelatedKey::Relative, RelatedKey::Dominant, RelatedKey::Subdominant, RelatedKey::MinorDominant, RelatedKey::MinorSubdominant };
+
+	std::wstring header = L"key,changed,related,intervals\n";
+	ofst.write(header.c_str(), header.size());
+
+	for (const auto& key : keys)
+	{
+		for (const auto& relate : relates)
+		{
+			for (size_t i = 0; i < 7; ++i)
+			{
+				auto k = std::wstring();
+				const auto& mod = Modulation::ModalInterchange(key, i, relate);
+
+				if (i == 0)
+				{
+					k += key + L",";
+					k += mod.Key + L",";
+					k += RelatesToString(relate) + L",";
+				}
+				k += mod.Chord.Name() + L",";
+				ofst.write(k.c_str(), k.size());
+			}
+			auto end = std::wstring(L"\n");
+			ofst.write(end.c_str(), end.size());
+		}
+	}
 }
