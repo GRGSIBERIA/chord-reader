@@ -149,7 +149,7 @@ const ModeModals& KeyChordModalizer::PrimaryUsableScale(const size_t rootIndex) 
 
 const ChordScale KeyChordModalizer::Mode(const size_t root, const size_t mode_num) const 
 { 
-	return ChordScale(keyName, Diatonics[root], root, mode_num, modeScale[root][mode_num], availables[root][mode_num], usables[root][mode_num]); 
+	return ChordScale(keyName, Diatonics[root], root, mode_num, modeScale[root][mode_num], availables[root][mode_num], usables[root][mode_num], *this); 
 }
 const ChordScale KeyChordModalizer::Mode(const std::wstring& chord, const size_t mode_num) const
 {
@@ -157,7 +157,7 @@ const ChordScale KeyChordModalizer::Mode(const std::wstring& chord, const size_t
 }
 const ChordScale KeyChordModalizer::PrimaryMode(const size_t root) const
 {
-	return ChordScale(keyName, Diatonics[root], root, root, modeScale[root][root], availables[root][root], usables[root][root]);
+	return ChordScale(keyName, Diatonics[root], root, root, modeScale[root][root], availables[root][root], usables[root][root], *this);
 }
 const ChordScale KeyChordModalizer::PrimaryMode(const std::wstring& root) const
 {

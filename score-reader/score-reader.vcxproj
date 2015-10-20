@@ -95,6 +95,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\ChordConstructions.cpp" />
     <ClCompile Include="src\ChordFactory.cpp" />
+    <ClCompile Include="src\ChordScale.cpp" />
     <ClCompile Include="src\ChordScore.cpp" />
     <ClCompile Include="src\ChordUnit.cpp" />
     <ClCompile Include="src\Modulation.cpp" />

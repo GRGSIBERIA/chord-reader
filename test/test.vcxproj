@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClCompile Include="..\score-reader\src\ChordConstructions.cpp" />
     <ClCompile Include="..\score-reader\src\ChordFactory.cpp" />
+    <ClCompile Include="..\score-reader\src\ChordScale.cpp" />
     <ClCompile Include="..\score-reader\src\ChordScore.cpp" />
     <ClCompile Include="..\score-reader\src\ChordUnit.cpp" />
     <ClCompile Include="..\score-reader\src\KeyChordModalizer.cpp" />
