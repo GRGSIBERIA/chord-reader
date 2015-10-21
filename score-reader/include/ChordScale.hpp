@@ -21,9 +21,6 @@ namespace score
 			const int modeIndex;
 			const chord::Chord& chord;
 
-			const ModeModals& scale;
-			const ModeModals& available;
-			const ModeModals& usable;
 			const KeyChordModalizer& modalizer;
 
 		public:
@@ -32,8 +29,8 @@ namespace score
 			GET_PROPERTY(const int, ModeIndex, modeIndex);
 			GET_PROPERTY(const chord::Chord&, Chord, chord);
 
-			ChordScale(const std::wstring& key, const chord::Chord& chord, const int scaleIndex, const int modeIndex, const ModeModals& scale, const ModeModals& available, const ModeModals& usable, const KeyChordModalizer& modalizer)
-				: key(key), chord(chord), scaleIndex(scaleIndex), modeIndex(modeIndex), scale(scale), available(available), usable(usable), modalizer(modalizer) {}
+			ChordScale(const std::wstring& key, const chord::Chord& chord, const int scaleIndex, const int modeIndex, const KeyChordModalizer& modalizer)
+				: key(key), chord(chord), scaleIndex(scaleIndex), modeIndex(modeIndex), modalizer(modalizer) {}
 
 			const ModeModals& Scale(const size_t i) const;
 			const ModeModals& Available(const size_t i) const;
