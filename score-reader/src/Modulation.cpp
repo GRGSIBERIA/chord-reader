@@ -87,7 +87,7 @@ const std::wstring Modulation::Modulate(const RelatedKey relate, const std::wstr
 	throw UndefinedRelatedKeyException();
 }
 
-const ChordScale Modulation::SecondaryDominant(const std::wstring& targetChord, const bool useMinor = false)
+const ChordScale Modulation::SecondaryDominant(const std::wstring& targetChord, const bool useMinor)
 {
 	const auto& secondaryKey = useMinor ? ScaleDatabase::Minor(targetChord) : ScaleDatabase::Major(targetChord);
 	return secondaryKey.Mode(4, 4);

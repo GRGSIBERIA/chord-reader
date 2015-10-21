@@ -30,7 +30,7 @@ namespace score
 			static const std::wstring MinorSubDominant(const std::wstring& key);	// 下属調2(maj=IIm, min=VI)
 
 			// 遷移したいコードをIとして，Vのコードを求める，2次ドミナント
-			static const scale::ChordScale SecondaryDominant(const std::wstring& targetChord, const bool useMinor);
+			static const scale::ChordScale SecondaryDominant(const std::wstring& targetChord, const bool useMinor = false);
 
 			// モーダルインターチェンジ，コード名に転調して，似たようなコードを返す
 			static const scale::ChordScale ModalInterchange(const std::wstring& key, const std::wstring& chord, const RelatedKey related);

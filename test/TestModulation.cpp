@@ -55,6 +55,14 @@ TEST(TestModulation, secondary)
 	EXPECT_EQ(Modulation::SecondaryDominant(L"G7", false).Chord.Name(), L"D7");
 	EXPECT_EQ(Modulation::SecondaryDominant(L"Am7", false).Chord.Name(), L"E7");
 	EXPECT_EQ(Modulation::SecondaryDominant(L"Bm7-5", false).Chord.Name(), L"Gb7");
+
+	EXPECT_EQ(Modulation::SecondaryDominant(L"CM7", true).Key, L"Cm");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"Dm7", true).Key, L"Dm");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"Em7", true).Key, L"Em");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"FM7", true).Key, L"Fm");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"G7", true ).Key, L"Gm");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"Am7", true).Key, L"Am");
+	EXPECT_EQ(Modulation::SecondaryDominant(L"Bm7-5", true).Key, L"Bm");
 }
 
 std::wstring RelatesToString(const RelatedKey key)
@@ -112,4 +120,9 @@ TEST(TestModulation, interchange)
 			ofst.write(end.c_str(), end.size());
 		}
 	}
+}
+
+TEST(TestModulation, substitute)
+{
+	EXPECT_EQ(Modulation::SubstituteDominant(L"C", L"CM7").Chord.Name(), L"G7");
 }
