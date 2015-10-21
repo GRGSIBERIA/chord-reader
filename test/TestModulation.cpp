@@ -124,5 +124,45 @@ TEST(TestModulation, interchange)
 
 TEST(TestModulation, substitute)
 {
-	EXPECT_EQ(Modulation::SubstituteDominant(L"C", L"G7").Chord.Name(), L"Db7");
+	std::wofstream ofst(L"./dump/substitute.csv", std::ios::out);
+	std::vector<std::wstring> tmp = { L"C", L"C#", L"D", L"D#", L"E", L"F", L"F#", L"G", L"G#", L"A", L"A#", L"B" };
+	std::vector<std::wstring> keys = { L"C", L"C#", L"D", L"D#", L"E", L"F", L"F#", L"G", L"G#", L"A", L"A#", L"B" };
+	for (const auto& t : tmp)
+		keys.push_back(t + L"m");
+
+	std::wstring str = L"";
+	for (const auto& key : keys)
+	{
+		const auto& s = ScaleDatabase::Find(key);
+		str += L"key," + s.KeyName + L"\n";
+		
+		str += L"chord,";
+		for (int i = 0; i < 7; ++i)
+		{
+			const auto chord = s.Diatonics[i].Name();
+			str += chord + L",";
+		}
+		str += L"\n";
+
+		str += L"subst_key,";
+		for (int i = 0; i < 7; ++i)
+		{
+			const auto chord = s.Diatonics[i].Name();
+			const auto& sub = Modulation::SubstituteDominant(key, chord);
+			str += sub.Key + L",";
+		}
+		str += L"\n";
+
+		str += L"subst_chord,";
+		for (int i = 0; i < 7; ++i)
+		{
+			const auto chord = s.Diatonics[i].Name();
+			const auto& sub = Modulation::SubstituteDominant(key, chord);
+			str += sub.Chord.Name() + L",";
+		}
+		str += L"\n";
+
+		str += L"\n";
+	}
+	ofst.write(str.c_str(), str.size());
 }
