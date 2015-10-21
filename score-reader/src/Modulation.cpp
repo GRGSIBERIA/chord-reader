@@ -120,7 +120,7 @@ const ChordScale Modulation::ModalInterchange(const std::wstring& key, const siz
 	return ModalInterchange(key, scaleIndex, related, base);
 }
 
-const ChordScale SubstituteDominant(const std::wstring& key, const std::wstring& chord)
+const ChordScale Modulation::SubstituteDominant(const std::wstring& key, const std::wstring& chord)
 {
 	const auto& base = ScaleDatabase::Find(key);
 

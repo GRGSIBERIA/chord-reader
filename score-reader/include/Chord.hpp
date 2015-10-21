@@ -15,7 +15,7 @@ namespace score
 		class Chord
 		{
 			const std::wstring chordName;	// コード名
-			const std::wstring chordTone; // コードトーン名
+			const std::wstring chordTone;	// コードトーン名
 
 		public:
 			friend ChordFactory;

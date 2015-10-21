@@ -124,5 +124,5 @@ TEST(TestModulation, interchange)
 
 TEST(TestModulation, substitute)
 {
-	EXPECT_EQ(Modulation::SubstituteDominant(L"C", L"CM7").Chord.Name(), L"G7");
+	EXPECT_EQ(Modulation::SubstituteDominant(L"C", L"G7").Chord.Name(), L"Db7");
 }
