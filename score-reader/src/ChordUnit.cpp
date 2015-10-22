@@ -8,14 +8,31 @@ ChordUnit::ChordUnit(const std::wstring& part, const std::wstring& key, const st
 	scaleIndex = modalizer.ModeIndex(chordName);
 }
 
-const ChordScale ChordUnit::Scale(const size_t modeIndex) const 
+const ModeModals ChordUnit::Scale(const size_t modeIndex) const 
 { 
-	return modalizer.Mode(scaleIndex, modeIndex); 
+	return modalizer.Mode(scaleIndex, modeIndex).Scale(modeIndex); 
 }
-const ChordScale ChordUnit::Scale() const
+const ModeModals ChordUnit::Scale() const
 {
-	return modalizer.Mode(scaleIndex, scaleIndex);
+	return modalizer.Mode(scaleIndex, scaleIndex).Scale(scaleIndex);
 }
+const ModeModals ChordUnit::Available(const size_t modeIndex) const
+{
+	return modalizer.Mode(scaleIndex, modeIndex).Available(modeIndex);
+}
+const ModeModals ChordUnit::Available() const
+{
+	return modalizer.Mode(scaleIndex, scaleIndex).Available(scaleIndex);
+}
+const ModeModals ChordUnit::Usable(const size_t modeIndex) const
+{
+	return modalizer.Mode(scaleIndex, modeIndex).Usable(modeIndex);
+}
+const ModeModals ChordUnit::Usable() const
+{
+	return modalizer.Mode(scaleIndex, scaleIndex).Usable(scaleIndex);
+}
+
 
 ChordUnitArray::Itr ChordUnitArray::NextPart(ChordUnitArray::Itr& now) const
 {

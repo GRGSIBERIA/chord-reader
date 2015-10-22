@@ -13,14 +13,14 @@ void TestScale(const ModeScale& mode, const std::vector<int>& target)
 
 void TestAvoid(const ModeScale& mode, const std::vector<int>& target)
 {
-	const auto& avoids = mode.GetAvoids();
+	const auto& avoids = mode.Avoids;
 	for (size_t i = 0; i < avoids.size(); ++i)
 		EXPECT_EQ(avoids[i], target[i]);
 }
 
 void TestTritone(const ModeScale& mode, const std::vector<int>& target)
 {
-	const auto& ttone = mode.GetTritones();
+	const auto& ttone = mode.Tritones;
 	for (size_t i = 0; i < ttone.size(); ++i)
 		EXPECT_EQ(ttone[i], target[i]);
 }

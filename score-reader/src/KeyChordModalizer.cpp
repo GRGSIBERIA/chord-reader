@@ -22,32 +22,38 @@ void KeyChordModalizer::CalcModeScalesOnRoot(const size_t root)
 
 		for (size_t intervalIndex = 0; intervalIndex < scale.Size(); ++intervalIndex)
 		{
-			int tmp = mode.GetInterval(intervalIndex) + (int)key + scale.GetInterval(root);
-			tmp = RoundInterval(tmp);
+			const int tmp = mode.GetInterval(intervalIndex) + (int)key + scale.GetInterval(root);
 
-			modeScale[root][modeIndex][intervalIndex] = tmp;
+			modeScale[root][modeIndex][intervalIndex] = RoundInterval(tmp);
 		}
+	}
+}
+
+void KeyChordModalizer::RoundUsableScale(const size_t root)
+{
+	for (size_t modeIndex = 0; modeIndex < scale.Size(); ++modeIndex)
+	{
+		for (size_t interval = 0; interval < scale.Size(); ++interval)
+			usables[root][modeIndex][interval] = RoundInterval((int)key + usables[root][modeIndex][interval]);
 	}
 }
 
 void KeyChordModalizer::CalcAvailableScaleOnRoot(const size_t root)
 {
 	const auto& primary = modeScale[root][root];
-	const auto& availableOnMode = mtheory.GetMode(root).GetAvailableScale();
+	const auto& availableOnMode = mtheory.GetMode(root).Availables;
 
 	for (size_t modeIndex = 0; modeIndex < scale.Size(); ++modeIndex)
 	{
 		const auto& targetScale = modeScale[root][modeIndex];
 		const auto& targetMode = mtheory.GetMode(modeIndex);
 
+		usables[root][modeIndex] = mtheory.GetMode(modeIndex).Availables;
+
 		for (size_t intervalIndex = 0; intervalIndex < scale.Size(); ++intervalIndex)
 		{
-			// Available Note以外は追加しない方針
-			usables[root][modeIndex].push_back(targetScale[intervalIndex]);
 			if (availableOnMode[intervalIndex] == targetMode.GetInterval(intervalIndex))
-			{
 				availables[root][modeIndex].push_back(targetScale[intervalIndex]);
-			}
 		}
 	}
 }
@@ -98,6 +104,9 @@ KeyChordModalizer::KeyChordModalizer(const std::wstring& keyName, const Modal& k
 
 		// このループで，モードごとに演奏可能な楽音を追加する
 		CalcAvailableScaleOnRoot(root);
+
+		// usableだけ丸まってないので修正する
+		RoundUsableScale(root);
 	}
 }
 

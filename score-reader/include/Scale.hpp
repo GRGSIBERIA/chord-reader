@@ -5,6 +5,7 @@
 
 #include "Modal.hpp"
 #include "Chord.hpp"
+#include "Property.hpp"
 
 namespace score
 {
@@ -60,9 +61,9 @@ namespace score
 			ModeScale(const std::wstring& name, const ScaleIntervals& scale, const ScaleIndices& chordTones, const ScaleIndices& avoidNotes, const ScaleIndices& tritones, const ScaleIndices& availables)
 				: Scale(name, scale), chordTones(chordTones), avoidNotes(avoidNotes), tritones(tritones), availableScale(availables) {}
 
-			const ScaleIndices& GetAvoids() const { return avoidNotes; }
-			const ScaleIndices& GetTritones() const { return tritones; }
-			const ScaleIndices& GetAvailableScale() const { return availableScale; }
+			GET_PROPERTY(const ScaleIndices&, Avoids, avoidNotes);			// スケール内の短2度音程
+			GET_PROPERTY(const ScaleIndices&, Tritones, tritones);			// スケール内の増4度，減5度音程
+			GET_PROPERTY(const ScaleIndices&, Availables, availableScale);	// アボイドノートを回避した場合のスケール
 		};
 	}
 }

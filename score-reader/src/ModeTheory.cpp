@@ -95,6 +95,7 @@ void MergeAvoidAndTritone(ScaleIndices& avoids, const ScaleIndices& tritones)
 	avoids.insert(avoids.end(), tritones.begin(), tritones.end());
 }
 
+// アボイドノートだった場合，使用可能な音になるようにずらす
 void CreateAvailableScale(const ScaleIndices& buffer, const ScaleIndices& avoids, const ScaleIndices& tritones, ScaleIndices& availables)
 {
 	availables = buffer;

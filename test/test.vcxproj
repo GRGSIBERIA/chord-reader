@@ -95,6 +95,7 @@
     <ClCompile Include="..\score-reader\src\ScaleDatabase.cpp" />
     <ClCompile Include="..\score-reader\src\ScaleTheory.cpp" />
     <ClCompile Include="..\score-reader\src\tinyxml2.cpp" />
+    <ClCompile Include="Example.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestChordConstructions.cpp" />
     <ClCompile Include="TestChordScore.cpp" />

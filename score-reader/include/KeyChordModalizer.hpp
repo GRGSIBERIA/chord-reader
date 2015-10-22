@@ -43,6 +43,7 @@ namespace score
 			void CalcModeScalesOnRoot(const size_t root);
 			void CalcAvailableScaleOnRoot(const size_t root);
 			const ScaleTheory& GetMinor(const MinorType minor) const;
+			void RoundUsableScale(const size_t root);
 
 		public:
 			KeyChordModalizer(const std::wstring& keyName, const Modal& key, const ScaleTheory& theory, const ScaleIndices& chordTone, const MinorType minor = MinorType::Harmonic);

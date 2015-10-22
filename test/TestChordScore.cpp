@@ -58,9 +58,3 @@ TEST(TestChordScore, next_key)
 	for (const auto& str : s)
 		k = TestKey(k, str);
 }
-
-TEST(TestChordScore, chord_unit)
-{
-	const auto k = cs.Chords.cbegin();
-	EXPECT_EQ(k->Scale(0).Key, L"A#");
-}

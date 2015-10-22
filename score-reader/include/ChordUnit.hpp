@@ -32,8 +32,12 @@ namespace score
 			GET_PROPERTY(const int, ModeIndex, scaleIndex);
 			__declspec(property(get = _GetChord)) const chord::Chord& Chord;
 
-			const scale::ChordScale Scale(const size_t modeIndex) const;
-			const scale::ChordScale Scale() const;
+			const scale::ModeModals Scale(const size_t modeIndex) const;
+			const scale::ModeModals Scale() const;
+			const scale::ModeModals Available(const size_t modeIndex) const;
+			const scale::ModeModals Available() const;
+			const scale::ModeModals Usable(const size_t modeIndex) const;
+			const scale::ModeModals Usable() const;
 		};
 
 		// 専用の配列クラス

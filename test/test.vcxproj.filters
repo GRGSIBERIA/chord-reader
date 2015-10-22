@@ -84,6 +84,9 @@
     <ClCompile Include="..\score-reader\src\ChordScale.cpp">
       <Filter>ソース ファイル\src</Filter>
     </ClCompile>
+    <ClCompile Include="Example.cpp">
+      <Filter>ソース ファイル\test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\score-reader\include\xml\tinyxml2.h">
