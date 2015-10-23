@@ -28,7 +28,7 @@ TEST(TestChordScore, Chords)
 
 	for (size_t i = 0; i < test.size(); ++i)
 	{
-		EXPECT_EQ(test[i], cs.Chords[i].Chord.Name());
+		EXPECT_EQ(test[i], cs.Chords[i].Chord);
 	}
 }
 

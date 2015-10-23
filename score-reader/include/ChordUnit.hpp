@@ -24,13 +24,13 @@ namespace score
 		public:
 			ChordUnit(const std::wstring& part, const std::wstring& key, const std::wstring& chordName, const int count);
 
-			const chord::Chord& _GetChord() const { return *chordPtr; }
+			const std::wstring& _GetChord() const { return chordPtr->Name(); }
 
 			GET_PROPERTY(const std::wstring&, Key, key);
 			GET_PROPERTY(const std::wstring&, Part, part);
 			GET_PROPERTY(const int, Count, count);
 			GET_PROPERTY(const int, ModeIndex, scaleIndex);
-			__declspec(property(get = _GetChord)) const chord::Chord& Chord;
+			__declspec(property(get = _GetChord)) const std::wstring& Chord;
 
 			const scale::ModeModals Scale(const size_t modeIndex) const;
 			const scale::ModeModals Scale() const;
